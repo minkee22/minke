@@ -17,20 +17,24 @@
 // ============================================================
 
 const SLOTS = [
-  { slot: 1,  image: "landing photo/trashion_sketch1.jpeg", title: "sketch", href: "project.html?id=trashion" },
+  { slot: 1,  image: "landing photo/trashion_sketch1.jpg", title: "sketch", href: "project.html?id=trashion" },
   { slot: 2,  image: "landing photo/athl_clo.png", title: "athletic journey", href: "project.html?id=clo3d" },
-  { slot: 3,  image: null, title: "", href: "#" },
-  { slot: 4,  image: "landing photo/duvetica_work2_crop.png", title: "designer work", href: "project.html?id=designer" },
+  { slot: 3,  image: null, href: "tt-wedding.pdf", newTab: true,
+    text: ["CELEBRITY WEDDING", "SERGIO TACCHINI — 2026", "", "RESEARCH — DIRECTION", "", "VIEW DECK ↗"] },
+  { slot: 4,  image: "landing photo/duvetica_work2_crop.jpg", title: "designer work", href: "project.html?id=designer" },
   { slot: 5,  image: null, title: "", href: "#" },
   { slot: 6,  image: null, title: "", href: "#" },
-  { slot: 7,  image: "landing photo/model1.png", title: "model", href: "project.html?id=model" },
+  { slot: 7,  image: "landing photo/model1.jpg", title: "model", href: "project.html?id=model" },
   { slot: 8,  image: null, title: "", href: "#" },
   { slot: 9,  image: null, title: "", href: "#" },
-  { slot: 10, image: null, title: "", href: "#" },
+  // 사진 대신 글자가 인쇄된 카드. text 가 있으면 글자 카드로 그려진다.
+  { slot: 10, image: null, href: "cv.pdf", newTab: true,
+    text: ["CURRICULUM VITAE", "EUNBYN AN", "", "FASHION DESIGN — 3D", "PRODUCTION", "", "VIEW CV ↗"] },
   { slot: 11, image: "landing photo/duvetica_clo.png", title: "puffer project", href: "project.html?id=duvetica" },
   { slot: 12, image: null, title: "", href: "#" },
-  { slot: 13, image: null, title: "", href: "#" },
-  { slot: 14, image: "landing photo/patent_crop.png", title: "patent", href: "project.html?id=habit" },
+  { slot: 13, image: null, href: "60th-anniversary.pdf", newTab: true,
+    text: ["60TH ANNIVERSARY", "SERGIO TACCHINI — 2026", "", "CREATIVE DESIGN", "", "VIEW DECK ↗"] },
+  { slot: 14, image: "landing photo/patent_crop.jpg", title: "patent", href: "project.html?id=habit" },
   { slot: 15, image: null, title: "", href: "#" },
   { slot: 16, image: null, title: "", href: "#" },
 ];

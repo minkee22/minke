@@ -1,9 +1,24 @@
 (function () {
   var id = new URLSearchParams(location.search).get("id") || "trashion";
-  var d = DETAILS[id];
-  if (!d) { document.body.innerHTML = "<p style='color:#888'>unknown project: " + id + "</p>"; return; }
+  // 물려받은 속성(constructor, toString 등)이 프로젝트로 통과해서
+  // 페이지가 깨지지 않도록, 실제로 정의된 키인지 확인한다.
+  var d = Object.prototype.hasOwnProperty.call(DETAILS, id) ? DETAILS[id] : null;
+  if (!d) {
+    // 주소창의 id 값을 innerHTML 로 넣으면 조작된 링크가 방문자 브라우저에서
+    // 스크립트를 실행시킨다. 문자열이 아니라 텍스트 노드로 넣어 차단한다.
+    document.body.textContent = "";
+    var miss = document.createElement("p");
+    miss.style.color = "#888";
+    miss.style.fontFamily = "monospace";
+    miss.style.padding = "40px";
+    miss.textContent = "unknown project: " + id;
+    document.body.appendChild(miss);
+    return;
+  }
 
   document.title = d.title + " — EUNBYN AN";
+  var pageHeading = document.getElementById("pageHeading");
+  if (pageHeading) pageHeading.textContent = d.title + " — EUNBYN AN";
 
   var counter = document.getElementById("counter");
   var prev = document.getElementById("prevBtn");
@@ -402,15 +417,16 @@
       }
       var pick = randomPicker(e.photos);
       var pickLabel = randomPicker(e.labels || [""]);
-      fig.src = pick();
+      // 카드는 열기 전까지 보이지 않는다. 사진을 미리 받지 않고 처음 열 때 채운다.
       lab.textContent = pickLabel();
 
-      hit.addEventListener("mouseenter", function () { box.classList.add("is-hover"); });
+      hit.addEventListener("mouseenter", function () { box.classList.add("is-hover"); warm(); });
       hit.addEventListener("mouseleave", function () { box.classList.remove("is-hover"); });
 
       hit.addEventListener("click", function () {
         var opening = !box.classList.contains("is-open");
         if (opening) {
+          warm();
           fig.src = pick();
           lab.textContent = pickLabel();
         }
@@ -418,8 +434,13 @@
         cue.textContent = opening ? "Close" : "Open";
       });
 
-      // 미리 받아두기
-      e.photos.forEach(function (p) { var im = new Image(); im.src = p; });
+      // 커서가 봉투에 닿으면 그때 이 봉투 사진만 미리 받는다 (열 의사 표시)
+      var warmed = false;
+      function warm() {
+        if (warmed) return;
+        warmed = true;
+        e.photos.forEach(function (p) { var im = new Image(); im.src = p; });
+      }
 
       row.appendChild(box);
     });
@@ -503,6 +524,8 @@
     var itemEls = [].slice.call(track.children);
     var geo = [];
     var SLOT = 1;
+    var VIEW_W = 1;
+    var MAX_SCROLL = 1;
     function measure() {
       var vw = viewport.clientWidth;
       SLOT = vw / CF.visible;
@@ -524,6 +547,10 @@
       });
       // 첫 장과 마지막 장이 모두 중앙까지 올 수 있는 길이
       track.style.width = (vw + (itemEls.length - 1) * SLOT) + "px";
+      // 스크롤 한계와 화면폭을 여기서 한 번만 재둔다. 매 프레임 다시 읽으면
+      // 방금 쓴 스타일 때문에 브라우저가 레이아웃을 강제로 다시 계산한다.
+      VIEW_W = vw;
+      MAX_SCROLL = (itemEls.length - 1) * SLOT;
       geo = itemEls.map(function (el, i) {
         return { el: el, i: i, hv: 0 };
       });
@@ -548,7 +575,7 @@
     var hoverPause = false;
 
     function applyCoverflow() {
-      var vw = viewport.clientWidth;
+      var vw = VIEW_W;
       var sl = viewport.scrollLeft;
       var pos = sl / SLOT;                       // 현재 화면 중앙에 온 사진 번호(소수)
       // 소실점을 항상 화면 중앙에 둔다 (트랙이 매우 길기 때문에 매 프레임 갱신)
@@ -586,11 +613,12 @@
     }
 
     function tick() {
-      applyCoverflow();
+      // 읽기를 먼저, 쓰기를 나중에. 순서를 섞으면 매 프레임 레이아웃이 강제 재계산된다.
       if (pointerInside && speed !== 0 && !hoverPause) viewport.scrollLeft += speed;
-      var max = viewport.scrollWidth - viewport.clientWidth;
-      stripStage.classList.toggle("at-start", viewport.scrollLeft <= 2);
-      stripStage.classList.toggle("at-end", viewport.scrollLeft >= max - 2);
+      var sl = viewport.scrollLeft;
+      applyCoverflow();
+      stripStage.classList.toggle("at-start", sl <= 2);
+      stripStage.classList.toggle("at-end", sl >= MAX_SCROLL - 2);
       requestAnimationFrame(tick);
     }
     requestAnimationFrame(tick);

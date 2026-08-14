@@ -17,6 +17,30 @@
 
       var order = 0;
       SLOTS.forEach(function (s) {
+        // 글자 카드 — 사진 없이 종이 위에 텍스트만 인쇄된 카드
+        if (!s.image && s.text) {
+          var tb = boxes[s.slot];
+          if (!tb) return;
+          var ta = document.createElement("a");
+          ta.className = "text-card";
+          ta.href = s.href || "#";
+          if (s.newTab) { ta.target = "_blank"; ta.rel = "noopener"; }
+          ta.style.left = tb.left + "%";
+          ta.style.top = tb.top + "%";
+          ta.style.width = tb.width + "%";
+          ta.style.height = tb.height + "%";
+          var inner = document.createElement("div");
+          inner.className = "text-card-body";
+          s.text.forEach(function (line) {
+            var row = document.createElement("div");
+            row.className = line ? "tc-line" : "tc-gap";
+            row.textContent = line;
+            inner.appendChild(row);
+          });
+          ta.appendChild(inner);
+          overlays.appendChild(ta);
+          return;
+        }
         if (!s.image) return; // 빈 카드 = 구운 이미지 그대로, DOM 없음
         var b = boxes[s.slot];
         if (!b) return;
