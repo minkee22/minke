@@ -77,13 +77,28 @@ body {
   font-size: 11px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.55);
+  color: rgba(255, 255, 255, 0.95);
   text-decoration: none;
   /* 넘김 존·페이저보다 항상 위에 있어야 보드로 나갈 수 있다 */
   z-index: 40;
 }
 
-.back-link:hover { color: rgba(255, 255, 255, 0.9); }
+/* 고정 위치라 밝은 종이 패널과 어두운 배경 위를 번갈아 지난다.
+   글자 뒤에만 판을 깔아 뒤쪽 색과 무관하게 읽히도록 한다.
+   상자 자체는 키우지 않는다 — 키우면 옆 버튼을 덮고 클릭을 가로챈다. */
+.back-link::before {
+  content: "";
+  position: absolute;
+  inset: -3px -7px;
+  background: rgba(20, 18, 15, 0.72);
+  border-radius: 2px;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.back-link:hover { color: #fff; }
+
+.back-link:hover::before { background: rgba(20, 18, 15, 0.85); }
 
 /* 클립 라벨 카드 위 제목 — 카드 우측에 정렬 */
 .label-text {

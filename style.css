@@ -52,17 +52,21 @@
 
 html, body { height: 100%; }
 
-/* 윈도우는 스크롤바가 화면 폭을 실제로 차지한다.
-   자리를 미리 확보해 두어 OS에 따라 보드 크기가 달라지지 않게 한다. */
+/* 이 페이지는 세로로 스크롤되지 않는다(내용 높이가 항상 100vh 이하).
+   예전엔 scrollbar-gutter: stable 로 스크롤바 자리를 비워 뒀는데,
+   그 자리는 벽지가 칠해지지 않는 데다 100vw 에는 포함되어
+   보드가 좌우로 잘려 나갔다. 예약을 없애 폭을 온전히 쓴다. */
 html {
-  scrollbar-gutter: stable;
   overflow-x: hidden;
 }
 
 body {
   background-color: #dbd8d2;
   background-image: url("assets/wall-wide.jpg");
-  background-size: auto var(--stage-h);
+  /* 벽지 높이를 보드가 아닌 화면에 맞춘다. --stage-h 는 min(100vh, …) 이라
+     세로로 여유가 없는 화면에서는 값이 같고, 폰처럼 보드가 폭에 갇히는
+     화면에서만 벽이 화면 전체를 덮는다. */
+  background-size: auto 100vh;
   background-position: center;
   background-repeat: repeat-x;
   display: flex;
@@ -160,7 +164,7 @@ a.photo-slot .caption {
   right: 8%;
   transform: translateY(-50%);
   text-align: center;
-  font-size: 11px;
+  font-size: calc(var(--stage-w) * 0.0146);
   letter-spacing: 0.22em;
   line-height: 1.5;
   text-transform: uppercase;
@@ -197,8 +201,10 @@ a.photo-slot:focus-visible .caption::after { width: 42%; }
   pointer-events: none;
 }
 
+/* 아래 글자들은 보드 폭에 묶는다. 고정 px 로 두면 화면이 작아질 때
+   보드만 줄고 글자는 그대로라 카드 위로 겹친다. 1920x955 에서 기존 크기 유지. */
 .identity-line1 {
-  font-size: 16px;
+  font-size: calc(var(--stage-w) * 0.021237);
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: rgba(58, 50, 42, 0.82);
@@ -206,8 +212,8 @@ a.photo-slot:focus-visible .caption::after { width: 42%; }
 }
 
 .identity-line2 {
-  margin-top: 4px;
-  font-size: 13px;
+  margin-top: 0.31em;
+  font-size: calc(var(--stage-w) * 0.017254);
   letter-spacing: 0.07em;
   text-transform: uppercase;
   color: rgba(58, 50, 42, 0.5);
@@ -220,7 +226,7 @@ a.photo-slot:focus-visible .caption::after { width: 42%; }
   left: 0;
   width: 100%;
   text-align: center;
-  font-size: 12px;
+  font-size: calc(var(--stage-w) * 0.015927);
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: rgba(72, 62, 52, 0.62);
@@ -232,7 +238,7 @@ a.photo-slot:focus-visible .caption::after { width: 42%; }
 }
 
 .signature #sigEmail {
-  font-size: 10.2px;
+  font-size: calc(var(--stage-w) * 0.013538);
   letter-spacing: 0.06em;
   color: rgba(72, 62, 52, 0.48);
 }
@@ -348,4 +354,13 @@ a.text-card:focus-visible {
 a.text-card:hover .tc-line:last-child::after,
 a.text-card:focus-visible .tc-line:last-child::after {
   width: 82%;
+}
+
+/* 화면이 보드보다 세로로 길면(폰) 보드는 폭에 갇혀 짧아지고 위아래로 벽이 남는다.
+   가운데 띄우는 대신 위쪽에 걸고, 남는 벽은 아래로 모은다. */
+@media (max-aspect-ratio: 1824 / 2312) {
+  body {
+    align-items: flex-start;
+    padding-top: calc((100vh - var(--stage-h)) * 0.25);
+  }
 }
