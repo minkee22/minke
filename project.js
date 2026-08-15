@@ -470,7 +470,19 @@
 
     // 커버플로우: 화면 중앙 사진이 정면·최대, 양옆으로 갈수록 눕고 작아지고 뒤로 밀린다.
     var CF = d.coverflow || { top: 20, visible: 7, spread: 3, overlap: 1.06, maxRotate: 25, edgeScale: 0.952, depth: 60, fade: 0.12, blur: 3, dim: 0.22, start: 3, hoverScale: 1.03, pauseZone: 0.6 };
-    var baseTop = Math.min(CF.top, MAX_TOP);
+
+    // 폰에서는 details.js 의 mobile 값으로 덮어쓴다. 창 크기가 바뀌면 다시 판정한다.
+    // matchMedia 객체를 담아 두면 파이어폭스·사파리에서 resize 시점에 아직
+    // 갱신되지 않은 값을 읽는다. 매번 새로 물어봐야 한다.
+    function isMobile() { return window.matchMedia("(max-width: 760px)").matches; }
+    var CFV = {};
+    function resolveCF() {
+      var src = isMobile() && CF.mobile ? CF.mobile : null;
+      ["top", "visible", "spread", "overlap", "maxRotate", "edgeScale", "depth", "fade", "blur", "dim", "hoverScale", "pauseZone"].forEach(function (k) {
+        CFV[k] = src && src[k] !== undefined ? src[k] : CF[k];
+      });
+    }
+    resolveCF();
 
     d.photos.forEach(function (p, i) {
       var item = document.createElement("div");
@@ -478,7 +490,8 @@
       // vh 단위 사용: CSS의 margin-top 백분율은 부모의 '폭' 기준으로 계산되어
       // 가로로 긴 트랙에서는 세로 위치가 엉뚱하게 잡힌다.
       // 실제 크기는 measure() 에서 칸 폭에 맞춰 px 로 정해진다
-      item.style.top = baseTop + "vh";
+      // 실제 세로 위치는 measure() 가 px 로 정한다
+      item.style.top = "0px";
 
       var img = document.createElement("img");
       img.src = p.img;
@@ -498,6 +511,60 @@
       var e = document.createElement("div");
       e.className = "strip-edge " + side;
       stripStage.appendChild(e);
+    });
+
+    // 폰에서는 좌우로 넘길 수 있다는 신호가 약하다. 진행 막대를 두어
+    // 현재 위치를 보여 주고, 막대를 끌어서도 넘길 수 있게 한다.
+    var scrub = document.createElement("div");
+    scrub.className = "strip-scrub";
+    var scrubThumb = document.createElement("div");
+    scrubThumb.className = "strip-scrub-thumb";
+    scrub.appendChild(scrubThumb);
+    stripStage.appendChild(scrub);
+
+    var scrubbing = false;
+    var grabDX = 0;          // 손잡이 안에서 잡은 지점 (손잡이 왼쪽 끝 기준)
+
+    // 손잡이의 왼쪽 끝이 가야 할 위치로부터 스크롤 값을 낸다.
+    function scrubToThumbLeft(leftPx) {
+      var r = scrub.getBoundingClientRect();
+      var tw = scrubThumb.getBoundingClientRect().width;
+      var travel = Math.max(1, r.width - tw);
+      var t = Math.min(1, Math.max(0, leftPx / travel));
+      viewport.scrollLeft = t * MAX_SCROLL;
+    }
+
+    scrub.addEventListener("pointerdown", function (e) {
+      var r = scrub.getBoundingClientRect();
+      var tr = scrubThumb.getBoundingClientRect();
+      if (e.clientX >= tr.left && e.clientX <= tr.right) {
+        // 손잡이를 잡았다 — 잡은 자리를 유지한 채 따라온다
+        grabDX = e.clientX - tr.left;
+      } else {
+        // 빈 트랙을 눌렀다 — 손잡이 가운데가 그 자리로 온다
+        grabDX = tr.width / 2;
+        scrubToThumbLeft(e.clientX - r.left - grabDX);
+      }
+      scrubbing = true;
+      // 합성 포인터 이벤트에서는 이 호출이 예외를 던질 수 있다.
+      // 아래 preventDefault 까지 막히지 않도록 감싼다.
+      try { scrub.setPointerCapture(e.pointerId); } catch (err) {}
+      e.preventDefault();
+    });
+
+    scrub.addEventListener("pointermove", function (e) {
+      if (!scrubbing) return;
+      var r = scrub.getBoundingClientRect();
+      scrubToThumbLeft(e.clientX - r.left - grabDX);
+    });
+
+    ["pointerup", "pointercancel"].forEach(function (ev) {
+      scrub.addEventListener(ev, function (e) {
+        scrubbing = false;
+        try {
+          if (scrub.hasPointerCapture && scrub.hasPointerCapture(e.pointerId)) scrub.releasePointerCapture(e.pointerId);
+        } catch (err) {}
+      });
     });
 
     // 커서가 화면 가운데면 정지, 좌우 끝으로 갈수록 그쪽으로 빠르게 흐른다
@@ -520,19 +587,24 @@
     });
 
     // 사진을 '칸(slot)' 단위로 균등 배치한다.
-    // 칸 폭 = 화면폭 / 보이는 장수  → 한 화면에 정확히 CF.visible 장이 들어온다.
+    // 칸 폭 = 화면폭 / 보이는 장수  → 한 화면에 정확히 CFV.visible 장이 들어온다.
     var itemEls = [].slice.call(track.children);
     var geo = [];
     var SLOT = 1;
     var VIEW_W = 1;
     var MAX_SCROLL = 1;
+    var PREV_SLOT = 0;
+    // tick() 이 매 프레임 기록해 두는 '지금 가운데 있는 사진' 번호.
+    // resize 핸들러에서 scrollLeft 를 읽으면 이미 브라우저가 잘라낸 뒤라 늦다.
+    var LAST_CENTER = -1;
     function measure() {
+      resolveCF();
       var vw = viewport.clientWidth;
-      SLOT = vw / CF.visible;
+      SLOT = vw / CFV.visible;
 
       // 사진 크기를 칸 폭에 맞춘다 → 화면 비율이 달라져도 겹침 정도가 일정하다.
       // 단, 세로가 화면을 넘지 않도록 SZ.h(vh) 를 상한으로 둔다.
-      var wantW = SLOT * (CF.overlap || 1.06);
+      var wantW = SLOT * (CFV.overlap || 1.06);
       var maxH = window.innerHeight * (SZ.h / 100);
       var h = Math.min(wantW / SZ.ratio, maxH);
       var w = h * SZ.ratio;
@@ -540,6 +612,18 @@
         el.style.width = w + "px";
         el.style.height = h + "px";
       });
+
+      // 폰에서는 사진이 커진 만큼 화면 한가운데로 앉힌다.
+      // 데스크톱은 설정값 top(vh) 그대로.
+      var topPx;
+      if (isMobile()) {
+        // 화면 정중앙에 앉히되, 위쪽 막대(최대 아래끝 112px) 밑으로는 올라가지 않는다.
+        topPx = Math.max(122, (window.innerHeight - h) / 2);
+      } else {
+        var baseTopNow = Math.min(CFV.top, MAX_TOP);
+        topPx = window.innerHeight * baseTopNow / 100;
+      }
+      itemEls.forEach(function (el) { el.style.top = topPx + "px"; });
 
       var startLeft = (vw - w) / 2;              // 0번 사진이 화면 정중앙에 오도록
       itemEls.forEach(function (el, i) {
@@ -554,6 +638,14 @@
       geo = itemEls.map(function (el, i) {
         return { el: el, i: i, hv: 0 };
       });
+
+      // 칸 폭이 바뀌면(데스크톱 ↔ 폰) 가운데 있던 사진이 계속 가운데 오도록 다시 맞춘다.
+      // 위치는 tick() 이 프레임마다 기록해 둔 값을 쓴다 — resize 시점의 scrollLeft 는
+      // 이미 새 화면 크기에 맞춰 잘려 있어 믿을 수 없다.
+      if (LAST_CENTER >= 0 && PREV_SLOT && PREV_SLOT !== SLOT) {
+        viewport.scrollLeft = Math.min(MAX_SCROLL, Math.max(0, LAST_CENTER * SLOT));
+      }
+      PREV_SLOT = SLOT;
     }
     measure();
     window.addEventListener("resize", measure);
@@ -586,29 +678,29 @@
         var g = geo[j];
         var off = g.i - pos;                     // 중앙에서 몇 칸 떨어졌나 (부호 있음)
         var ao = Math.abs(off);
-        var a = Math.min(ao / CF.spread, 1);     // 회전·깊이·페이드용 0~1
+        var a = Math.min(ao / CFV.spread, 1);     // 회전·깊이·페이드용 0~1
 
         // 커서 반응은 부드럽게 따라붙는다
         var target = (g.el === hoveredEl) ? 1 : 0;
         g.hv += (target - g.hv) * 0.18;
-        if (target === 1 && ao <= CF.pauseZone) hoverPause = true;
+        if (target === 1 && ao <= CFV.pauseZone) hoverPause = true;
 
         // 중앙이 1.0, 양 끝이 edgeScale — 가운데가 끝보다 (1 / edgeScale)배 크다
-        var scale = (1 - (1 - CF.edgeScale) * a) * (1 + (CF.hoverScale - 1) * g.hv);
-        var rot = CF.maxRotate * (off >= 0 ? a : -a);
+        var scale = (1 - (1 - CFV.edgeScale) * a) * (1 + (CFV.hoverScale - 1) * g.hv);
+        var rot = CFV.maxRotate * (off >= 0 ? a : -a);
 
         g.el.style.transform =
-          "translateZ(" + (-a * CF.depth).toFixed(1) + "px)" +
+          "translateZ(" + (-a * CFV.depth).toFixed(1) + "px)" +
           " rotateY(" + rot.toFixed(2) + "deg)" +
           " scale(" + scale.toFixed(4) + ")";
         g.el.style.zIndex = String(Math.round(1000 - ao * 100));
-        g.el.style.opacity = (1 - CF.fade * a).toFixed(3);
+        g.el.style.opacity = (1 - CFV.fade * a).toFixed(3);
 
         // 심도 — 가운데만 선명하고 밝다. 커서를 올린 사진은 다시 또렷해진다.
         var focus = a * (1 - g.hv);
         g.el.style.filter =
-          "blur(" + (CF.blur * focus).toFixed(2) + "px)" +
-          " brightness(" + (1 - CF.dim * focus).toFixed(3) + ")";
+          "blur(" + (CFV.blur * focus).toFixed(2) + "px)" +
+          " brightness(" + (1 - CFV.dim * focus).toFixed(3) + ")";
       }
     }
 
@@ -616,7 +708,15 @@
       // 읽기를 먼저, 쓰기를 나중에. 순서를 섞으면 매 프레임 레이아웃이 강제 재계산된다.
       if (pointerInside && speed !== 0 && !hoverPause) viewport.scrollLeft += speed;
       var sl = viewport.scrollLeft;
+      if (SLOT > 0) LAST_CENTER = Math.round(sl / SLOT);
       applyCoverflow();
+
+      // 막대 두께는 전체 중 보이는 비율, 위치는 현재 스크롤 비율
+      var frac = MAX_SCROLL > 0 ? sl / MAX_SCROLL : 0;
+      var visFrac = Math.min(1, VIEW_W / (VIEW_W + MAX_SCROLL));
+      scrubThumb.style.width = (visFrac * 100) + "%";
+      scrubThumb.style.left = (frac * (100 - visFrac * 100)) + "%";
+
       stripStage.classList.toggle("at-start", sl <= 2);
       stripStage.classList.toggle("at-end", sl >= MAX_SCROLL - 2);
       requestAnimationFrame(tick);

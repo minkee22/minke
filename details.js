@@ -317,7 +317,12 @@ const DETAILS = {
     //   overlap    : 사진 폭 ÷ 칸 폭. 1.0이면 딱 붙고, 1.06이면 6%만 겹친다
     //   start      : 페이지 진입 시 가운데에 올 사진 번호 (1부터)
     //   blur / dim : 심도 — 양 끝으로 갈수록 흐려지고(px) 어두워지는(0~1) 정도
-    coverflow: { top: 20, visible: 7, spread: 3, overlap: 1.06, maxRotate: 25, edgeScale: 0.952, depth: 60, fade: 0.12, blur: 3, dim: 0.22, start: 3, hoverScale: 1.03, pauseZone: 0.6 },
+    //   mobile     : 폰(가로 760px 이하)에서만 덮어쓸 값들
+    coverflow: { top: 20, visible: 7, spread: 3, overlap: 1.06, maxRotate: 25, edgeScale: 0.952, depth: 60, fade: 0.12, blur: 3, dim: 0.22, start: 3, hoverScale: 1.03, pauseZone: 0.6,
+      // 폰에서는 한 화면에 7장이 들어가면 사진이 손톱만 해진다.
+      // 가운데 한 장을 크게 보여주고, 양옆은 각도를 크게 눕혀 살짝만 걸치게 한다.
+      // 세로 위치는 top 대신 화면 가운데로 자동 정렬된다.
+      mobile: { visible: 5, overlap: 2.4, maxRotate: 58, spread: 2, edgeScale: 0.88, depth: 90 } },
     photos: CLO3D_PHOTOS,
   },
 

@@ -421,6 +421,46 @@ body.strip-mode {
   color: rgba(58, 52, 44, 0.72);
 }
 
+/* 폰 전용 — 좌우로 넘길 수 있다는 신호이자, 끌어서 넘기는 손잡이.
+   데스크톱은 커서 위치를 따라 흐르므로 필요 없다. */
+.strip-scrub { display: none; }
+
+@media (max-width: 760px) {
+  .strip-scrub {
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: clamp(84px, 12.5vh, 128px);
+    transform: translateX(-50%);
+    width: min(64vw, 270px);
+    /* 손가락이 닿을 넓이. 보이는 선은 ::before 로 가늘게 그린다. */
+    height: 28px;
+    z-index: 4;
+    touch-action: none;
+  }
+
+  .strip-scrub::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 13px;
+    height: 2px;
+    border-radius: 999px;
+    background: rgba(58, 52, 44, 0.18);
+  }
+
+  .strip-scrub-thumb {
+    position: absolute;
+    top: 9px;
+    height: 10px;
+    min-width: 24px;
+    border-radius: 999px;
+    background: rgba(58, 52, 44, 0.6);
+    will-change: left, width;
+  }
+}
+
 /* 좌우 끝에 다다르면 흐름이 멈춘다는 신호 */
 .strip-edge {
   position: absolute;
@@ -844,7 +884,10 @@ body.ig-mode {
   cursor: default;
 }
 
-.ig-tab svg { fill: currentColor; }
+/* 아이콘마다 채움 방식이 다르다. Posts(grid)만 면으로 그려져 있고
+   Reels·Tagged 는 fill="none" + stroke 로 그려진 선 아이콘이다.
+   CSS 가 표시 속성을 이기므로, 스스로 fill="none" 을 선언한 것은 건드리지 않는다. */
+.ig-tab svg:not([fill="none"]) { fill: currentColor; }
 .ig-tab.on { color: #f5f5f5; border-top-color: #f5f5f5; }
 .ig-tab[disabled] { opacity: 0.55; }
 
@@ -1158,4 +1201,16 @@ body.ig-mode {
   .ig-side-body { order: 2; }
   .ig-actions { order: 0; border-top: none; }
   .ig-side-foot { order: 1; }
+}
+
+/* 폰에서는 노트 이미지 좌우의 어두운 여백(14.3%)만큼 키워
+   노트 본체가 화면 폭을 꽉 채우게 한다. 넘치는 부분은 여백뿐이다.
+   좌우 여백이 서로 달라(177px / 88px) 2.4% 왼쪽으로 밀어 맞춘다.
+   자식 요소는 모두 % 위치라 함께 확대되어 정렬이 유지된다.
+   가로 폭이 아니라 화면 '모양'으로 건다. 가로모드 폰처럼 폭이 넉넉한 화면에서는
+   노트 높이가 화면에 갇혀 있어, 확대하면 위아래가 잘린다. */
+@media (max-aspect-ratio: 1591 / 2164) {
+  .note-stage {
+    transform: scale(1.16656) translateX(-2.4%);
+  }
 }
