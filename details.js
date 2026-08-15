@@ -253,7 +253,7 @@ const IG_POSTS = [
 const DETAILS = {
   trashion: {
     title: "TRASHION",
-    season: "SS//26",
+    season: "AUGUST 2023",
     spec: "TRASHION 2026 < MET GALA — PILE OF CLOTHES : THE GOTHIC RECYCLING > LOOK / ",
     // 디자인별로 묶은 순서 — 아이디어보드 → 스케치 → 3D CLO → 에디토리얼
     pages: [
