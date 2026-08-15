@@ -1214,3 +1214,23 @@ body.ig-mode {
     transform: scale(1.16656) translateX(-2.4%);
   }
 }
+
+/* 노트·앨범은 어느 방향으로도 스크롤되지 않는다. 그런데 폰에서 노트를 키우면
+   문서가 화면보다 21px 넓어져 페이지가 끌려 다니고, 브라우저가 가로 제스처를
+   먼저 가져가 버려 쓸어넘김이 핸들러까지 오지 못한다.
+   화면에 못 박아 끌 여지를 없앤다. 세로로 스크롤되는 cs-mode·ig-mode 는 제외. */
+body.note-mode,
+body.album-mode {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+
+/* 이 두 화면은 어느 방향으로도 스크롤되지 않으므로 제스처를 전부 우리가 받는다.
+   pan-y 로 두면 브라우저가 세로냐 가로냐 판단하는 동안 제스처를 붙들고 있다가
+   취소해 버려, 쓸어넘김이 중간에 끊긴다. */
+.note-stage,
+.album-stage {
+  touch-action: none;
+}

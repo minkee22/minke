@@ -58,6 +58,62 @@
     if (e.key === "ArrowRight") go(1);
   });
 
+  // 폰에서는 화살표를 누르는 대신 옆으로 쓸어 장을 넘긴다.
+  // 마우스는 기존 클릭 동작을 그대로 두고, 손가락·펜에만 반응한다.
+  function attachSwipe(el) {
+    if (!el) return;
+    var x0 = 0, y0 = 0, t0 = 0, tracking = false, lastWasTouch = false;
+    var maxDx = 0;
+    var MIN_DIST = 32;    // 이보다 짧으면 넘김이 아니라 탭으로 본다
+    var MAX_TIME = 1200;  // 이보다 오래 끌면 넘길 의도가 아니라고 본다
+
+    el.addEventListener("pointerdown", function (e) {
+      if (e.pointerType === "mouse") return;
+      lastWasTouch = true;
+      tracking = true;
+      x0 = e.clientX;
+      y0 = e.clientY;
+      t0 = e.timeStamp;
+      maxDx = 0;
+    });
+
+    el.addEventListener("pointermove", function (e) {
+      if (!tracking) return;
+      var dx = e.clientX - x0;
+      if (Math.abs(dx) > Math.abs(maxDx)) maxDx = dx;
+    });
+
+    // 가로로 충분히 갔고, 세로보다 가로로 더 많이 갔으면 넘김으로 본다.
+    // 세로 흔들림을 절대값으로 자르면 엄지로 호를 그리는 자연스러운 스와이프가 걸러진다.
+    function settle(e) {
+      if (!tracking) return;
+      tracking = false;
+      if (e.timeStamp - t0 > MAX_TIME) return;
+      var dx = e.clientX - x0;
+      var dy = e.clientY - y0;
+      // 손을 떼기 직전에 살짝 되돌아오는 경우가 있어, 지나간 최대 거리도 함께 본다.
+      if (Math.abs(maxDx) > Math.abs(dx)) dx = maxDx;
+      if (Math.abs(dx) < MIN_DIST) return;
+      if (Math.abs(dx) <= Math.abs(dy)) return;
+      // 왼쪽으로 쓸면 다음 장, 오른쪽으로 쓸면 이전 장
+      go(dx < 0 ? 1 : -1);
+    }
+
+    el.addEventListener("pointerup", settle);
+    el.addEventListener("pointercancel", settle);
+
+    // 손가락으로 만진 뒤 따라오는 click 은 모두 삼킨다.
+    // 탭으로 넘기는 동작을 없애고 쓸어넘김만 남기기 위해서다.
+    // 마우스 클릭은 이 경로를 타지 않으므로 그대로 동작한다.
+    el.addEventListener("click", function (e) {
+      if (lastWasTouch) {
+        lastWasTouch = false;
+        e.stopPropagation();
+        e.preventDefault();
+      }
+    }, true);
+  }
+
   var render;
 
   // ══════════ 인스타그램형 (프로필 그리드 + 모달) ══════════
@@ -818,9 +874,11 @@
 
     // 가운데를 눌러도 다음 장으로 (기존 동작 유지)
     albumHot.addEventListener("click", function () { go(1); });
+    attachSwipe(albumStage);
 
   // ══════════ 노트형 ══════════
   } else {
+    document.body.classList.add("note-mode");
     albumStage.remove();
     stripStageEl.remove();
     envStageEl.remove();
@@ -864,6 +922,7 @@
     });
     turnHot.addEventListener("mouseleave", function () { cover.classList.remove("peel"); });
     turnHot.addEventListener("click", function () { go(1); });
+    attachSwipe(noteStage);
   }
 
   render();
