@@ -231,11 +231,24 @@
     var likesEl = document.getElementById("igLikes");
     var cur = 0, slideCount = 0, curPost = null;
 
+    // 모달은 타일보다 3배 넘게 크게 보여준다. 타일용 640 파일을 그대로 쓰면
+    // 늘려 그려져 뭉개지므로, 같은 이름의 1080(-hi) 파일을 쓴다.
+    // 그 파일이 없으면 원래 파일로 되돌아간다.
+    function hiRes(u) { return u.replace(/\.(mp4|jpg)$/, "-hi.$1"); }
+
     function renderSlides(p) {
       slidesEl.innerHTML = "";
       var v = document.createElement("video");
-      v.src = p.video;
-      v.poster = p.poster;
+      var usingHi = true;
+      v.src = hiRes(p.video);
+      v.poster = hiRes(p.poster);
+      v.addEventListener("error", function () {
+        if (!usingHi) return;
+        usingHi = false;
+        v.src = p.video;
+        v.poster = p.poster;
+        v.load();
+      });
       v.muted = true;
       v.loop = true;
       v.playsInline = true;
