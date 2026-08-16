@@ -302,23 +302,24 @@ const DETAILS = {
     strip: true,
     title: "CLO 3D WORK",
     // 모든 사진 공통 규격 — h는 화면 높이 대비(vh), ratio는 가로/세로 비율
-    size: { h: 58, ratio: 0.68 },
+    size: { h: 70, ratio: 0.68 },
     // 커버플로우 — 가운데 사진이 정면·가장 크고, 양옆으로 갈수록 3D로 눕는다.
-    //   top        : 사진 줄의 세로 위치 (vh)
+    //   top        : (더 이상 쓰이지 않음) 사진은 화면 세로 중앙에 자동 정렬된다
     //   maxRotate  : 화면 끝에서 눕는 각도 (deg)
     //   minScale   : 화면 끝에서의 크기 배율
     //   depth      : 화면 끝에서 뒤로 밀리는 거리 (px)
     //   fade       : 화면 끝에서 옅어지는 정도 (0~1)
     //   hoverScale : 커서 올린 사진이 커지는 배율
     //   pauseZone  : 화면 중앙 기준 이 범위(0~1) 안의 사진에 커서를 올리면 흐름이 멈춘다
-    //   visible    : 한 화면에 보이는 사진 수 (이 값으로 간격이 정해짐)
+    //   visible    : (간격 계산에는 더 이상 쓰이지 않음) 간격은 overlap 과 사진 폭이 정하고,
+    //                한 화면에 보이는 장수는 남는 가로폭에 따라 저절로 달라진다
     //   spread     : 중앙에서 몇 칸째에 최대 회전/깊이에 도달하는지
-    //   edgeScale  : 양 끝 사진의 크기 배율. 0.952 면 가운데가 끝보다 약 1.05배 크다
+    //   edgeScale  : 양 끝 사진의 크기 배율. 0.909 면 가운데가 끝보다 약 1.10배 크다
     //   overlap    : 사진 폭 ÷ 칸 폭. 1.0이면 딱 붙고, 1.06이면 6%만 겹친다
     //   start      : 페이지 진입 시 가운데에 올 사진 번호 (1부터)
     //   blur / dim : 심도 — 양 끝으로 갈수록 흐려지고(px) 어두워지는(0~1) 정도
     //   mobile     : 폰(가로 760px 이하)에서만 덮어쓸 값들
-    coverflow: { top: 20, visible: 7, spread: 3, overlap: 1.06, maxRotate: 25, edgeScale: 0.952, depth: 60, fade: 0.12, blur: 3, dim: 0.22, start: 3, hoverScale: 1.03, pauseZone: 0.6,
+    coverflow: { top: 20, visible: 7, spread: 3, overlap: 1.06, maxRotate: 25, edgeScale: 0.909, depth: 60, fade: 0.12, blur: 3, dim: 0.22, start: 3, hoverScale: 1.03, pauseZone: 0.6,
       // 폰에서는 한 화면에 7장이 들어가면 사진이 손톱만 해진다.
       // 가운데 한 장을 크게 보여주고, 양옆은 각도를 크게 눕혀 살짝만 걸치게 한다.
       // 세로 위치는 top 대신 화면 가운데로 자동 정렬된다.

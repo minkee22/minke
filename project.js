@@ -522,7 +522,6 @@
 
     // 모든 사진이 같은 규격으로 흐른다 (비율이 다른 원본은 잘려서 채워짐)
     var SZ = d.size || { h: 58, ratio: 0.68 };
-    var MAX_TOP = 100 - SZ.h - 12;   // 사진 아래 번호까지 화면 안에 들어오도록 제한
 
     // 커버플로우: 화면 중앙 사진이 정면·최대, 양옆으로 갈수록 눕고 작아지고 뒤로 밀린다.
     var CF = d.coverflow || { top: 20, visible: 7, spread: 3, overlap: 1.06, maxRotate: 25, edgeScale: 0.952, depth: 60, fade: 0.12, blur: 3, dim: 0.22, start: 3, hoverScale: 1.03, pauseZone: 0.6 };
@@ -545,7 +544,7 @@
       item.className = "strip-item";
       // vh 단위 사용: CSS의 margin-top 백분율은 부모의 '폭' 기준으로 계산되어
       // 가로로 긴 트랙에서는 세로 위치가 엉뚱하게 잡힌다.
-      // 실제 크기는 measure() 에서 칸 폭에 맞춰 px 로 정해진다
+      // 실제 크기는 measure() 에서 창 높이에 맞춰 px 로 정해진다
       // 실제 세로 위치는 measure() 가 px 로 정한다
       item.style.top = "0px";
 
@@ -643,7 +642,7 @@
     });
 
     // 사진을 '칸(slot)' 단위로 균등 배치한다.
-    // 칸 폭 = 화면폭 / 보이는 장수  → 한 화면에 정확히 CFV.visible 장이 들어온다.
+    // 칸 폭 = 사진 폭 ÷ overlap  → 겹침 정도가 화면 크기와 무관하게 일정하다.
     var itemEls = [].slice.call(track.children);
     var geo = [];
     var SLOT = 1;
@@ -656,29 +655,32 @@
     function measure() {
       resolveCF();
       var vw = viewport.clientWidth;
-      SLOT = vw / CFV.visible;
 
-      // 사진 크기를 칸 폭에 맞춘다 → 화면 비율이 달라져도 겹침 정도가 일정하다.
-      // 단, 세로가 화면을 넘지 않도록 SZ.h(vh) 를 상한으로 둔다.
-      var wantW = SLOT * (CFV.overlap || 1.06);
-      var maxH = window.innerHeight * (SZ.h / 100);
-      var h = Math.min(wantW / SZ.ratio, maxH);
+      // 사진 크기는 창 높이에서만 정해진다. 가로폭과 분리해 두면 창을 좁혀도
+      // 사진이 쪼그라들지 않고, 대신 한 화면에 보이는 장수가 줄어든다.
+      //   headTop  : 위쪽 제목·버튼이 차지하는 높이
+      //   labelGap : 사진 아래 번호가 들어갈 자리
+      var headTop = isMobile() ? 122 : 118;
+      var labelGap = 48;
+      var availH = window.innerHeight - headTop - labelGap;
+      var h = Math.max(200, Math.min(window.innerHeight * (SZ.h / 100), availH, 900));
       var w = h * SZ.ratio;
+
+      // 좁은 화면에서 사진이 창을 넘지 않도록 가로도 한 번 잡아 준다.
+      // 양옆 사진이 살짝 보여야 커버플로우로 읽히므로 창의 86%까지만 쓴다.
+      var maxW = vw * 0.86;
+      if (w > maxW) { w = maxW; h = w / SZ.ratio; }
+
+      // 칸 폭을 사진 폭에서 뽑는다 → 화면이 좁아져도 겹침 정도가 그대로다.
+      // 한 화면에 몇 장이 보일지는 남는 가로폭이 정한다.
+      SLOT = w / (CFV.overlap || 1.06);
       itemEls.forEach(function (el) {
         el.style.width = w + "px";
         el.style.height = h + "px";
       });
 
-      // 폰에서는 사진이 커진 만큼 화면 한가운데로 앉힌다.
-      // 데스크톱은 설정값 top(vh) 그대로.
-      var topPx;
-      if (isMobile()) {
-        // 화면 정중앙에 앉히되, 위쪽 막대(최대 아래끝 112px) 밑으로는 올라가지 않는다.
-        topPx = Math.max(122, (window.innerHeight - h) / 2);
-      } else {
-        var baseTopNow = Math.min(CFV.top, MAX_TOP);
-        topPx = window.innerHeight * baseTopNow / 100;
-      }
+      // 제목 아래 남는 영역의 한가운데에 앉힌다 → 사진 크기가 달라져도 위아래 여백이 같다.
+      var topPx = headTop + Math.max(0, (availH - h) / 2);
       itemEls.forEach(function (el) { el.style.top = topPx + "px"; });
 
       var startLeft = (vw - w) / 2;              // 0번 사진이 화면 정중앙에 오도록
