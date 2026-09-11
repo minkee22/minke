@@ -106,8 +106,8 @@
           var cap = document.createElement("div");
           cap.className = "caption";
           cap.textContent = s.title;
-          // 캡션도 사진 영역 기준으로 중앙 정렬
-          cap.style.top = "calc(" + photoBox.top + " + " + photoBox.height + " / 2)";
+          // 캡션은 사진 영역 하단 근처에 — 중앙에 두면 항상 표시될 때 사진을 가린다
+          cap.style.top = "calc(" + photoBox.top + " + " + photoBox.height + " * 0.86)";
           a.appendChild(cap);
         }
 

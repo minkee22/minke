@@ -156,21 +156,23 @@ a.photo-slot .scrim {
 a.photo-slot:hover .scrim,
 a.photo-slot:focus-visible .scrim { opacity: 1; }
 
-/* 캡션 — 사진 정중앙 */
+/* 캡션 — 사진 하단, 항상 표시. 호버 전용이었을 때는 폰에서 카드 정체를 알 수 없었다. */
 a.photo-slot .caption {
   position: absolute;
-  top: 50%;
-  left: 8%;
-  right: 8%;
+  left: 10%;
+  right: 10%;
   transform: translateY(-50%);
   text-align: center;
-  font-size: calc(var(--stage-w) * 0.0146);
-  letter-spacing: 0.22em;
-  line-height: 1.5;
+  font-size: calc(var(--stage-w) * 0.0128);
+  letter-spacing: 0.2em;
+  line-height: 1.4;
   text-transform: uppercase;
   color: rgba(255, 255, 255, 0.96);
-  text-shadow: 0 1px 5px rgba(0, 0, 0, 0.4);
-  opacity: 0;
+  text-shadow: 0 1px 5px rgba(0, 0, 0, 0.45);
+  background: rgba(20, 17, 14, 0.42);
+  padding: 0.45em 0.6em;
+  border-radius: 2px;
+  opacity: 0.94;
   transition: opacity 0.25s ease;
   pointer-events: none;
   z-index: 4;

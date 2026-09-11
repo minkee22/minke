@@ -136,8 +136,8 @@ const CASESTUDY = [
 // ── 인스타그램형(memo14) ─────────────────────────────
 // 피드 타일 = 360 영상. 타일을 누르면 모달이 열리고
 // 슬라이드가 [360 영상 → 앞 랜더 → 뒤 랜더 → 기준의상 → 디테일 → 원단] 순으로 넘어간다.
-const IG_ACCOUNT = { id: "HaBit_Eva", bio: "Garments designed and simulated in HaBit — my own patented program",
-  link: "habit-fashion.com" };
+const IG_ACCOUNT = { id: "eunbyn.an", bio: "Twelve garments designed and simulated in CLO 3D, rendered as 360° turntables. Design-variation method — patent pending.",
+  link: "" };
 
 const IG_POSTS = [
   {
@@ -342,7 +342,7 @@ const DETAILS = {
 
   habit: {
     instagram: true,
-    title: "HaBit_Eva",
+    title: "360° TURNTABLES",
     account: IG_ACCOUNT,
     posts: IG_POSTS,
   },

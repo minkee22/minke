@@ -473,21 +473,19 @@
       hit.className = "env-hit";
       box.appendChild(hit);
 
-      // 열 때마다 사진과 문구를 각각 무작위로 — 직전 것과는 겹치지 않게
-      function randomPicker(list) {
-        var last = -1;
+      // 열 때마다 사진과 문구를 순서대로 — 무작위였을 때는 보는 사람이 몇 장을
+      // 봤는지 알 수 없었다. 첫 열기는 항상 첫 사진·첫 문구.
+      function sequentialPicker(list) {
+        var i = -1;
         return function () {
-          if (list.length === 1) return list[0];
-          var i;
-          do { i = Math.floor(Math.random() * list.length); } while (i === last);
-          last = i;
+          i = (i + 1) % list.length;
           return list[i];
         };
       }
-      var pick = randomPicker(e.photos);
-      var pickLabel = randomPicker(e.labels || [""]);
+      var pick = sequentialPicker(e.photos);
+      var pickLabel = sequentialPicker(e.labels || [""]);
       // 카드는 열기 전까지 보이지 않는다. 사진을 미리 받지 않고 처음 열 때 채운다.
-      lab.textContent = pickLabel();
+      lab.textContent = (e.labels || [""])[0];
 
       hit.addEventListener("mouseenter", function () { box.classList.add("is-hover"); warm(); });
       hit.addEventListener("mouseleave", function () { box.classList.remove("is-hover"); });
