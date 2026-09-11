@@ -27,9 +27,9 @@ const SLOTS = [
     text: ["ABOUT", "13 YEARS WOMENSWEAR", "SEOUL, KOREA", "", "HANDSOME · LF · SK · F&F", "", "SINCE 2011"] },
   { slot: 7,  image: "landing photo/model1.jpg", title: "ai model study", href: "project.html?id=model" },
   { slot: 8,  image: null, href: "#",
-    text: ["BRANDS", "TOMMY HILFIGER", "VANESSA BRUNO", "CLUB MONACO", "DUVETICA", "", "LICENSE & IMPORT"] },
+    text: ["BRANDS", "TOMMY HILFIGER", "VANESSA BRUNO", "CLUB MONACO", "DUVETICA", "", "2012 — 2024"] },
   { slot: 9,  image: null, href: "#",
-    text: ["SKILLS", "CLO 3D · FIT NEW YORK", "CAD · PATTERN MAKING", "ILLUSTRATOR · PHOTOSHOP", "GENERATIVE AI", "", "3D & AI WORKFLOW"] },
+    text: ["SKILLS", "CLO 3D · FIT NEW YORK", "CAD · PATTERN MAKING", "ILLUSTRATOR · PHOTOSHOP", "GENERATIVE AI", "", "3D · AI"] },
   // 사진 대신 글자가 인쇄된 카드. text 가 있으면 글자 카드로 그려진다.
   { slot: 10, image: null, href: "cv.pdf", newTab: true,
     text: ["CURRICULUM VITAE", "EUNBYN AN", "", "FASHION DESIGN — 3D", "PRODUCTION", "", "VIEW CV ↗"] },
