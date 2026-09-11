@@ -23,8 +23,13 @@
           if (!tb) return;
           var ta = document.createElement("a");
           ta.className = "text-card";
-          ta.href = s.href || "#";
-          if (s.newTab) { ta.target = "_blank"; ta.rel = "noopener"; }
+          // href 가 없거나 "#" 이면 안내용 카드 — 링크 없이 종이 위에 인쇄된 글자로만 둔다.
+          if (s.href && s.href !== "#") {
+            ta.href = s.href;
+            if (s.newTab) { ta.target = "_blank"; ta.rel = "noopener"; }
+          } else {
+            ta.classList.add("static");
+          }
           ta.style.left = tb.left + "%";
           ta.style.top = tb.top + "%";
           ta.style.width = tb.width + "%";

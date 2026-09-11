@@ -254,7 +254,7 @@ const IG_POSTS = [
 // 제품·화보 사진은 세르지오 타키니 코리아(F&F) 공식몰의 것. 저해상도로만 싣고 푸터에 출처를 밝힌다.
 const ST60 = [
   { no: "01", name: "GRAPHIC SWEATSHIRT", code: "TWMT19064 / TMMT19064",
-    blurb: "Crew sweatshirt with the 60th crest — crossed rackets, laurel, DAL 1966, Tennis Club — embroidered across the back. Women's in light olive, men's in navy. Below: the crest and sweat set as proposed in the deck.",
+    blurb: "Crew sweatshirt with the 60th crest — crossed rackets, laurel, DAL 1966, Tennis Club — embroidered across the back. Women's in light olive, men's in navy. Below: the sweat set as proposed in the deck.",
     rows: [
       { type: "hero", img: "memo60/sweat_back.jpg" },
       { type: "grid", imgs: ["memo60/sweat_front.jpg", "memo60/sweat_m_back.jpg", "memo60/sweat_m_front.jpg", "memo60/sweat_flat.jpg"] },
@@ -285,12 +285,12 @@ const ST60 = [
       { type: "process", imgs: ["memo60/deck_p16.jpg"],
         note: "ANNIVERSARY LOOK — VARSITY, DECK, MAR 2026" },
     ] },
-  { no: "05", name: "ACCESSORIES · HANG TAG", code: "TXSO4106N / TXPR4096N",
-    blurb: "High socks and wristband from the 60th line. Below: the accessory proposal and the hang tag design from the deck — a court-inspired and a heritage version.",
+  { no: "05", name: "ACCESSORIES", code: "TXSO4106N / TXPR4096N",
+    blurb: "High socks and wristband from the 60th line. Below: the accessory proposal from the deck.",
     rows: [
       { type: "grid", imgs: ["memo60/acc_socks.jpg", "memo60/acc_band.jpg"] },
-      { type: "process", imgs: ["memo60/deck_p15.jpg", "memo60/deck_p18.jpg"],
-        note: "ACCESSORY PROPOSAL · HANG TAG — DECK, MAR 2026" },
+      { type: "process", imgs: ["memo60/deck_p15.jpg"],
+        note: "ACCESSORY PROPOSAL — DECK, MAR 2026" },
     ] },
 ];
 
@@ -388,7 +388,7 @@ const DETAILS = {
     casestudy: true,
     title: "SERGIO TACCHINI 60TH",
     sub: "DESIGN DECK, MAR 2026 · 60TH LINE AS SOLD, F/W 2026",
-    intro: "Sergio Tacchini's 60th-anniversary capsule for the Korean license — freelance design work for F&F, January to March 2026. The deck covered the item map, a co-ords direction, the anniversary crest, flats and a hang tag. Shown here against the 60th line as it is sold on the official store for F/W 2026. Production, styling and photography by Sergio Tacchini Korea.",
+    intro: "Sergio Tacchini's 60th-anniversary capsule for the Korean license — freelance design work for F&F, January to March 2026. The deck covered the item map, a co-ords direction and flats. Shown here against the 60th line as it is sold on the official store for F/W 2026. Production, styling and photography by Sergio Tacchini Korea.",
     pdf: "60th-anniversary.pdf",
     pdfLabel: "VIEW FULL DECK ↗",
     foot: "DESIGN — EUNBYN AN FOR F&F · PRODUCED, STYLED AND PHOTOGRAPHED BY SERGIO TACCHINI KOREA · PHOTOS © SERGIO TACCHINI KOREA",

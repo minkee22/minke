@@ -358,6 +358,13 @@ a.text-card:focus-visible .tc-line:last-child::after {
   width: 82%;
 }
 
+/* 안내용 카드 — 클릭할 곳이 아니므로 들리지도, 밑줄이 그어지지도 않는다 */
+a.text-card.static { cursor: default; }
+a.text-card.static:hover,
+a.text-card.static:focus-visible { transform: none; filter: none; }
+a.text-card.static:hover .tc-line:last-child::after,
+a.text-card.static:focus-visible .tc-line:last-child::after { width: 0; }
+
 /* 화면이 보드보다 세로로 길면(폰) 보드는 폭에 갇혀 짧아지고 위아래로 벽이 남는다.
    가운데 띄우는 대신 위쪽에 걸고, 남는 벽은 아래로 모은다. */
 @media (max-aspect-ratio: 1824 / 2312) {
