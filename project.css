@@ -719,6 +719,21 @@ body.cs-mode {
   color: rgba(232, 228, 220, 0.55);
 }
 
+/* 덱 링크(헤더) + 프로젝트 소개문 — 케이스 스터디 페이지가 CLO 외 프로젝트도 담게 되면서 추가 */
+.cs-link {
+  display: inline-block;
+  margin-top: 22px;
+  padding: 9px 16px;
+  border: 1px solid rgba(232, 228, 220, 0.35);
+  font-size: clamp(9px, 0.9vw, 12px);
+  letter-spacing: 0.24em;
+  color: rgba(232, 228, 220, 0.85);
+  text-decoration: none;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+.cs-link:hover { border-color: rgba(232, 228, 220, 0.8); color: #fff; }
+.cs-intro { max-width: 720px; padding-top: 0; padding-bottom: 6vh; }
+
 .cs-section { padding-bottom: 10vh; }
 
 .cs-sechead {

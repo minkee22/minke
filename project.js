@@ -359,7 +359,22 @@
     document.documentElement.style.overflowX = "hidden";
 
     document.getElementById("csTitle").textContent = d.title;
+    // 부제·덱 링크·소개문은 프로젝트마다 다르다. 없으면 기존 문구 그대로.
+    var csSub = document.getElementById("csSub");
+    if (csSub && d.sub) csSub.textContent = d.sub;
+    var csLink = document.getElementById("csLink");
+    if (csLink && d.pdf) {
+      csLink.href = d.pdf;
+      csLink.textContent = d.pdfLabel || "VIEW FULL DECK ↗";
+      csLink.hidden = false;
+    }
     var csBody = document.getElementById("csBody");
+    if (d.intro) {
+      var intro = document.createElement("p");
+      intro.className = "cs-blurb cs-intro";
+      intro.textContent = d.intro;
+      csBody.appendChild(intro);
+    }
 
     d.sections.forEach(function (s) {
       var sec = document.createElement("section");
@@ -413,7 +428,7 @@
 
     var foot = document.createElement("div");
     foot.className = "cs-footer";
-    foot.textContent = "ALL GARMENTS DESIGNED AND SIMULATED IN CLO 3D";
+    foot.textContent = d.foot || "ALL GARMENTS DESIGNED AND SIMULATED IN CLO 3D";
     csBody.appendChild(foot);
 
     return;

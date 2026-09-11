@@ -250,6 +250,50 @@ const IG_POSTS = [
   },
 ];
 
+// ── 케이스 스터디형(st60) — 세르지오 타키니 60주년 캡슐: 덱 → 매장 ──────────
+// 제품·화보 사진은 세르지오 타키니 코리아(F&F) 공식몰의 것. 저해상도로만 싣고 푸터에 출처를 밝힌다.
+const ST60 = [
+  { no: "01", name: "GRAPHIC SWEATSHIRT", code: "TWMT19064 / TMMT19064",
+    blurb: "Crew sweatshirt with the 60th crest — crossed rackets, laurel, DAL 1966, Tennis Club — embroidered across the back. Women's in light olive, men's in navy. Below: the crest and sweat set as proposed in the deck.",
+    rows: [
+      { type: "hero", img: "memo60/sweat_back.jpg" },
+      { type: "grid", imgs: ["memo60/sweat_front.jpg", "memo60/sweat_m_back.jpg", "memo60/sweat_m_front.jpg", "memo60/sweat_flat.jpg"] },
+      { type: "process", imgs: ["memo60/deck_p02.jpg", "memo60/deck_p11.jpg", "memo60/deck_p12.jpg"],
+        note: "ITEM MAP · ITEM PROPOSAL — DECK, MAR 2026" },
+    ] },
+  { no: "02", name: "TIPPED CARDIGAN", code: "TWKC39064",
+    blurb: "Wool-blend cardigan with the crest across the back and navy tipping at the V-neck, cuffs and hem. Below: the co-ords board and anniversary look that proposed unified embroidery and tipping.",
+    rows: [
+      { type: "hero", img: "memo60/cardigan_crest.jpg" },
+      { type: "grid", imgs: ["memo60/cardigan_front.jpg", "memo60/cardigan_vneck.jpg", "memo60/cardigan_rib.jpg", "memo60/cardigan_back.jpg"] },
+      { type: "process", imgs: ["memo60/deck_p03.jpg", "memo60/deck_p16.jpg"],
+        note: "CO-ORDS BOARD · ANNIVERSARY LOOK — DECK, MAR 2026" },
+    ] },
+  { no: "03", name: "FLARE SKIRT · SHORTS", code: "TWSK19064 / TMSP19064",
+    blurb: "The set-up bottoms: a pleated flare skirt with a burgundy-tipped waistband and inner shorts, and men's shorts. Below: the sweat-and-bottom looks from the deck.",
+    rows: [
+      { type: "hero", img: "memo60/skirt_look.jpg" },
+      { type: "grid", imgs: ["memo60/skirt_flat.jpg", "memo60/skirt_waist.jpg", "memo60/shorts_flat.jpg", "memo60/shorts_detail.jpg"] },
+      { type: "process", imgs: ["memo60/deck_p17.jpg"],
+        note: "ANNIVERSARY LOOK — DECK, MAR 2026" },
+    ] },
+  { no: "04", name: "VARSITY JACKET", code: "TMWJ29064",
+    blurb: "Stretch twill varsity with striped rib collar, cuffs and hem; the crest in jacquard. Below: the varsity look from the deck.",
+    rows: [
+      { type: "hero", img: "memo60/varsity_back.jpg" },
+      { type: "grid", imgs: ["memo60/varsity_front.jpg", "memo60/varsity_script.jpg", "memo60/varsity_cuff.jpg", "memo60/varsity_hem.jpg"] },
+      { type: "process", imgs: ["memo60/deck_p16.jpg"],
+        note: "ANNIVERSARY LOOK — VARSITY, DECK, MAR 2026" },
+    ] },
+  { no: "05", name: "ACCESSORIES · HANG TAG", code: "TXSO4106N / TXPR4096N",
+    blurb: "High socks and wristband from the 60th line. Below: the accessory proposal and the hang tag design from the deck — a court-inspired and a heritage version.",
+    rows: [
+      { type: "grid", imgs: ["memo60/acc_socks.jpg", "memo60/acc_band.jpg"] },
+      { type: "process", imgs: ["memo60/deck_p15.jpg", "memo60/deck_p18.jpg"],
+        note: "ACCESSORY PROPOSAL · HANG TAG — DECK, MAR 2026" },
+    ] },
+];
+
 const DETAILS = {
   trashion: {
     title: "TRASHION",
@@ -338,6 +382,17 @@ const DETAILS = {
     casestudy: true,
     title: "CLO DESIGN WORK",
     sections: CASESTUDY,
+  },
+
+  st60: {
+    casestudy: true,
+    title: "SERGIO TACCHINI 60TH",
+    sub: "DESIGN DECK, MAR 2026 · 60TH LINE AS SOLD, F/W 2026",
+    intro: "Sergio Tacchini's 60th-anniversary capsule for the Korean license — freelance design work for F&F, January to March 2026. The deck covered the item map, a co-ords direction, the anniversary crest, flats and a hang tag. Shown here against the 60th line as it is sold on the official store for F/W 2026. Production, styling and photography by Sergio Tacchini Korea.",
+    pdf: "60th-anniversary.pdf",
+    pdfLabel: "VIEW FULL DECK ↗",
+    foot: "DESIGN — EUNBYN AN FOR F&F · PRODUCED, STYLED AND PHOTOGRAPHED BY SERGIO TACCHINI KOREA · PHOTOS © SERGIO TACCHINI KOREA",
+    sections: ST60,
   },
 
   habit: {

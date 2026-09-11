@@ -26,6 +26,7 @@ a coverflow rail, a case study spread, an Instagram profile.
 | `model` | Album sleeve | 3–4 photos per sleeve page, arrow zones inside the paper |
 | `designer` | Case study | Long vertical scroll, black hero renders against light process strips |
 | `habit` | Instagram profile | 12 looping 360° garment videos, staggered so they never spin in sync |
+| `st60` | Case study | Sergio Tacchini 60th capsule — deck pages (process) against the shipped product photos (hero/grid), full deck linked from the header |
 
 ## Editing
 
