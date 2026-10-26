@@ -136,7 +136,7 @@ const CASESTUDY = [
 // ── 인스타그램형(memo14) ─────────────────────────────
 // 피드 타일 = 360 영상. 타일을 누르면 모달이 열리고
 // 슬라이드가 [360 영상 → 앞 랜더 → 뒤 랜더 → 기준의상 → 디테일 → 원단] 순으로 넘어간다.
-const IG_ACCOUNT = { id: "eunbyn.an", bio: "Twelve garments designed and simulated in CLO 3D, rendered as 360° turntables. Design-variation method — patent pending.",
+const IG_ACCOUNT = { id: "KYUNGEUN MIN", bio: "Twelve garments designed and simulated in CLO 3D, rendered as 360° turntables. Design-variation method — patent pending.",
   link: "" };
 
 const IG_POSTS = [
@@ -391,7 +391,7 @@ const DETAILS = {
     intro: "Sergio Tacchini's 60th-anniversary capsule for the Korean license — freelance design work for F&F, January to March 2026. The deck covered the item map, a co-ords direction and flats. Shown here against the 60th line as it is sold on the official store for F/W 2026. Production, styling and photography by Sergio Tacchini Korea.",
     pdf: "60th-anniversary.pdf",
     pdfLabel: "VIEW FULL DECK ↗",
-    foot: "DESIGN — EUNBYN AN FOR F&F · PRODUCED, STYLED AND PHOTOGRAPHED BY SERGIO TACCHINI KOREA · PHOTOS © SERGIO TACCHINI KOREA",
+    foot: "DESIGN — KYUNGEUN MIN FOR F&F · PRODUCED, STYLED AND PHOTOGRAPHED BY SERGIO TACCHINI KOREA · PHOTOS © SERGIO TACCHINI KOREA",
     sections: ST60,
   },
 

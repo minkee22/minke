@@ -16,9 +16,9 @@
     return;
   }
 
-  document.title = d.title + " — EUNBYN AN";
+  document.title = d.title + " — KYUNGEUN MIN";
   var pageHeading = document.getElementById("pageHeading");
-  if (pageHeading) pageHeading.textContent = d.title + " — EUNBYN AN";
+  if (pageHeading) pageHeading.textContent = d.title + " — KYUNGEUN MIN";
 
   var counter = document.getElementById("counter");
   var prev = document.getElementById("prevBtn");
