@@ -13,3 +13,4 @@ a:focus-visible{outline:2px solid #544b3d;outline-offset:6px}
 .sheet .num{top:14px;left:14px;color:#53514d}
 .captions{grid-template-columns:32% 39% 29%;gap:0}
 @media(max-width:650px){.spread{margin:0 3%}.sheet .num{top:8px;left:5px;font-size:7px}}
+#work-second::before{background-image:url("paper-reference-four-pins.png")}
