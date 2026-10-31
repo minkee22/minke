@@ -13,3 +13,17 @@
 .about-links{display:flex;flex-direction:column;align-items:flex-start;gap:16px}.about .about-links a{margin:0;max-width:100%;overflow-wrap:anywhere;line-height:1.6}
 
 @media(max-width:650px){header{flex-wrap:wrap;gap:18px}header nav{width:100%;flex-wrap:wrap;gap:20px}}
+
+/* Keep wrapped case titles fully clickable on narrow screens. */
+.captions h2 a,.last-caption h2 a{display:block}
+
+
+/* AI case rows: 01–04, then 05–07. */
+.spread-four{grid-template-columns:24% 29.25% 21.75% 25%;aspect-ratio:1496/540}
+.spread-four::before{right:25%}
+.spread-four .sheet:last-child{background:#faf9f6;box-shadow:8px 14px 17px -15px #403a3280}
+.captions-four{grid-template-columns:24% 29.25% 21.75% 25%}
+.slide-portfolio .page-thumbnail{left:5%;width:90%;top:18%;height:67%;object-fit:contain}
+
+/* Repeat the photographed two-pin seam between the third and fourth papers. */
+.spread-four::after{content:"";position:absolute;top:0;bottom:0;left:51%;width:75%;z-index:1;pointer-events:none;background:url("paper-reference.png") center 47% / 100% auto no-repeat;mix-blend-mode:multiply;mask-image:linear-gradient(to right,transparent 23%,#000 28%,#000 35%,transparent 40%)}
