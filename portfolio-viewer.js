@@ -14,10 +14,9 @@ document.querySelector('.slide-portfolio').addEventListener('click', event => {
   if (!link || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
   event.preventDefault();
   opener = link;
-  const figure = link.closest('figure');
   image.src = link.getAttribute('href');
-  image.alt = figure.querySelector('img').alt;
-  document.querySelector('#page-viewer-title').textContent = figure.querySelector('h2').textContent;
+  image.alt = link.dataset.title + ' 전체 PPT 페이지';
+  document.querySelector('#page-viewer-title').textContent = link.dataset.title;
   setZoom(true);
   viewer.showModal();
   document.body.classList.add('viewer-open');
