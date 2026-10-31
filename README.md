@@ -1,6 +1,6 @@
 # KYUNGEUN MIN — Portfolio
 
-Live: https://minkee22.github.io/evaan-portfolio/
+Live: https://minkee22.github.io/minke/
 
 The homepage uses the approved Pinned Pages design: ivory paper, soft shadows,
 safety-pin connectors and a three-project opening spread. It is static HTML and
@@ -17,7 +17,7 @@ CSS, with no build step or JavaScript required for homepage navigation.
   the new homepage does not load these files.
 
 All seven project pages, the wedding gift deck, CV and portfolio PDF remain linked.
-The relative links support GitHub Pages hosting under `/evaan-portfolio/`.
+The relative links support GitHub Pages hosting under `/minke/`.
 
 ## Preview and deployment
 
