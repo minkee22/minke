@@ -73,3 +73,8 @@
 .folio-card:not(:last-child) .folio-paper::before{clip-path:path(evenodd,"M0 8 L38 0 L39 11 L78 11 L79 0 L104 3 L104 27 L86 29 L9 29 L0 25 Z M26 12 L82 12 L82 20 L26 22 Z")}
 .folio-card:not(:last-child) .folio-paper::after{clip-path:path(evenodd,"M0 17 L26 7 L30 15 L59 10 L58 2 L96 0 L104 4 L104 22 L15 38 L0 35 Z M24 18 L80 8 L81 13 L24 25 Z")}
 @media(max-width:650px){.folio-card{margin-right:-8px}.folio-card:not(:last-child) .folio-paper::before,.folio-card:not(:last-child) .folio-paper::after{right:-30px}.folio-card:nth-child(3n+2) .folio-paper{transform:translateY(4px) rotate(-.55deg)}}
+
+/* Keep only the photographed metal; exclude the source paper's cast shadow. */
+.folio-card:not(:last-child) .folio-paper::before,.folio-card:not(:last-child) .folio-paper::after{filter:none;box-shadow:none}
+.folio-card:not(:last-child) .folio-paper::before{clip-path:path(nonzero,"M7 13 Q9 8 18 8 L36 7 L36 10 L19 11 Q12 12 13 18 Q13 22 22 23 L94 22 L94 25 L20 26 Q6 26 7 13 Z M89 10 Q101 9 102 17 Q102 25 94 25 Q86 24 86 18 Q86 13 89 10 Z M91 13 Q88 17 90 21 Q94 25 98 20 Q101 14 95 12 Z M81 7 L94 10 L93 12 L80 9 Z")}
+.folio-card:not(:last-child) .folio-paper::after{clip-path:path(nonzero,"M13 30 L90 14 L91 17 L14 33 Z M5 25 Q10 20 15 23 Q21 28 16 33 Q11 37 6 33 Q2 30 5 25 Z M7 26 Q4 30 8 32 Q13 35 16 30 Q18 25 12 24 Z M15 21 L23 18 L24 20 L16 24 Z M75 7 L91 3 Q99 3 99 10 Q99 17 87 20 L84 17 Q95 15 95 10 Q95 6 90 7 L76 10 Z")}
