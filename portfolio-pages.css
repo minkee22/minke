@@ -27,3 +27,26 @@
 
 /* Repeat the photographed two-pin seam between the third and fourth papers. */
 .spread-four::after{content:"";position:absolute;top:0;bottom:0;left:51%;width:75%;z-index:1;pointer-events:none;background:url("paper-reference.png") center 47% / 100% auto no-repeat;mix-blend-mode:multiply;mask-image:linear-gradient(to right,transparent 23%,#000 28%,#000 35%,transparent 40%)}
+
+/* Two independent, full-slide horizontal portfolios. */
+.horizontal-portfolio{margin:0 0 90px;scroll-margin-top:28px}
+.folio-heading{margin:0 5% 24px;display:flex;justify-content:space-between;align-items:center;gap:24px}
+.folio-heading .edition{margin:0;font-weight:400;line-height:1.7}
+.folio-hint{font-size:11px;color:#706b63;margin:10px 0 0;line-height:1.6}
+.folio-controls{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.folio-count{font-size:11px;font-variant-numeric:tabular-nums;margin-right:10px}
+.folio-controls button{border:1px solid #c9c5bc;border-radius:50%;background:transparent;color:inherit;width:44px;height:44px;font-size:20px}
+.folio-controls button:disabled{opacity:.3;cursor:default}
+.folio-track{display:flex;gap:30px;overflow-x:auto;overflow-y:hidden;padding:14px 5% 28px;scroll-padding-inline:5vw;scroll-snap-type:x mandatory;overscroll-behavior-x:contain;scrollbar-color:#a7a296 #e9e6df;scrollbar-width:thin}
+.folio-card{flex:0 0 min(82vw,1040px);min-width:0;scroll-snap-align:start}
+.folio-paper{display:block;position:relative;background:#faf9f6;padding:38px 18px 20px;box-shadow:6px 12px 16px -12px #423c3280,0 2px 3px #423c3210;isolation:isolate}
+.folio-paper .num{position:absolute;top:14px;left:20px;font-size:10px;letter-spacing:.1em;color:#53514d}
+.folio-paper .page-thumbnail{position:static;display:block;width:100%;height:auto;aspect-ratio:2508/1412;object-fit:contain;mix-blend-mode:multiply}
+.folio-card:not(:last-child) .folio-paper::after{content:"";position:absolute;z-index:2;pointer-events:none;right:-75px;top:0;width:120px;height:100%;background:url("paper-reference.png") 29% 47% / 800px auto no-repeat;mix-blend-mode:multiply;mask-image:linear-gradient(to right,transparent,#000 25%,#000 75%,transparent)}
+.folio-caption{padding:22px 4px 0}
+.folio-caption h2,.folio-caption h3{font-size:14px;font-weight:400;line-height:1.6;margin:0;word-break:keep-all}
+.folio-caption a{display:block}
+.folio-caption small{display:block;margin-top:8px;color:#777;font-size:11px;line-height:1.6}
+.folio-placeholder{aspect-ratio:2508/1550;display:flex;align-items:center;justify-content:center}
+.coming-soon{font-size:11px;letter-spacing:.16em;color:#8d887f}
+@media(max-width:650px){.horizontal-portfolio{margin-bottom:60px}.folio-heading{align-items:flex-start;gap:14px;flex-wrap:wrap;margin-bottom:14px}.folio-controls{margin-left:auto}.folio-card{flex-basis:90vw}.folio-track{gap:22px}.folio-paper{padding:30px 8px 14px}.folio-paper .num{top:11px;left:12px;font-size:9px}.folio-caption{padding-top:20px}.folio-caption h2,.folio-caption h3{font-size:12px}.folio-card:not(:last-child) .folio-paper::after{width:70px;right:-46px;background-size:460px auto}.folio-placeholder{aspect-ratio:2508/1650}}
