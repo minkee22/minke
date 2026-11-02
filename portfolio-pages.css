@@ -50,3 +50,14 @@
 .folio-placeholder{aspect-ratio:2508/1412;display:flex;align-items:center;justify-content:center}
 .coming-soon{font-size:11px;letter-spacing:.16em;color:#8d887f}
 @media(max-width:650px){.horizontal-portfolio{margin-bottom:60px}.folio-heading{align-items:flex-start;gap:14px;flex-wrap:wrap;margin-bottom:14px}.folio-controls{margin-left:auto}.folio-card{flex-basis:90vw}.folio-track{gap:22px}.folio-paper{padding:0}.folio-paper .num{top:-18px;left:4px;font-size:9px}.folio-caption{padding-top:20px}.folio-caption h2,.folio-caption h3{font-size:12px}.folio-card:not(:last-child) .folio-paper::after{width:70px;right:-46px;background-size:460px auto}.folio-placeholder{aspect-ratio:2508/1412}}
+
+/* Mount full slides on landscape paper; photographed pins bridge the paper edges. */
+.folio-track{gap:18px;padding-bottom:42px}
+.folio-paper{padding:24px 32px;aspect-ratio:auto;isolation:auto;background:linear-gradient(115deg,#fffefa,#f8f7f3 65%,#efeee9);box-shadow:2px 22px 17px -16px #39352caa,9px 5px 15px -9px #39352c70,-2px 2px 5px -4px #39352c45}
+.folio-paper .page-thumbnail{width:100%;height:auto;mix-blend-mode:multiply}
+.folio-paper .num{top:-20px}
+.folio-placeholder{aspect-ratio:2508/1532}
+.folio-card:not(:last-child) .folio-paper::before,.folio-card:not(:last-child) .folio-paper::after{content:"";position:absolute;z-index:3;pointer-events:none;right:-60px;width:104px;height:32px;background-image:url("paper-reference.png");background-size:800px auto;background-repeat:no-repeat;mix-blend-mode:multiply;mask-image:none;filter:drop-shadow(0 2px 1px #403a3225)}
+.folio-card:not(:last-child) .folio-paper::before{top:29%;background-position:-191px -382px;clip-path:path(evenodd,"M0 12 L15 6 L34 5 L36 13 L81 13 L82 5 L100 8 L104 16 L102 26 L88 28 L14 29 L0 23 Z M24 13 L88 13 L88 24 L24 24 Z")}
+.folio-card:not(:last-child) .folio-paper::after{top:69%;background-position:-188px -492px;clip-path:path(evenodd,"M0 19 L21 13 L26 17 L63 10 L62 4 L92 0 L104 5 L103 15 L88 21 L18 32 L3 30 Z M22 18 L86 6 L88 16 L22 28 Z")}
+@media(max-width:650px){.folio-track{gap:14px;padding-bottom:34px}.folio-paper{padding:12px 18px}.folio-placeholder{aspect-ratio:2508/1532}.folio-card:not(:last-child) .folio-paper::before,.folio-card:not(:last-child) .folio-paper::after{right:-41px;transform:scale(.65);transform-origin:center right}}
