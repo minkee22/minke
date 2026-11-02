@@ -80,7 +80,7 @@
 .folio-card:not(:last-child) .folio-paper::after{clip-path:path(nonzero,"M13 30 L90 14 L91 17 L14 33 Z M5 25 Q10 20 15 23 Q21 28 16 33 Q11 37 6 33 Q2 30 5 25 Z M7 26 Q4 30 8 32 Q13 35 16 30 Q18 25 12 24 Z M15 21 L23 18 L24 20 L16 24 Z M75 7 L91 3 Q99 3 99 10 Q99 17 87 20 L84 17 Q95 15 95 10 Q95 6 90 7 L76 10 Z")}
 
 /* Complete metal pins replace the clipped photograph fragments. */
-.folio-card:not(:last-child) .folio-paper::before,.folio-card:not(:last-child) .folio-paper::after{width:104px;height:32px;background:url("safety-pin.svg") center / contain no-repeat;clip-path:none;mask-image:none;mix-blend-mode:normal;filter:none;box-shadow:none}
+.folio-card:not(:last-child) .folio-paper::before,.folio-card:not(:last-child) .folio-paper::after{width:104px;height:32px;background:url("safety-pin-reference.png") center / contain no-repeat;clip-path:none;mask-image:none;mix-blend-mode:normal;filter:none;box-shadow:none}
 .folio-card:not(:last-child) .folio-paper::before{transform:rotate(3deg)}
 .folio-card:not(:last-child) .folio-paper::after{transform:rotate(-10deg) scaleX(-1)}
 @media(max-width:650px){.folio-card:not(:last-child) .folio-paper::before{transform:scale(.65) rotate(3deg)}.folio-card:not(:last-child) .folio-paper::after{transform:scale(.65) rotate(-10deg) scaleX(-1)}}
