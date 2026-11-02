@@ -61,3 +61,15 @@
 .folio-card:not(:last-child) .folio-paper::before{top:29%;background-position:-191px -382px;clip-path:path(evenodd,"M0 12 L15 6 L34 5 L36 13 L81 13 L82 5 L100 8 L104 16 L102 26 L88 28 L14 29 L0 23 Z M24 13 L88 13 L88 20 L24 22 Z")}
 .folio-card:not(:last-child) .folio-paper::after{top:69%;background-position:-188px -492px;clip-path:path(evenodd,"M0 19 L21 13 L26 17 L63 10 L62 4 L92 0 L104 5 L103 15 L88 21 L18 32 L3 30 Z M22 18 L86 6 L88 12 L22 24 Z")}
 @media(max-width:650px){.folio-track{gap:14px;padding-bottom:34px}.folio-paper{padding:12px 18px}.folio-placeholder{aspect-ratio:2508/1532}.folio-card:not(:last-child) .folio-paper::before,.folio-card:not(:last-child) .folio-paper::after{right:-41px;transform:scale(.65);transform-origin:center right}}
+
+/* A lightly overlapping, irregular paper spread, with pins above both sheets. */
+.folio-track{gap:0;padding-top:42px;padding-bottom:48px}
+.folio-card{position:relative;margin-right:-14px;z-index:1}
+.folio-card:nth-child(1){z-index:9}.folio-card:nth-child(2){z-index:8}.folio-card:nth-child(3){z-index:7}.folio-card:nth-child(4){z-index:6}.folio-card:nth-child(5){z-index:5}.folio-card:nth-child(6){z-index:4}.folio-card:nth-child(7){z-index:3}
+.folio-card:nth-child(3n+1) .folio-paper{transform:rotate(.45deg);transform-origin:center}
+.folio-card:nth-child(3n+2) .folio-paper{transform:translateY(7px) rotate(-.55deg);transform-origin:center}
+.folio-card:nth-child(3n) .folio-paper{transform:translateY(2px) rotate(.3deg);transform-origin:center}
+.folio-card:not(:last-child) .folio-paper::before,.folio-card:not(:last-child) .folio-paper::after{right:-45px;height:40px}
+.folio-card:not(:last-child) .folio-paper::before{clip-path:path(evenodd,"M0 8 L38 0 L39 11 L78 11 L79 0 L104 3 L104 27 L86 29 L9 29 L0 25 Z M26 12 L82 12 L82 20 L26 22 Z")}
+.folio-card:not(:last-child) .folio-paper::after{clip-path:path(evenodd,"M0 17 L26 7 L30 15 L59 10 L58 2 L96 0 L104 4 L104 22 L15 38 L0 35 Z M24 18 L80 8 L81 13 L24 25 Z")}
+@media(max-width:650px){.folio-card{margin-right:-8px}.folio-card:not(:last-child) .folio-paper::before,.folio-card:not(:last-child) .folio-paper::after{right:-30px}.folio-card:nth-child(3n+2) .folio-paper{transform:translateY(4px) rotate(-.55deg)}}
