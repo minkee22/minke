@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="160" height="48" viewBox="0 0 160 48">
+<defs>
+ <linearGradient id="wire" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#575450"/><stop offset=".23" stop-color="#eeeae4"/><stop offset=".49" stop-color="#8e8881"/><stop offset=".75" stop-color="#faf8f3"/><stop offset="1" stop-color="#625e59"/></linearGradient>
+ <linearGradient id="cap" x1="0" y1="0" x2="1" y2=".8"><stop stop-color="#45423e"/><stop offset=".24" stop-color="#b8b2aa"/><stop offset=".42" stop-color="#fffdf8"/><stop offset=".62" stop-color="#77716a"/><stop offset="1" stop-color="#d0cac3"/></linearGradient>
+</defs>
+<!-- Continuous spring and lower wire, with no cast shadow. -->
+<path d="M30 16 L132 16 C143 16 150 18 150 24 C150 31 143 33 137 29 C132 26 133 19 138 17 M139 31 L24 32 C14 32 9 28 10 23 C10 18 17 16 23 16" fill="none" stroke="url(#wire)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<!-- Folded clasp; the needle enters the lip at the left. -->
+<path d="M11 19 C14 14 23 13 36 13 L36 17 L24 18 C20 19 19 24 23 28 L32 29 L31 33 L21 33 C12 33 6 27 11 19Z" fill="url(#cap)" stroke="#8b857e" stroke-width=".6"/>
+<path d="M15 21 C18 18 23 18 27 18 L24 21 C21 23 22 26 24 28 C17 28 13 26 15 21Z" fill="#514d48"/>
+<path d="M13 19 C18 15 27 15 35 15" fill="none" stroke="#fffdf8" stroke-width="1"/>
+</svg>
