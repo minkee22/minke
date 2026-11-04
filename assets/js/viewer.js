@@ -195,14 +195,25 @@ const PageViewer = (() => {
   return {open};
 })();
 
-// Homepage slides open in the viewer as one sequence.
+// Homepage slides open in the viewer as one sequence, in the current language.
 const slideRow = document.querySelector('.slide-portfolio');
 if (slideRow) {
-  const pages = [...slideRow.querySelectorAll('.folio-paper')];
-  const slideItems = () => pages.map(link => {
-    const id = link.id.replace('page-', '');
+  const cards = [...slideRow.querySelectorAll('.folio-card')];
+  const slideId = card => card.querySelector('.folio-paper').id.replace('page-', '');
+  const slideFile = (id, size = '') => `assets/slides/folio-${id}-page${size}${I18N.language === 'en' ? '-en' : ''}.webp`;
+
+  const showSlides = () => cards.forEach(card => {
+    const id = slideId(card);
+    const image = card.querySelector('.page-thumbnail');
+    image.srcset = `${slideFile(id, '-1200')} 1200w, ${slideFile(id)} 2508w`;
+    image.src = slideFile(id, '-1200');
+    card.querySelectorAll('a').forEach(link => link.setAttribute('href', slideFile(id)));
+  });
+
+  const slideItems = () => cards.map(card => {
+    const id = slideId(card);
     return {
-      src: link.getAttribute('href'),
+      src: slideFile(id),
       ratio: 2508 / 1412,
       alt: I18N.t(`work.${id}.alt`),
       title: I18N.t(`work.${id}.title`),
@@ -210,16 +221,19 @@ if (slideRow) {
       hint: I18N.t('viewer.hintSlide'),
     };
   });
+
   slideRow.addEventListener('click', event => {
-    const link = event.target.closest('a[href$="-page.webp"]');
+    const link = event.target.closest('.folio-card a');
     if (!link || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
     event.preventDefault();
-    const start = pages.findIndex(page => page.getAttribute('href') === link.getAttribute('href'));
-    PageViewer.open(slideItems(), start, last => {
+    PageViewer.open(slideItems(), cards.indexOf(link.closest('.folio-card')), last => {
       slideRow.dispatchEvent(new CustomEvent('reveal', {detail: last}));
-      pages[last].focus({preventScroll: true});
+      cards[last].querySelector('.folio-paper').focus({preventScroll: true});
     });
   });
+
+  document.addEventListener('languagechange', showSlides);
+  showSlides();
 }
 
 // Each portfolio row scrolls independently; native touch and trackpad scrolling stay intact.

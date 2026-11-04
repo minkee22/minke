@@ -9,7 +9,6 @@
 
   const escapeHtml = value => String(value).replace(/[&<>"']/g, mark => (
     {'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'}[mark]));
-  const pad = (number, size = 2) => String(number).padStart(size, '0');
   const imagePath = (section, file) => `assets/archive/${section.id}/${file}.webp`;
   const thumbPath = (section, file) => `assets/archive/${section.id}/t/${file}.webp`;
 
@@ -28,7 +27,7 @@
     </a>`;
   }
 
-  function sheetHtml(section, sheet, start, position) {
+  function sheetHtml(section, sheet, start) {
     const captions = [...new Set(sheet.map(image => I18N.caption(image[3])).filter(Boolean))];
     const photos = sheet.map(([file, width, height], i) => {
       const number = start + i;
@@ -39,7 +38,6 @@
     }).join('');
     return `<figure class="sheet">
       <div class="sheet-paper">
-        <span class="sheet-num">FIG. ${pad(position + 1)}</span>
         <div class="sheet-photos">${photos}</div>
         ${captions.length ? `<figcaption>${escapeHtml(captions.join(', '))}</figcaption>` : ''}
       </div>
@@ -65,8 +63,8 @@
     const title = copy(section, 'title');
     document.title = `${title} | ${baseTitle()}`;
     let count = 0;
-    const sheets = section.sheets.map((sheet, position) => {
-      const html = sheetHtml(section, sheet, count, position);
+    const sheets = section.sheets.map(sheet => {
+      const html = sheetHtml(section, sheet, count);
       count += sheet.length;
       return html;
     }).join('');

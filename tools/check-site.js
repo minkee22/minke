@@ -52,6 +52,14 @@ for (const file of textFiles.filter(name => name.endsWith('.css'))) {
   }
 }
 
+// Every slide exists in both languages and both sizes.
+for (let number = 1; number <= 7; number += 1) {
+  for (const name of ['page', 'page-1200', 'page-en', 'page-1200-en']) {
+    const file = `assets/slides/folio-0${number}-${name}.webp`;
+    if (!exists(file)) report('assets/slides', `missing ${file}`);
+  }
+}
+
 // ARTWORK and COLLECTIONS image lists.
 const ARCHIVE = new Function(`${read('assets/data/archive-data.js')}; return ARCHIVE;`)();
 const sections = [...ARCHIVE.collections, ...ARCHIVE.artwork];

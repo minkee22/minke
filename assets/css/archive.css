@@ -41,12 +41,11 @@
 .sheets{--sheet-columns:3;--sheet-gap:clamp(24px,2.8vw,36px);display:grid;grid-template-columns:repeat(var(--sheet-columns),minmax(0,1fr));gap:calc(var(--sheet-gap) + 8px) var(--sheet-gap);margin:0 var(--gutter) clamp(44px,6vw,72px)}
 .sheets-wide,.sheets-sketch{--sheet-columns:1}
 .sheet{position:relative;margin:0;min-width:0}
-.sheet-paper{position:relative;isolation:isolate;height:100%;padding:34px 16px 16px}
+.sheet-paper{position:relative;isolation:isolate;height:100%;padding:16px}
 .sheet-paper::before{content:"";position:absolute;inset:0;z-index:-1;background:var(--paper);box-shadow:var(--paper-shadow)}
 .sheet:nth-child(3n+1) .sheet-paper::before{transform:rotate(.3deg)}
 .sheet:nth-child(3n+2) .sheet-paper::before{transform:rotate(-.35deg)}
 .sheet:nth-child(3n) .sheet-paper::before{transform:rotate(.2deg)}
-.sheet-num{position:absolute;top:11px;left:16px;font-size:12px;letter-spacing:.1em;color:var(--ink-soft)}
 .sheet-photos{display:flex;align-items:center;gap:8px}
 .sheet-photo{display:block;flex:var(--shape) 1 0;min-width:0;cursor:zoom-in}
 .sheets-sketch .sheet-photos{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));align-items:center;gap:12px}
@@ -84,8 +83,7 @@
   .sheets,.sheets-wide,.sheets-sketch{--sheet-columns:1;--sheet-gap:26px}
   .sheets-sketch .sheet-photos{grid-template-columns:repeat(2,minmax(0,1fr))}
   .sheets-wide .sheet-photos{display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}
-  .sheet-paper{padding:32px 12px 12px}
-  .sheet-num{left:12px}
+  .sheet-paper{padding:12px}
   /* One column: each pin hangs across the gap to the sheet below. */
   .sheets-looks .sheet::after,.sheets-looks .sheet:nth-child(3n)::after{display:block;top:auto;right:12%;bottom:-48px;width:64px;--pin-turn:82deg}
   .sheets-looks .sheet:nth-child(even)::after{right:auto;left:12%;--pin-turn:-84deg}
