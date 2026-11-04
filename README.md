@@ -27,14 +27,16 @@ http://127.0.0.1:4173/ 을 열면 됩니다.
 
 | 경로 | 역할 |
 |---|---|
-| `archive-data.js` | ARTWORK, COLLECTIONS 의 제목, 설명, 이미지 목록 |
-| `archive/` | 섹션별 이미지, 썸네일(`t/`), 표지(`covers/`) |
-| `archive.js`, `archive.css` | ARTWORK, COLLECTIONS, ABOUT 렌더링과 스타일 |
-| `pinned.css` | 공용 타이포, 헤더, 푸터, 종이 효과, 홈 화면 |
-| `portfolio-viewer.js` | 이미지 뷰어, 홈 가로 갤러리 |
-| `folio-NN-page.webp` | AI 사례 슬라이드 전체본. `-1200` 은 홈 화면용 가벼운 본 |
-| `fonts/pretendard/` | Pretendard Variable (SIL OFL) |
+| `*.html` | 페이지. 공개 주소가 바뀌지 않도록 루트에 둡니다 |
+| `assets/css/` | `site.css` 공용 스타일과 홈, `archive.css` 아트웍, 컬렉션, 소개 |
+| `assets/js/` | `viewer.js` 이미지 뷰어와 홈 갤러리, `archive.js` 아트웍, 컬렉션 렌더링 |
+| `assets/data/archive-data.js` | ARTWORK, COLLECTIONS 의 제목, 설명, 이미지 목록 |
+| `assets/archive/` | 섹션별 이미지, 썸네일(`t/`), 표지(`covers/`) |
+| `assets/slides/` | AI 사례 슬라이드. `-1200` 은 홈 화면용 가벼운 본 |
+| `assets/images/` | 옷핀, 공유 미리보기 이미지 |
+| `assets/fonts/pretendard/` | Pretendard Variable (SIL OFL) |
 | `tools/check-site.js` | 링크, 이미지 목록, 금지 문장부호 점검 |
+| `_retired/` | 지금 쓰지 않는 이전 자료. 공개되지 않습니다 |
 
 ## 공개
 

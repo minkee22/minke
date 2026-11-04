@@ -12,7 +12,7 @@ const read = relative => fs.readFileSync(path.join(root, relative), 'utf8');
 
 function walk(folder, found = []) {
   for (const entry of fs.readdirSync(path.join(root, folder), {withFileTypes: true})) {
-    if (['.git', 'node_modules', 'archive', 'fonts'].includes(entry.name)) continue;
+    if (['.git', 'node_modules', 'archive', 'fonts', '_retired'].includes(entry.name)) continue;
     const relative = path.join(folder, entry.name);
     if (entry.isDirectory()) walk(relative, found);
     else found.push(relative);
@@ -48,26 +48,26 @@ for (const file of textFiles.filter(name => name.endsWith('.html'))) {
 }
 for (const file of textFiles.filter(name => name.endsWith('.css'))) {
   for (const [, value] of read(file).matchAll(/url\("?([^")]+)"?\)/g)) {
-    if (isLocal(value) && !exists(clean(value))) report(file, `missing file ${value}`);
+    if (isLocal(value) && !exists(path.join(path.dirname(file), clean(value)))) report(file, `missing file ${value}`);
   }
 }
 
 // ARTWORK and COLLECTIONS image lists.
-const ARCHIVE = new Function(`${read('archive-data.js')}; return ARCHIVE;`)();
+const ARCHIVE = new Function(`${read('assets/data/archive-data.js')}; return ARCHIVE;`)();
 const sections = [...ARCHIVE.collections, ...ARCHIVE.artwork];
 let imageTotal = 0;
 for (const section of sections) {
   const images = section.sheets.flat();
   imageTotal += images.length;
-  if (images.length !== section.count) report('archive-data.js', `${section.id} count is ${section.count}, list has ${images.length}`);
-  if (!exists(`archive/covers/${section.id}.webp`)) report('archive-data.js', `${section.id} has no cover`);
+  if (images.length !== section.count) report('assets/data/archive-data.js', `${section.id} count is ${section.count}, list has ${images.length}`);
+  if (!exists(`assets/archive/covers/${section.id}.webp`)) report('assets/data/archive-data.js', `${section.id} has no cover`);
   const listed = new Set(images.map(([file]) => file));
   for (const file of listed) {
-    if (!exists(`archive/${section.id}/${file}.webp`)) report('archive-data.js', `missing archive/${section.id}/${file}.webp`);
-    if (!exists(`archive/${section.id}/t/${file}.webp`)) report('archive-data.js', `missing archive/${section.id}/t/${file}.webp`);
+    if (!exists(`assets/archive/${section.id}/${file}.webp`)) report('assets/data/archive-data.js', `missing assets/archive/${section.id}/${file}.webp`);
+    if (!exists(`assets/archive/${section.id}/t/${file}.webp`)) report('assets/data/archive-data.js', `missing assets/archive/${section.id}/t/${file}.webp`);
   }
-  for (const entry of fs.readdirSync(path.join(root, 'archive', section.id))) {
-    if (entry.endsWith('.webp') && !listed.has(entry.replace('.webp', ''))) report('archive-data.js', `archive/${section.id}/${entry} is not listed`);
+  for (const entry of fs.readdirSync(path.join(root, 'assets/archive', section.id))) {
+    if (entry.endsWith('.webp') && !listed.has(entry.replace('.webp', ''))) report('assets/data/archive-data.js', `assets/archive/${section.id}/${entry} is not listed`);
   }
 }
 

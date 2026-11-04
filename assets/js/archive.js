@@ -10,8 +10,8 @@
   const escapeHtml = value => String(value).replace(/[&<>"']/g, mark => (
     {'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'}[mark]));
   const pad = (number, size = 2) => String(number).padStart(size, '0');
-  const imagePath = (section, file) => `archive/${section.id}/${file}.webp`;
-  const thumbPath = (section, file) => `archive/${section.id}/t/${file}.webp`;
+  const imagePath = (section, file) => `assets/archive/${section.id}/${file}.webp`;
+  const thumbPath = (section, file) => `assets/archive/${section.id}/t/${file}.webp`;
 
   tabs.innerHTML = [`<a href="#" data-tab="">ALL</a>`, ...sections.map(section => (
     `<a href="#${section.id}" data-tab="${section.id}">${escapeHtml(section.label)}<sup>${section.count}</sup></a>`
@@ -19,7 +19,7 @@
 
   function coverCard(section) {
     return `<a class="cover-card" href="#${section.id}">
-      <span class="cover-paper"><img src="archive/covers/${section.id}.webp" alt="" width="1200" height="676" loading="lazy" decoding="async"></span>
+      <span class="cover-paper"><img src="assets/archive/covers/${section.id}.webp" alt="" width="1200" height="676" loading="lazy" decoding="async"></span>
       <span class="cover-title">${escapeHtml(section.title)}</span>
       <span class="cover-count">${section.count} IMAGES</span>
       ${section.summary ? `<span class="cover-summary">${escapeHtml(section.summary)}</span>` : ''}

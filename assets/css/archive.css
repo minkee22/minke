@@ -53,7 +53,7 @@
 .sheet-photo img{display:block;width:100%;height:auto;mix-blend-mode:multiply}
 .sheet figcaption{margin-top:12px;font-size:13px;line-height:1.5;color:var(--ink-soft)}
 
-.sheet::after{content:"";position:absolute;z-index:5;top:calc(32% + var(--pin-shift,0%));right:calc((var(--sheet-gap) + 80px)/-2);width:80px;aspect-ratio:360/65;background:url("safety-pin.webp") center/contain no-repeat;transform:rotate(var(--pin-turn,4deg));pointer-events:none}
+.sheet::after{content:"";position:absolute;z-index:5;top:calc(32% + var(--pin-shift,0%));right:calc((var(--sheet-gap) + 80px)/-2);width:80px;aspect-ratio:360/65;background:url("../images/safety-pin.webp") center/contain no-repeat;transform:rotate(var(--pin-turn,4deg));pointer-events:none}
 .sheet:nth-child(even){--pin-shift:30%;--pin-turn:-8deg}
 .sheets-looks .sheet:nth-child(3n)::after,.sheet:last-child::after{display:none}
 .sheets-wide .sheet::after,.sheets-sketch .sheet::after{top:auto;right:12%;bottom:calc((var(--sheet-gap) + 8px + 80px)/-2);--pin-turn:82deg;transform:rotate(var(--pin-turn))}

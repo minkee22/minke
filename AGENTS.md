@@ -21,13 +21,18 @@
 
 | 파일 | 역할 |
 |---|---|
-| `archive-data.js` | ARTWORK, COLLECTIONS 의 제목, 설명, 이미지 목록 |
-| `archive.js`, `archive.css` | ARTWORK, COLLECTIONS, ABOUT 렌더링과 스타일 |
-| `pinned.css` | 공용 타이포, 헤더, 푸터, 종이 효과, 홈 화면 |
-| `portfolio-viewer.js` | 공용 이미지 뷰어(`PageViewer.open`), 홈 가로 갤러리 |
+| `assets/data/archive-data.js` | ARTWORK, COLLECTIONS 의 제목, 설명, 이미지 목록 |
+| `assets/js/archive.js`, `assets/css/archive.css` | ARTWORK, COLLECTIONS, ABOUT 렌더링과 스타일 |
+| `assets/css/site.css` | 공용 타이포, 헤더, 푸터, 종이 효과, 홈 화면 |
+| `assets/js/viewer.js` | 공용 이미지 뷰어(`PageViewer.open`), 홈 가로 갤러리 |
+| `assets/slides/` | AI 사례 슬라이드 |
+| `assets/archive/` | ARTWORK, COLLECTIONS 이미지 |
+| `assets/images/` | 옷핀, 공유 미리보기 이미지 |
+| `tools/check-site.js` | 링크, 이미지 목록, 금지 문장부호 점검 |
+| `_retired/` | 지금 쓰지 않는 이전 자료. 공개되지 않습니다 |
 
-`case-study.css`, `case-study.js`, `portfolio-data.js`, `folio-NN-cover.webp`, `folio-NN-NN.webp`, `paper-reference*.png`,
-`safety-pin-reference.png`, `safety-pin.svg` 는 이전 디자인에 쓰던 자료이고 지금 페이지에서는 쓰지 않습니다.
+페이지 HTML 은 공개 주소가 바뀌지 않도록 루트에 둡니다.
+
 `case-study.html` 은 옛 주소를 홈으로 보내는 리다이렉트입니다.
 
 사람이 따르는 작업 순서는 [CONTRIBUTING.md](CONTRIBUTING.md) 에 있습니다.
@@ -42,7 +47,7 @@ python3 -m http.server 4173
 
 ## 디자인 규칙
 
-1. **클립 테마를 유지합니다.** 아이보리 종이 시트와 시트를 잇는 옷핀(`safety-pin.webp`)이 이 사이트의 정체성입니다.
+1. **클립 테마를 유지합니다.** 아이보리 종이 시트와 시트를 잇는 옷핀(`assets/images/safety-pin.webp`)이 이 사이트의 정체성입니다.
 2. **종이만 기울이고 내용은 수평으로 둡니다.** 기울기는 카드 자체가 아니라 `::before`, `::after` 종이 레이어에 줍니다.
    이미지나 글자를 함께 돌리면 서로 어긋나 삐뚤어 보입니다.
 3. **가로 갤러리는 같은 시트 구조를 씁니다.** FIG 라벨, 이미지, 제목, 설명, 세부 정보 순서이고 글자는 시트 안에 둡니다.
@@ -54,14 +59,14 @@ python3 -m http.server 4173
    문장 속 링크에도 화살표를 붙이지 않습니다. 커밋 메시지와 문서도 같습니다.
 7. **장식으로 구분하지 않습니다.** 배지, 아이콘, 무작위 변주를 늘리지 말고 글자 농도와 여백으로 구분합니다.
 8. **읽기 쉬운 최소 기준을 지킵니다.** 본문과 라벨은 12px 이상(탭 숫자만 10.5px), 터치 대상은 높이 44px, 보조 글자는 `--ink-soft`.
-9. **폰트는 Pretendard 입니다.** `fonts/pretendard/` 에 직접 넣었고 외부 CDN 을 쓰지 않습니다.
+9. **폰트는 Pretendard 입니다.** `assets/fonts/pretendard/` 에 직접 넣었고 외부 CDN 을 쓰지 않습니다.
 
 ## 콘텐츠 수정
 
-**AI 슬라이드:** `index.html` 의 카드를 고칩니다. 슬라이드 이미지는 전체본 `folio-NN-page.webp` 와 가벼운 본
+**AI 슬라이드:** `index.html` 의 카드를 고칩니다. 슬라이드 이미지는 `assets/slides/` 의 전체본 `folio-NN-page.webp` 와 가벼운 본
 `folio-NN-page-1200.webp` 를 함께 교체합니다.
 
-**ARTWORK, COLLECTIONS:** `archive-data.js` 를 고칩니다.
+**ARTWORK, COLLECTIONS:** `assets/data/archive-data.js` 를 고칩니다.
 
 - 이미지 한 장은 `[파일명, 폭, 높이, 캡션]` 입니다. 폭과 높이는 변환한 파일 기준입니다.
 - `sheets` 의 안쪽 배열 하나가 종이 시트 한 장입니다.
@@ -71,9 +76,9 @@ python3 -m http.server 4173
 
 | 용도 | 경로 | 규격 |
 |---|---|---|
-| 뷰어 | `archive/<섹션>/NNN.webp` | 폭 1400px, WebP 품질 78 |
-| 목록 | `archive/<섹션>/t/NNN.webp` | 폭 640px, WebP 품질 72 |
-| 표지 | `archive/covers/<섹션>.webp` | 1200x676, WebP 품질 78 |
+| 뷰어 | `assets/archive/<섹션>/NNN.webp` | 폭 1400px, WebP 품질 78 |
+| 목록 | `assets/archive/<섹션>/t/NNN.webp` | 폭 640px, WebP 품질 72 |
+| 표지 | `assets/archive/covers/<섹션>.webp` | 1200x676, WebP 품질 78 |
 
 CSS 나 JS 를 고치면 HTML 의 `?v=` 값을 올려 브라우저 캐시를 넘깁니다.
 
