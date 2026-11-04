@@ -1,23 +1,29 @@
-# KYUNGEUN MIN — Portfolio
+# KYUNGEUN MIN Portfolio
 
 Live: https://minkee22.github.io/minke/
 
-The homepage uses the approved Pinned Pages design: ivory paper, soft shadows,
-safety-pin connectors and a three-project opening spread. It is static HTML and
-CSS, with no build step or JavaScript required for homepage navigation.
+The homepage uses the Pinned Pages design: ivory paper, soft shadows and safety
+pins joining each sheet to the next. It is static HTML, CSS and a small script,
+with no build step.
+
+## Pages
+
+- `index.html`: SELECTED. AI case slides, previews of the collections and artwork, Sian Studio, contact.
+- `artwork.html`: ARTWORK. Styles and sketches by category. `artwork.html#outer` opens one category.
+- `collections.html`: COLLECTIONS. Capsule and collaboration projects. `collections.html#vbyk` opens one project.
+- `about.html`: ABOUT. Introduction and contact details.
 
 ## Editing
 
-- `index.html`: homepage copy, project cards, contact and document links.
-- `pinned.css`: homepage layout, paper effects, responsive styles.
-- Homepage image areas are intentionally empty. Add images inside `.sheet` and replace `.empty-image` when ready; existing image files are retained for detail pages.
-- `project.html`, `project.css`, `project.js`: existing project detail experiences.
-- `details.js`: detail-page project content.
-- `projects.js`, `main.js`, `style.css`: retained legacy pinboard implementation;
-  the new homepage does not load these files.
-
-All seven project pages, the wedding gift deck, CV and portfolio PDF remain linked.
-The relative links support GitHub Pages hosting under `/minke/`.
+- `archive-data.js`: section titles, notes, stories and image lists for ARTWORK and COLLECTIONS. Each image is `[file, width, height, caption]`, and each inner list is one paper sheet.
+- `archive/<section>/NNN.webp` is the full image used in the viewer; `archive/<section>/t/NNN.webp` is the thumbnail. Add both when adding an image. Section covers live in `archive/covers/`.
+- `archive.js`, `archive.css`: rendering and styles for ARTWORK, COLLECTIONS and ABOUT.
+- `pinned.css`: shared type, header, footer, paper effects and the homepage.
+- `portfolio-viewer.js`: the image viewer and the homepage gallery rows.
+- `fonts/pretendard/`: self-hosted Pretendard Variable (SIL OFL). Browsers download only the subsets a page needs.
+- `folio-NN-page.webp` is the full slide used in the viewer; `folio-NN-page-1200.webp` is the lighter copy used on the homepage. Update both when a slide changes.
+- `og-cover.jpg`: the preview image shown when the link is shared.
+- `project.html`, `project.css`, `project.js`, `details.js`, `projects.js`, `main.js`, `style.css`: retained earlier implementations; no current page loads or links to them.
 
 ## Preview and deployment
 

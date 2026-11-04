@@ -1,0 +1,125 @@
+// Renders ARTWORK and COLLECTIONS from archive-data.js. The address hash selects a section.
+(() => {
+  const kind = document.body.dataset.archive;
+  const sections = ARCHIVE[kind];
+  const baseTitle = document.title;
+  const tabs = document.querySelector('#archive-tabs');
+  const view = document.querySelector('#archive-view');
+  const lead = document.querySelector('#archive-lead');
+  const heading = document.querySelector('#archive-heading');
+  const baseHeading = heading.textContent;
+  const baseLead = lead.textContent;
+  const hint = '두 손가락으로 벌리거나 두 번 탭하면 확대됩니다.';
+
+  const escapeHtml = value => String(value).replace(/[&<>"']/g, mark => (
+    {'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'}[mark]));
+  const pad = (number, size = 2) => String(number).padStart(size, '0');
+  const imagePath = (section, file) => `archive/${section.id}/${file}.webp`;
+  const thumbPath = (section, file) => `archive/${section.id}/t/${file}.webp`;
+
+  tabs.innerHTML = [`<a href="#" data-tab="">ALL</a>`, ...sections.map(section => (
+    `<a href="#${section.id}" data-tab="${section.id}">${escapeHtml(section.label)}<sup>${section.count}</sup></a>`
+  ))].join('');
+
+  function coverCard(section) {
+    return `<a class="cover-card" href="#${section.id}">
+      <span class="cover-paper"><img src="archive/covers/${section.id}.webp" alt="" width="1200" height="676" loading="lazy" decoding="async"></span>
+      <span class="cover-title">${escapeHtml(section.title)}</span>
+      <span class="cover-count">${section.count} IMAGES</span>
+      ${section.summary ? `<span class="cover-summary">${escapeHtml(section.summary)}</span>` : ''}
+    </a>`;
+  }
+
+  function sheetHtml(section, sheet, start, position) {
+    const captions = [...new Set(sheet.map(image => image[3]).filter(Boolean))];
+    const photos = sheet.map(([file, width, height], i) => {
+      const number = start + i;
+      const shape = (width / height).toFixed(3);
+      return `<a class="sheet-photo" href="${imagePath(section, file)}" data-index="${number}" style="--shape:${shape}">
+        <img src="${thumbPath(section, file)}" alt="${escapeHtml(section.title)} ${number + 1}" width="${width}" height="${height}" loading="lazy" decoding="async">
+      </a>`;
+    }).join('');
+    return `<figure class="sheet">
+      <div class="sheet-paper">
+        <span class="sheet-num">FIG. ${pad(position + 1)}</span>
+        <div class="sheet-photos">${photos}</div>
+        ${captions.length ? `<figcaption>${escapeHtml(captions.join(', '))}</figcaption>` : ''}
+      </div>
+    </figure>`;
+  }
+
+  function neighbourLinks(position) {
+    const before = sections[position - 1];
+    const after = sections[position + 1];
+    return `<nav class="archive-pager" aria-label="이전, 다음 항목">
+      ${before ? `<a href="#${before.id}">← ${escapeHtml(before.label)}</a>` : '<a href="#">← ALL</a>'}
+      ${after ? `<a href="#${after.id}">${escapeHtml(after.label)} →</a>` : '<a href="#">ALL →</a>'}
+    </nav>`;
+  }
+
+  function renderOverview() {
+    heading.textContent = baseHeading;
+    lead.textContent = baseLead;
+    document.title = baseTitle;
+    view.innerHTML = `<div class="cover-grid">${sections.map(coverCard).join('')}</div>`;
+  }
+
+  function renderSection(section) {
+    const position = sections.indexOf(section);
+    heading.textContent = section.title;
+    lead.textContent = section.note || baseLead;
+    document.title = `${section.title} | ${baseTitle}`;
+    let count = 0;
+    const sheets = section.sheets.map((sheet, position) => {
+      const html = sheetHtml(section, sheet, count, position);
+      count += sheet.length;
+      return html;
+    }).join('');
+    const story = (section.story || []).length
+      ? `<div class="archive-story"><h2>${escapeHtml(section.storyTitle)}</h2>${section.story.map(line => `<p>${escapeHtml(line)}</p>`).join('')}</div>`
+      : '';
+    view.innerHTML = `${story}<div class="sheets sheets-${section.layout || 'looks'}">${sheets}</div>${neighbourLinks(position)}`;
+    const images = section.sheets.flat().map(([file, width, height, caption], i) => ({
+      src: imagePath(section, file),
+      ratio: width / height,
+      alt: `${section.title} ${i + 1}`,
+      title: section.title,
+      desc: caption || '',
+      hint,
+    }));
+    view.onclick = event => {
+      const link = event.target.closest('.sheet-photo');
+      if (!link || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+      event.preventDefault();
+      PageViewer.open(images, Number(link.dataset.index), last => {
+        const target = view.querySelector(`[data-index="${last}"]`);
+        target.scrollIntoView({block: 'nearest'});
+        target.focus({preventScroll: true});
+      });
+    };
+  }
+
+  function render() {
+    const id = decodeURIComponent(location.hash.slice(1));
+    const section = sections.find(item => item.id === id);
+    view.onclick = null;
+    if (section) renderSection(section);
+    else renderOverview();
+    tabs.querySelectorAll('a').forEach(tab => {
+      const active = tab.dataset.tab === (section ? section.id : '');
+      if (active) {
+        tab.setAttribute('aria-current', 'true');
+        tab.scrollIntoView({block: 'nearest', inline: 'center'});
+      } else {
+        tab.removeAttribute('aria-current');
+      }
+    });
+  }
+
+  // Switching sections starts at the top of the page instead of keeping the old scroll depth.
+  window.addEventListener('hashchange', () => {
+    render();
+    window.scrollTo({top: 0, behavior: 'instant'});
+  });
+  render();
+})();
