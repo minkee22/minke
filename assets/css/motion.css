@@ -1,0 +1,64 @@
+/* Motion follows one idea: paper being laid on a table and pinned down.
+   Hidden states live under html.motion, which is only set when the visitor allows animation. */
+
+:root{
+  --ease-settle:cubic-bezier(.2,.8,.2,1);
+  --ease-drop:cubic-bezier(.18,.9,.28,1.04);
+}
+
+@view-transition{navigation:auto}
+.site-header{view-transition-name:site-header}
+::view-transition-old(root),::view-transition-new(root){animation-duration:.28s}
+
+/* Sheets dropped onto the table */
+.first-visit .hero-sheet{animation:sheet-drop .75s var(--ease-drop) both;animation-delay:calc(var(--i)*85ms + 120ms)}
+@keyframes sheet-drop{
+  from{opacity:0;transform:translateY(-44px) scale(1.16) rotate(8deg);box-shadow:0 40px 40px -18px #39352c55}
+  55%{opacity:1}
+  to{opacity:1;transform:none}
+}
+.first-visit .hero-sheet::before{animation:pin-snap .3s var(--ease-drop) both;animation-delay:calc(var(--i)*85ms + 660ms)}
+@keyframes pin-snap{from{opacity:0;scale:1.5}to{opacity:1;scale:1}}
+
+/* Things placed as they scroll into view */
+.motion .folio-heading:not(.is-placed),.motion .section-head:not(.is-placed),.motion .archive-story:not(.is-placed),.motion .about-text:not(.is-placed),.motion .about-lead:not(.is-placed),.motion .row-link:not(.is-placed){opacity:0;transform:translateY(14px)}
+.motion .folio-card:not(.is-placed),.motion .cover-card:not(.is-placed),.motion .sheet:not(.is-placed),.motion .about-sheet:not(.is-placed){opacity:0;transform:translateY(26px) rotate(1.4deg) scale(1.015)}
+.motion .is-placed{transition:opacity .6s ease,transform .75s var(--ease-settle);transition-delay:calc(var(--order,0)*80ms)}
+.is-settled{transition:none!important;transition-delay:0s!important}
+
+/* Pins arrive after the paper has landed */
+.motion .folio-card:not(.is-placed) .folio-paper::before,.motion .folio-card:not(.is-placed) .folio-paper::after,
+.motion .sheet:not(.is-placed)::after,.motion .about-sheet:not(.is-placed)::before{opacity:0}
+.motion .folio-card.is-placed .folio-paper::before,.motion .folio-card.is-placed .folio-paper::after,
+.motion .sheet.is-placed::after,.motion .about-sheet.is-placed::before{animation:pin-snap .3s var(--ease-drop) both;animation-delay:calc(var(--order,0)*80ms + .42s)}
+.is-settled .folio-paper::before,.is-settled .folio-paper::after,.sheet.is-settled::after,.about-sheet.is-settled::before{animation:none!important}
+
+/* The stitched line sews itself in */
+.motion .folio-progress{clip-path:inset(0 100% 0 0)}
+.motion .folio-progress.is-placed{clip-path:inset(0 0 0 0);transition:clip-path 1.1s var(--ease-settle) .2s}
+
+/* Pins react to how fast a row is moving */
+.folio-card:not(:last-child) .folio-paper::before,.folio-card:not(:last-child) .folio-paper::after{rotate:var(--swing,0deg);transform-origin:50% 50%}
+@keyframes pin-swing{0%{rotate:0deg}28%{rotate:-6deg}58%{rotate:3.5deg}80%{rotate:-1.5deg}100%{rotate:0deg}}
+
+/* Pointer devices: paper straightens and lifts when it has your attention */
+.folio-card::before,.cover-paper::before,.sheet-paper::before,.about-sheet::after{transition:transform .45s var(--ease-settle),box-shadow .45s ease}
+@media(hover:hover) and (pointer:fine){
+  .folio-card:hover::before,.cover-card:hover .cover-paper::before,.sheet:hover .sheet-paper::before{transform:translateY(-5px) rotate(0deg);box-shadow:2px 34px 26px -22px #39352ccc,12px 8px 22px -12px #39352c66,-2px 2px 5px -4px #39352c45}
+  .folio-card:hover .folio-paper::before,.folio-card:hover .folio-paper::after,.about-sheet:hover::before{animation:pin-swing .7s ease-out both}
+  .folio-track{cursor:grab}
+  .folio-track.is-dragging,.folio-track.is-dragging a{cursor:grabbing}
+  .folio-track.is-dragging{scroll-snap-type:none;scroll-behavior:auto;user-select:none}
+  .folio-track.is-dragging img{pointer-events:none}
+}
+
+/* Viewer */
+#page-viewer[open]{animation:viewer-in .24s ease both}
+#page-viewer.is-closing{animation:viewer-out .16s ease both}
+@keyframes viewer-in{from{background-color:#eeeae300}to{background-color:#eeeae3}}
+@keyframes viewer-out{to{opacity:0}}
+
+@media(prefers-reduced-motion:reduce){
+  @view-transition{navigation:none}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+}

@@ -98,13 +98,39 @@ const PageViewer = (() => {
     if (items[target]) show(target);
   };
 
-  function open(nextItems, startIndex, closed) {
+  // The image grows out of the thumbnail that was pressed.
+  function growFrom(origin) {
+    if (!origin || !image.animate || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const end = image.getBoundingClientRect();
+    if (!end.width) return;
+    const start = origin.getBoundingClientRect();
+    image.animate([
+      {transformOrigin: '0 0', transform: `translate(${start.left - end.left}px, ${start.top - end.top}px) scale(${start.width / end.width})`},
+      {transformOrigin: '0 0', transform: 'none'},
+    ], {duration: 420, easing: 'cubic-bezier(.2,.8,.2,1)'});
+  }
+
+  function dismiss() {
+    if (!viewer.open) return;
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      viewer.close();
+      return;
+    }
+    viewer.classList.add('is-closing');
+    setTimeout(() => {
+      viewer.classList.remove('is-closing');
+      viewer.close();
+    }, 150);
+  }
+
+  function open(nextItems, startIndex, closed, origin) {
     items = nextItems;
     onClose = closed;
     viewer.showModal();
     viewer.focus();
     document.body.classList.add('viewer-open');
     show(startIndex);
+    growFrom(origin);
     // The phone back button should close the viewer, not leave the page.
     history.pushState({viewer: true}, '');
   }
@@ -112,7 +138,11 @@ const PageViewer = (() => {
   fitButton.addEventListener('click', () => toggleZoom());
   prevButton.addEventListener('click', () => step(-1));
   nextButton.addEventListener('click', () => step(1));
-  viewer.querySelector('#page-close').addEventListener('click', () => viewer.close());
+  viewer.querySelector('#page-close').addEventListener('click', dismiss);
+  viewer.addEventListener('cancel', event => {
+    event.preventDefault();
+    dismiss();
+  });
   window.addEventListener('popstate', () => { if (viewer.open) viewer.close(); });
 
   viewer.addEventListener('keydown', event => {
@@ -229,7 +259,7 @@ if (slideRow) {
     PageViewer.open(slideItems(), cards.indexOf(link.closest('.folio-card')), last => {
       slideRow.dispatchEvent(new CustomEvent('reveal', {detail: last}));
       cards[last].querySelector('.folio-paper').focus({preventScroll: true});
-    });
+    }, link.closest('.folio-card').querySelector('.page-thumbnail'));
   });
 
   document.addEventListener('languagechange', showSlides);

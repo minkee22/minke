@@ -14,7 +14,7 @@
 
 | 메뉴 | 파일 | 내용 |
 |---|---|---|
-| SELECTED | `index.html` | AI IN PRACTICE, 컬렉션과 아트웍 미리보기, SIAN STUDIO, 연락처 |
+| HOME | `index.html` | AI IN PRACTICE, 컬렉션과 아트웍 미리보기, SIAN STUDIO, 연락처 |
 | ARTWORK | `artwork.html` | 카테고리 8개. `artwork.html#outer` 처럼 해시로 섹션을 엽니다 |
 | COLLECTIONS | `collections.html` | 프로젝트 5개. `collections.html#vbyk` 처럼 해시로 섹션을 엽니다 |
 | ABOUT | `about.html` | 자기소개, 연락처 |
@@ -27,6 +27,7 @@
 | `assets/js/archive.js`, `assets/css/archive.css` | ARTWORK, COLLECTIONS, ABOUT 렌더링과 스타일 |
 | `assets/css/site.css` | 공용 타이포, 헤더, 푸터, 종이 효과, 홈 화면 |
 | `assets/js/viewer.js` | 공용 이미지 뷰어(`PageViewer.open`), 홈 가로 갤러리 |
+| `assets/js/motion.js`, `assets/css/motion.css` | 인터랙션 전체. 첫 화면, 등장, 호버, 끌기 |
 | `assets/slides/` | AI 사례 슬라이드 |
 | `assets/archive/` | ARTWORK, COLLECTIONS 이미지 |
 | `assets/images/` | 옷핀, 공유 미리보기 이미지 |
@@ -57,7 +58,7 @@ python3 -m http.server 4173
 4. **메뉴 위치가 움직이면 안 됩니다.**
    - 현재 메뉴 표시는 밑줄과 색으로만 합니다. `font-weight` 를 바꾸면 글자 폭이 달라져 메뉴가 밀립니다.
    - ARTWORK, COLLECTIONS 상단 제목 영역은 섹션이 바뀌어도 그대로 둡니다. 섹션 제목과 설명은 탭 아래 `.section-head` 에 넣습니다.
-5. **SELECTED 메뉴는 앵커 없이 홈 맨 위로 갑니다.** 첫 슬라이드로 자동 이동하는 동작은 사용자가 부자연스럽다고 해서 없앴습니다.
+5. **HOME 메뉴는 앵커 없이 홈 맨 위로 갑니다.** 홈에는 큰 제목을 두지 않고 프린트가 첫 화면을 맡습니다. `h1` 은 화면에 보이지 않게만 둡니다.
 6. **AI 가 쓴 글처럼 보이는 문장부호를 쓰지 않습니다.** em dash, en dash, 가운데 점, 단독 `--` 대신 쉼표, 괄호, 슬래시로 씁니다.
    문장 속 링크에도 화살표를 붙이지 않습니다. 커밋 메시지와 문서도 같습니다.
 7. **문구는 두 언어를 함께 고칩니다.** 화면 문구는 HTML 이나 JS 에 직접 쓰지 않고 `i18n-data.js` 에 넣습니다.
@@ -69,6 +70,17 @@ python3 -m http.server 4173
 8. **장식으로 구분하지 않습니다.** 배지, 아이콘, 무작위 변주를 늘리지 말고 글자 농도와 여백으로 구분합니다.
 9. **읽기 쉬운 최소 기준을 지킵니다.** 본문과 라벨은 12px 이상(탭 숫자만 10.5px), 터치 대상은 높이 44px, 보조 글자는 `--ink-soft`.
 10. **폰트는 Pretendard 입니다.** `assets/fonts/pretendard/` 에 직접 넣었고 외부 CDN 을 쓰지 않습니다.
+
+## 인터랙션
+
+- 모든 움직임은 "종이를 책상에 놓고 옷핀으로 고정한다" 는 한 가지 비유에서 나옵니다. 튀는 효과를 따로 더하지 않습니다.
+- 숨김 상태는 `html.motion` 아래에만 둡니다. 스크립트가 실패하거나 움직임 줄이기를 켠 방문자도 내용을 모두 볼 수 있어야 합니다.
+- transform 과 opacity 위주로 움직이고, 레이아웃을 밀지 않습니다.
+- 첫 화면 연출은 세션당 한 번만 재생합니다.
+- 첫 화면 프린트는 방문할 때마다 `assets/data/hero-data.js` 에서 무작위로 뽑습니다. 곰돌이는 항상 나옵니다.
+  이 목록에는 모델이 입은 사진만 넣습니다. 도식화, 제품컷, 얼굴이 없는 크롭은 넣지 않습니다.
+- 첫 화면 프린트는 압정으로, 가로 갤러리와 시트는 옷핀으로 고정합니다. 압정은 사진 위 종이 여백에 두어 얼굴을 가리지 않습니다.
+- 커서를 따라다니는 라벨처럼 시선을 빼앗는 장식은 넣지 않습니다.
 
 ## 콘텐츠 수정
 
@@ -112,7 +124,8 @@ CSS 나 JS 를 고치면 HTML 의 `?v=` 값을 올려 브라우저 캐시를 넘
 - **다른 사람의 자료:** 이전 템플릿의 파일은 지웠습니다. 전화번호가 있던 `cv.pdf` 와 `projects.js` 의 번호는 git 기록에서도 지웠습니다.
   다만 GitHub 는 옛 커밋을 주소로 계속 보여 줄 수 있어, 저장소 소유자가 GitHub Support 에 삭제를 요청해야 완전히 사라집니다.
 - **저장소 소유자만 할 수 있는 일:** 저장소 설명 수정, GitHub Support 요청, Vercel 연결. 쓰기 권한만으로는 할 수 없습니다.
-- **Vercel 로 옮길 때:** 공유 미리보기와 대표 주소를 새 주소로 바꾸고, `_retired/` 를 `.vercelignore` 로 제외합니다.
+- **Vercel 배포:** 소유자가 진행합니다. 절차는 `README.md` 의 "저장소 소유자가 할 일" 에 있습니다. `.vercelignore` 는 준비되어 있습니다.
+  소유자가 `vercel.app` 주소를 주면 `canonical`, `og:url`, `og:image` 와 문서의 라이브 주소를 바꾸고, GitHub Pages 를 끄도록 안내합니다.
 - **ARTWORK 소개 문구:** 아우터, 원피스, 블라우스/셔츠, 액세서리, 도식화 소개는 원문이 없어 이미지를 보고 쓴 초안입니다. 사용자 확인이 필요합니다.
 - **영어 표기:** 인명(Yoo Ji-hye, Jang Woo-chul, YK Jeong)과 전시 제목 'An Invitation to Flowers' 는 공식 표기를 확인해야 합니다.
 - **SIAN STUDIO:** 작업 준비 중이라 빈 시트로 둡니다. 제목의 `(가제)` 도 확정되면 바꿉니다.

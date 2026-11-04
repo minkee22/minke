@@ -15,7 +15,17 @@
   function renderTabs() {
     tabs.innerHTML = [`<a href="#" data-tab="">${escapeHtml(I18N.t('archive.all'))}</a>`, ...sections.map(section => (
       `<a href="#${section.id}" data-tab="${section.id}">${escapeHtml(copy(section, 'label'))}<sup>${section.count}</sup></a>`
-    ))].join('');
+    ))].join('') + '<i class="tabs-ink" aria-hidden="true"></i>';
+  }
+
+  // The marker slides between tabs, and stays still on the first paint.
+  function moveInk(animate) {
+    const ink = tabs.querySelector('.tabs-ink');
+    const active = tabs.querySelector('[aria-current]');
+    if (!ink || !active) return;
+    ink.style.transition = animate ? '' : 'none';
+    ink.style.left = active.offsetLeft + 'px';
+    ink.style.width = active.offsetWidth + 'px';
   }
 
   function coverCard(section) {
@@ -89,9 +99,13 @@
         const target = view.querySelector(`[data-index="${last}"]`);
         target.scrollIntoView({block: 'nearest'});
         target.focus({preventScroll: true});
-      });
+      }, link.querySelector('img'));
     };
   }
+
+  // A language switch redraws in place, so nothing animates back in.
+  let quiet = false;
+  let firstPaint = true;
 
   function render() {
     const id = decodeURIComponent(location.hash.slice(1));
@@ -108,6 +122,9 @@
         tab.removeAttribute('aria-current');
       }
     });
+    moveInk(!quiet && !firstPaint);
+    firstPaint = false;
+    if (typeof Motion !== 'undefined') Motion.place(view, {instant: quiet});
   }
 
   // Scrolls the tab strip only as far as needed, and never moves the page.
@@ -144,10 +161,13 @@
   // The language toggle redraws the current section in place.
   document.addEventListener('languagechange', () => {
     const scroll = window.scrollY;
+    quiet = true;
     renderTabs();
     render();
+    quiet = false;
     holdTabs(scroll);
   });
+  window.addEventListener('resize', () => moveInk(false));
 
   // Browser back and forward between sections.
   window.addEventListener('hashchange', () => {
@@ -157,4 +177,5 @@
   });
   renderTabs();
   render();
+  document.fonts?.ready.then(() => moveInk(false));
 })();

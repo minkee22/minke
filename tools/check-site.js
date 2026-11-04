@@ -79,6 +79,16 @@ for (const section of sections) {
   }
 }
 
+// Homepage prints: real files, with no repeats.
+const {HERO_POOL, HERO_BEAR} = new Function(`${read('assets/data/hero-data.js')}; return {HERO_POOL, HERO_BEAR};`)();
+if (HERO_POOL.length < 10) report('assets/data/hero-data.js', 'the pool needs at least 10 prints');
+if (new Set(HERO_POOL.map(print => print[1])).size < 5) report('assets/data/hero-data.js', 'the pool needs at least 5 sections');
+if (!exists(`assets/archive/covers/${HERO_BEAR[1]}.webp`)) report('assets/data/hero-data.js', 'missing the bear cover');
+for (const [, section, file] of HERO_POOL) {
+  if (section === 'sketch') report('assets/data/hero-data.js', `${file} is a sketch`);
+  if (!exists(`assets/archive/${section}/t/${file}.webp`)) report('assets/data/hero-data.js', `missing ${section}/${file}`);
+}
+
 // The homepage repeats each section count.
 const homeCounts = [...read('index.html').matchAll(/data-i18n-count="(\d+)"/g)].map(match => Number(match[1]));
 const expected = sections.map(section => section.count);

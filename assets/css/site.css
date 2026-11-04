@@ -4,7 +4,7 @@
   --ink:#242421;
   --ink-soft:#5d594f;
   --rule:#cecdc7;
-  --gutter:max(clamp(20px,5vw,80px),env(safe-area-inset-left));
+  --gutter:max(min(clamp(20px,6.2vw,28px),80px),min(5vw,80px),env(safe-area-inset-left));
   --sticky-top:62px;
   --paper:linear-gradient(115deg,#fffefa,#f8f7f3 65%,#efeee9);
   --paper-shadow:2px 22px 17px -16px #39352caa,9px 5px 15px -9px #39352c70,-2px 2px 5px -4px #39352c45;
@@ -28,17 +28,37 @@ button{font:inherit;color:inherit;cursor:pointer}
 .brand strong,.brand span{display:block}
 .brand strong{font-size:17px;font-weight:600;letter-spacing:-.01em;color:var(--ink)}
 .site-header nav{display:flex;gap:clamp(14px,2.4vw,32px);margin-left:auto}
-.lang-toggle{display:inline-flex;flex:none;align-items:center;min-height:44px;padding:0;border:0;background:none;color:var(--ink-soft);font-size:12px;letter-spacing:.04em;cursor:pointer}
-.lang-toggle span{padding:3px 9px;border:1px solid #b9b4a8}
-.lang-toggle span:first-child{border-right:0;border-radius:999px 0 0 999px}
-.lang-toggle span:last-child{border-left:0;border-radius:0 999px 999px 0}
-html[lang="ko"] .lang-toggle [data-lang="ko"],html[lang="en"] .lang-toggle [data-lang="en"]{border-color:var(--ink);background:var(--ink);color:var(--ivory)}
-.site-header nav a{display:flex;align-items:center;min-height:44px;font-size:13px;letter-spacing:.02em;white-space:nowrap}
-.site-header nav a[aria-current]{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:5px}
+.lang-toggle{position:relative;display:inline-flex;flex:none;align-items:center;min-height:44px;padding:0;border:0;background:none;color:var(--ink-soft);font-size:12px;letter-spacing:.04em;cursor:pointer}
+.lang-toggle::before{content:"";position:absolute;top:50%;left:0;width:calc(50% + .5px);height:27px;border-radius:999px;background:var(--ink);transform:translateY(-50%);transition:left .3s cubic-bezier(.2,.8,.2,1)}
+.lang-toggle::after{content:"";position:absolute;top:50%;left:0;right:0;height:27px;border:1px solid #b9b4a8;border-radius:999px;transform:translateY(-50%);pointer-events:none}
+.lang-toggle span{position:relative;z-index:1;width:36px;text-align:center;transition:color .24s ease}
+html[lang="ko"] .lang-toggle [data-lang="ko"],html[lang="en"] .lang-toggle [data-lang="en"]{color:var(--ivory)}
+html[lang="en"] .lang-toggle::before{left:calc(50% - .5px)}
 
-/* Intro */
-.intro{margin:clamp(28px,5.5vw,72px) var(--gutter) clamp(36px,5vw,64px)}
-.intro h1{margin:0;font-size:clamp(54px,8vw,112px);font-weight:500;line-height:.96;letter-spacing:-.045em}
+.site-header nav a{display:flex;align-items:center;min-height:44px;font-size:13px;letter-spacing:.02em;white-space:nowrap;background:linear-gradient(currentColor,currentColor) 0 calc(50% + 11px)/0 1px no-repeat;transition:background-size .32s cubic-bezier(.2,.8,.2,1)}
+.site-header nav a[aria-current]{background-size:100% 1px}
+@media(hover:hover){.site-header nav a:hover{background-size:100% 1px}}
+
+/* Intro: the prints are the first thing on the page. The page title stays for screen readers and search. */
+.visually-hidden{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.intro{margin:clamp(8px,1.6vw,24px) var(--gutter) clamp(44px,5vw,72px)}
+.hero-sheets{position:relative;aspect-ratio:2.3;--px:0;--py:0;--sy:0;--edge:clamp(6px,.6vw,10px);--strip:clamp(20px,1.9vw,28px);--tack:clamp(12px,1vw,15px)}
+.hero-sheet{position:absolute;left:var(--x);top:var(--y);width:var(--w);z-index:calc(var(--i) + 1);padding:var(--strip) var(--edge) var(--edge);background:var(--paper);box-shadow:2px 14px 13px -10px #39352c99,6px 4px 11px -7px #39352c60;rotate:var(--r);translate:calc(var(--dx,0px) + var(--px)*var(--d)*1px) calc(var(--dy,0px) + var(--py)*var(--d)*1px - var(--sy)*var(--s)*1px);transition:rotate .4s cubic-bezier(.2,.8,.2,1),scale .4s cubic-bezier(.2,.8,.2,1),box-shadow .4s ease;transform-origin:50% calc(var(--strip)/2);touch-action:pan-y;-webkit-user-drag:none;user-select:none}
+.hero-sheet img{display:block;width:100%;height:auto;pointer-events:none}
+.hero-sheet:nth-child(1){--x:1%;--y:5%;--w:17%;--r:-5deg;--d:9;--s:.5}
+.hero-sheet:nth-child(2){--x:32%;--y:25%;--w:33%;--r:2deg;--d:16;--s:1.2;z-index:7}
+.hero-sheet:nth-child(3){--x:18%;--y:40%;--w:15%;--r:4deg;--d:6;--s:.9}
+.hero-sheet:nth-child(4){--x:65%;--y:1%;--w:16%;--r:-3deg;--d:12;--s:.7}
+.hero-sheet:nth-child(5){--x:83%;--y:17%;--w:16%;--r:5deg;--d:7;--s:1.1}
+.hero-sheet:nth-child(6){--x:68%;--y:50%;--w:13.5%;--r:-4deg;--d:11;--s:.4}
+/* A metal pushpin sits on the paper strip above the photo, so it never covers a face. */
+.hero-sheet::before{content:"";position:absolute;z-index:2;top:calc((var(--strip) - var(--tack))/2);left:50%;width:var(--tack);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 36% 30%,#fffdf8 0 9%,#dedcd4 24%,#b6b3a9 52%,#8e8b80 78%,#6f6c62 100%);box-shadow:inset -1px -1px 1px #0000002e,inset 1px 1px 1px #ffffff80,1px 2px 2px #2a271f73,3px 6px 6px -1px #2a271f40;translate:-50% 0;transition:scale .22s ease,box-shadow .22s ease;pointer-events:none}
+@media(hover:hover) and (pointer:fine){
+  .hero-sheet{cursor:grab}
+  .hero-sheet:hover{rotate:calc(var(--r)*-.35);scale:1.03;box-shadow:2px 30px 24px -18px #39352caa,10px 8px 20px -10px #39352c66}
+  .hero-sheet.is-held::before{scale:1.25;box-shadow:inset -1px -1px 1px #0000002e,inset 1px 1px 1px #ffffff80,3px 7px 7px #2a271f59}
+  .hero-sheet.is-held{cursor:grabbing;rotate:0deg;scale:1.07;box-shadow:4px 44px 34px -22px #39352ca6,16px 12px 30px -12px #39352c60;transition:scale .2s ease,box-shadow .2s ease,rotate .2s ease}
+}
 
 /* Gallery rows share one sheet: image, title, description. */
 .horizontal-portfolio{--card-w:clamp(340px,46vw,680px);--sheet-gap:28px;--sheet-x:22px;--sheet-top:22px;--sheet-bottom:20px;--pin-w:84px;margin:0 0 clamp(64px,8vw,110px)}
@@ -162,6 +182,16 @@ html[lang="ko"] .lang-toggle [data-lang="ko"],html[lang="en"] .lang-toggle [data
   .about{grid-template-columns:minmax(0,1fr)}
 }
 
+@media(max-width:1000px) and (min-height:501px){
+  .hero-sheets{aspect-ratio:1.6}
+  .hero-sheet:nth-child(1){--x:1%;--y:4%;--w:22%}
+  .hero-sheet:nth-child(2){--x:35%;--y:29%;--w:39%}
+  .hero-sheet:nth-child(3){--x:18%;--y:48%;--w:19%}
+  .hero-sheet:nth-child(4){--x:57%;--y:2%;--w:20%}
+  .hero-sheet:nth-child(5){--x:78%;--y:22%;--w:21%}
+  .hero-sheet:nth-child(6){display:none}
+}
+
 @media(max-width:640px){
   .viewer-count{font-size:12.5px}
   .viewer-actions button{padding:0 10px}
@@ -173,13 +203,49 @@ html[lang="ko"] .lang-toggle [data-lang="ko"],html[lang="en"] .lang-toggle [data
 }
 
 
-/* Phones and small tablets: the name scrolls away and the menu row stays, so every section is one tap away. */
-@media(max-width:640px){
-  :root{--sticky-top:44px}
+/* Below this width the name and the menu no longer share a row. The name scrolls away and the menu stays. */
+@media(max-width:800px){
+  :root{--sticky-top:50px}
   .site-header{display:contents}
-  .brand{padding:12px var(--gutter) 4px}
-  .lang-toggle{position:absolute;top:-2px;right:var(--gutter);z-index:21}
-  .site-header nav{position:sticky;top:0;z-index:20;justify-content:space-between;gap:12px;padding:0 var(--gutter);background:#f5f4f0ed;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+  .brand{padding:20px var(--gutter) 16px}
+  .brand strong{font-size:18px}
+  .brand span{margin-top:3px}
+  .lang-toggle{position:absolute;top:10px;right:var(--gutter);z-index:21}
+  .site-header nav a{font-size:14px}
+  .site-header nav{position:sticky;top:0;z-index:20;justify-content:space-between;gap:12px;min-height:50px;margin:0;padding:2px var(--gutter);border-block:1px solid var(--rule);background:#f5f4f0ed;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+}
+
+/* Phones: fewer, larger prints and more air around everything. */
+@media(max-width:640px){
+  .intro{margin:32px var(--gutter) 64px}
+  .hero-sheets{aspect-ratio:.95;--edge:6px;--strip:20px;--tack:12px}
+  .hero-sheet:nth-child(1){--x:0%;--y:1%;--w:47%;--r:-4deg;--s:.3}
+  .hero-sheet:nth-child(2){--x:13%;--y:51%;--w:76%;--r:1.5deg;--s:.6}
+  .hero-sheet:nth-child(3){--x:53%;--y:5%;--w:45%;--r:3.5deg;--s:.4}
+  .hero-sheet:nth-child(n+4){display:none}
+  .horizontal-portfolio{--card-w:82vw;--sheet-gap:18px;--sheet-x:16px;--sheet-top:16px;--sheet-bottom:20px;margin-bottom:72px}
+  .link-portfolio{--card-w:74vw;--sheet-x:16px;--sheet-top:16px;--sheet-bottom:20px}
+  .studio-portfolio{--card-w:64vw;--sheet-x:14px;--sheet-top:14px;--sheet-bottom:16px}
+  .folio-heading h2,.about h2{font-size:24px}
+  .folio-heading{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:0 16px}
+  .folio-heading>div:first-child{display:contents}
+  .folio-hint{grid-column:1/-1;grid-row:2}
+  .folio-controls{grid-column:2;grid-row:1;align-self:center}
+  .folio-count{padding-top:0}
+  .folio-hint{font-size:14.5px;line-height:1.6}
+  .folio-track{padding:24px var(--gutter) 34px}
+  .folio-caption{padding-top:16px}
+  .folio-caption h3{font-size:17px}
+  .folio-caption p{font-size:15px;line-height:1.65}
+  .studio-portfolio .folio-caption h3{font-size:15px}
+  .row-link{margin-top:14px}
+  .about{gap:36px;margin-bottom:72px}
+}
+
+/* Small phones: the menu tightens just enough to keep four items on one row. */
+@media(max-width:374px){
+  .site-header nav{gap:8px}
+  .site-header nav a{font-size:13px;letter-spacing:0}
 }
 
 /* Landscape phones: slide and text sit side by side, and the viewer gives the slide all the height. */
@@ -188,7 +254,6 @@ html[lang="ko"] .lang-toggle [data-lang="ko"],html[lang="en"] .lang-toggle [data
   .site-header{position:static}
   html{scroll-padding-top:0}
   .intro{margin-top:12px;margin-bottom:28px}
-  .intro h1{font-size:48px}
   .horizontal-portfolio{--card-w:min(66vw,620px)}
   .slide-portfolio .folio-card{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);column-gap:16px}
   .slide-portfolio .folio-caption{padding:0 26px 0 0}
