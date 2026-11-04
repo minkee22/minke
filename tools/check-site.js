@@ -72,9 +72,30 @@ for (const section of sections) {
 }
 
 // The homepage repeats each section count.
-const homeCounts = [...read('index.html').matchAll(/<small>(\d+)장<\/small>/g)].map(match => Number(match[1]));
+const homeCounts = [...read('index.html').matchAll(/data-i18n-count="(\d+)"/g)].map(match => Number(match[1]));
 const expected = sections.map(section => section.count);
 if (homeCounts.join() !== expected.join()) report('index.html', `image counts ${homeCounts} should be ${expected}`);
+
+// Both languages must exist for every key a page or script asks for.
+const strings = new Function(`${read('assets/data/i18n-data.js')}; return I18N_STRINGS;`)();
+for (const [key, pair] of Object.entries(strings)) {
+  if (pair.length !== 2 || pair.some(value => !value || !value.length)) report('assets/data/i18n-data.js', `${key} needs Korean and English`);
+  if (/[\uac00-\ud7a3]/.test(JSON.stringify(pair[1]))) report('assets/data/i18n-data.js', `${key} has Korean in the English text`);
+}
+const pages = textFiles.filter(name => name.endsWith('.html'));
+for (const file of [...pages, 'assets/js/viewer.js']) {
+  const source = read(file);
+  const keys = [...source.matchAll(/data-i18n="([^"]+)"/g)].map(match => match[1]);
+  for (const [, list] of source.matchAll(/data-i18n-attr="([^"]+)"/g)) keys.push(...list.split(';').map(pair => pair.split(':')[1]));
+  for (const key of keys) {
+    if (!strings[key]) report(file, `unknown text key ${key}`);
+  }
+}
+for (const section of sections) {
+  for (const field of ['label', 'title', 'note']) {
+    if (!strings[`section.${section.id}.${field}`]) report('assets/data/i18n-data.js', `missing section.${section.id}.${field}`);
+  }
+}
 
 if (problems.length) {
   console.error(`${problems.length} problem(s) found:`);

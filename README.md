@@ -29,14 +29,20 @@ http://127.0.0.1:4173/ 을 열면 됩니다.
 |---|---|
 | `*.html` | 페이지. 공개 주소가 바뀌지 않도록 루트에 둡니다 |
 | `assets/css/` | `site.css` 공용 스타일과 홈, `archive.css` 아트웍, 컬렉션, 소개 |
-| `assets/js/` | `viewer.js` 이미지 뷰어와 홈 갤러리, `archive.js` 아트웍, 컬렉션 렌더링 |
-| `assets/data/archive-data.js` | ARTWORK, COLLECTIONS 의 제목, 설명, 이미지 목록 |
+| `assets/js/` | `i18n.js` 언어 전환, `viewer.js` 이미지 뷰어와 홈 갤러리, `archive.js` 아트웍, 컬렉션 렌더링 |
+| `assets/data/i18n-data.js` | 사이트의 모든 문구. 키마다 `[한국어, 영어]` 한 쌍입니다 |
+| `assets/data/archive-data.js` | ARTWORK, COLLECTIONS 의 이미지 목록 |
 | `assets/archive/` | 섹션별 이미지, 썸네일(`t/`), 표지(`covers/`) |
 | `assets/slides/` | AI 사례 슬라이드. `-1200` 은 홈 화면용 가벼운 본 |
 | `assets/images/` | 옷핀, 공유 미리보기 이미지 |
 | `assets/fonts/pretendard/` | Pretendard Variable (SIL OFL) |
 | `tools/check-site.js` | 링크, 이미지 목록, 금지 문장부호 점검 |
 | `_retired/` | 지금 쓰지 않는 이전 자료. 공개되지 않습니다 |
+
+## 한국어와 영어
+
+오른쪽 위 KO, EN 토글로 언어를 바꿉니다. 선택한 언어는 브라우저에 저장되고, 첫 방문은 브라우저 언어를 따릅니다.
+`index.html?lang=en` 처럼 주소에 언어를 지정해 공유할 수도 있습니다. 문구를 고칠 때는 `assets/data/i18n-data.js` 의 두 언어를 함께 고칩니다.
 
 ## 공개
 

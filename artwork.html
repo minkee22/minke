@@ -1,10 +1,10 @@
 <!doctype html>
-<html lang="ko">
+<html lang="ko" data-i18n-title="page.artwork.title">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>ARTWORK | KYUNGEUN MIN</title>
-<meta name="description" content="민경은 / KYUNGEUN MIN이 진행한 스타일과 도식화 아카이브.">
+<meta name="description" data-i18n-attr="content:page.artwork.desc" content="민경은 / KYUNGEUN MIN이 진행한 스타일과 도식화 아카이브.">
 <meta name="theme-color" content="#f5f4f0">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="canonical" href="https://minkee22.github.io/minke/artwork.html">
@@ -18,17 +18,17 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preload" href="assets/fonts/pretendard/woff2-dynamic-subset/PretendardVariable.subset.91.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/fonts/pretendard/pretendard.css">
-<link rel="stylesheet" href="assets/css/site.css?v=4">
-<link rel="stylesheet" href="assets/css/archive.css?v=3">
+<link rel="stylesheet" href="assets/css/site.css?v=6">
+<link rel="stylesheet" href="assets/css/archive.css?v=4">
 </head>
 <body data-archive="artwork">
-<a class="skip-link" href="#main">본문으로 건너뛰기</a>
+<a class="skip-link" href="#main" data-i18n="nav.skip">본문으로 건너뛰기</a>
 <header class="site-header">
-<a class="brand" href="index.html" aria-label="KYUNGEUN MIN, 홈으로">
+<a class="brand" href="index.html" aria-label="KYUNGEUN MIN, 홈으로" data-i18n-attr="aria-label:nav.brand">
 <strong>KYUNGEUN MIN</strong>
 <span>FASHION DESIGN / SEOUL</span>
 </a>
-<nav aria-label="주요 메뉴">
+<nav aria-label="주요 메뉴" data-i18n-attr="aria-label:nav.label">
 <a href="index.html">SELECTED</a>
 <a href="artwork.html" aria-current="page">ARTWORK</a>
 <a href="collections.html">COLLECTIONS</a>
@@ -36,21 +36,24 @@
 <a class="nav-extra" href="mailto:ruddms0626@naver.com">CONTACT ↗</a>
 <a class="nav-extra" href="https://www.linkedin.com/in/minkee22/" target="_blank" rel="noopener noreferrer">LINKEDIN ↗</a>
 </nav>
+<button type="button" class="lang-toggle" data-i18n-attr="aria-label:lang.toggle" aria-label="영어로 보기"><span data-lang="ko">KO</span><span data-lang="en">EN</span></button>
 </header>
 <main id="main">
 <section class="page-head">
 <h1 id="archive-heading">ARTWORK</h1>
-<p id="archive-lead">시즌마다 메인으로 진행한 스타일과 도식화를 카테고리별로 모았습니다.</p>
+<p id="archive-lead" data-i18n="page.artwork.lead">시즌마다 메인으로 진행한 스타일과 도식화를 카테고리별로 모았습니다.</p>
 </section>
-<nav class="archive-tabs" id="archive-tabs" aria-label="ARTWORK 항목"></nav>
+<nav class="archive-tabs" id="archive-tabs" aria-label="ARTWORK 항목" data-i18n-attr="aria-label:page.artwork.tabs"></nav>
 <div id="archive-view"></div>
 </main>
 <footer class="site-footer">
-<span>민경은 / KYUNGEUN MIN PORTFOLIO</span>
-<a href="#main">맨 위로</a>
+<span data-i18n="footer.name">민경은 / KYUNGEUN MIN PORTFOLIO</span>
+<a href="#main" data-i18n="footer.top">맨 위로</a>
 </footer>
-<script src="assets/data/archive-data.js?v=3"></script>
-<script src="assets/js/viewer.js?v=6"></script>
-<script src="assets/js/archive.js?v=4"></script>
+<script src="assets/data/i18n-data.js?v=2"></script>
+<script src="assets/data/archive-data.js?v=4"></script>
+<script src="assets/js/i18n.js?v=1"></script>
+<script src="assets/js/viewer.js?v=7"></script>
+<script src="assets/js/archive.js?v=5"></script>
 </body>
 </html>

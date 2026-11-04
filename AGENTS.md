@@ -21,7 +21,9 @@
 
 | 파일 | 역할 |
 |---|---|
-| `assets/data/archive-data.js` | ARTWORK, COLLECTIONS 의 제목, 설명, 이미지 목록 |
+| `assets/data/i18n-data.js` | 사이트의 모든 문구. 키마다 `[한국어, 영어]` 한 쌍입니다 |
+| `assets/data/archive-data.js` | ARTWORK, COLLECTIONS 의 이미지 목록 |
+| `assets/js/i18n.js` | 언어 전환과 문구 적용 |
 | `assets/js/archive.js`, `assets/css/archive.css` | ARTWORK, COLLECTIONS, ABOUT 렌더링과 스타일 |
 | `assets/css/site.css` | 공용 타이포, 헤더, 푸터, 종이 효과, 홈 화면 |
 | `assets/js/viewer.js` | 공용 이미지 뷰어(`PageViewer.open`), 홈 가로 갤러리 |
@@ -57,7 +59,9 @@ python3 -m http.server 4173
 5. **SELECTED 메뉴는 앵커 없이 홈 맨 위로 갑니다.** 첫 슬라이드로 자동 이동하는 동작은 사용자가 부자연스럽다고 해서 없앴습니다.
 6. **AI 가 쓴 글처럼 보이는 문장부호를 쓰지 않습니다.** em dash, en dash, 가운데 점, 단독 `--` 대신 쉼표, 괄호, 슬래시로 씁니다.
    문장 속 링크에도 화살표를 붙이지 않습니다. 커밋 메시지와 문서도 같습니다.
-7. **설명은 담백한 한국어로 씁니다.** 영어를 직역하지 않고 디자인 의도가 드러나게 씁니다. 상단 메뉴, 섹션 큰 제목, FIG 라벨만 영어로 둡니다.
+7. **문구는 두 언어를 함께 고칩니다.** 화면 문구는 HTML 이나 JS 에 직접 쓰지 않고 `i18n-data.js` 에 넣습니다.
+   한국어는 담백하게, 영어는 현지인이 읽기에 자연스럽게 다시 씁니다. 직역하지 않습니다.
+   상단 메뉴, 섹션 큰 제목, FIG 라벨은 두 언어 모두 영어로 둡니다.
 8. **장식으로 구분하지 않습니다.** 배지, 아이콘, 무작위 변주를 늘리지 말고 글자 농도와 여백으로 구분합니다.
 9. **읽기 쉬운 최소 기준을 지킵니다.** 본문과 라벨은 12px 이상(탭 숫자만 10.5px), 터치 대상은 높이 44px, 보조 글자는 `--ink-soft`.
 10. **폰트는 Pretendard 입니다.** `assets/fonts/pretendard/` 에 직접 넣었고 외부 CDN 을 쓰지 않습니다.
@@ -67,7 +71,9 @@ python3 -m http.server 4173
 **AI 슬라이드:** `index.html` 의 카드를 고칩니다. 슬라이드 이미지는 `assets/slides/` 의 전체본 `folio-NN-page.webp` 와 가벼운 본
 `folio-NN-page-1200.webp` 를 함께 교체합니다.
 
-**ARTWORK, COLLECTIONS:** `assets/data/archive-data.js` 를 고칩니다.
+**문구:** `assets/data/i18n-data.js` 를 고칩니다. 섹션 제목과 설명은 `section.<섹션>.title` 같은 키에 있습니다.
+
+**ARTWORK, COLLECTIONS 이미지:** `assets/data/archive-data.js` 를 고칩니다.
 
 - 이미지 한 장은 `[파일명, 폭, 높이, 캡션]` 입니다. 폭과 높이는 변환한 파일 기준입니다.
 - `sheets` 의 안쪽 배열 하나가 종이 시트 한 장입니다.
@@ -100,4 +106,6 @@ CSS 나 JS 를 고치면 HTML 의 `?v=` 값을 올려 브라우저 캐시를 넘
 - **옛 사이트:** ruddms0626mymy, musinsamke 는 이 사이트 공개를 확인한 뒤 사용자가 닫습니다.
 - **다른 사람의 자료:** 이전 템플릿의 다른 사람 파일은 지웠습니다. 다만 git 기록에는 남아 있습니다. 지우려면 기록을 다시 써야 하므로 사용자 확인이 필요합니다.
 - **ARTWORK 소개 문구:** 아우터, 원피스, 블라우스/셔츠, 액세서리, 도식화 소개는 원문이 없어 이미지를 보고 쓴 초안입니다. 사용자 확인이 필요합니다.
+- **영어 표기:** 인명(Yoo Ji-hye, Jang Woo-chul, YK Jeong)과 전시 제목 'An Invitation to Flowers' 는 공식 표기를 확인해야 합니다.
+- **슬라이드 영어판:** 슬라이드 이미지는 한국어로만 있습니다. 영어 모드에서도 이미지 안의 글자는 한국어입니다. 영어 슬라이드는 원본 파일이 있어야 만들 수 있습니다.
 - **SIAN STUDIO:** 작업 준비 중이라 빈 시트로 둡니다. 제목의 `(가제)` 도 확정되면 바꿉니다.

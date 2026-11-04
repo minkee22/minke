@@ -2,10 +2,10 @@
 (() => {
   const kind = document.body.dataset.archive;
   const sections = ARCHIVE[kind];
-  const baseTitle = document.title;
+  const baseTitle = () => I18N.t(`page.${kind}.title`);
+  const copy = (section, field) => I18N.t(`section.${section.id}.${field}`);
   const tabs = document.querySelector('#archive-tabs');
   const view = document.querySelector('#archive-view');
-  const hint = '두 손가락으로 벌리거나 두 번 탭하면 확대됩니다.';
 
   const escapeHtml = value => String(value).replace(/[&<>"']/g, mark => (
     {'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'}[mark]));
@@ -13,26 +13,28 @@
   const imagePath = (section, file) => `assets/archive/${section.id}/${file}.webp`;
   const thumbPath = (section, file) => `assets/archive/${section.id}/t/${file}.webp`;
 
-  tabs.innerHTML = [`<a href="#" data-tab="">전체</a>`, ...sections.map(section => (
-    `<a href="#${section.id}" data-tab="${section.id}">${escapeHtml(section.label)}<sup>${section.count}</sup></a>`
-  ))].join('');
+  function renderTabs() {
+    tabs.innerHTML = [`<a href="#" data-tab="">${escapeHtml(I18N.t('archive.all'))}</a>`, ...sections.map(section => (
+      `<a href="#${section.id}" data-tab="${section.id}">${escapeHtml(copy(section, 'label'))}<sup>${section.count}</sup></a>`
+    ))].join('');
+  }
 
   function coverCard(section) {
     return `<a class="cover-card" href="#${section.id}">
       <span class="cover-paper"><img src="assets/archive/covers/${section.id}.webp" alt="" width="1200" height="676" loading="lazy" decoding="async"></span>
-      <span class="cover-title">${escapeHtml(section.title)}</span>
-      <span class="cover-count">${section.count}장</span>
-      ${section.summary ? `<span class="cover-summary">${escapeHtml(section.summary)}</span>` : ''}
+      <span class="cover-title">${escapeHtml(copy(section, 'title'))}</span>
+      <span class="cover-count">${escapeHtml(I18N.count(section.count))}</span>
+      ${kind === 'collections' ? `<span class="cover-summary">${escapeHtml(copy(section, 'summary'))}</span>` : ''}
     </a>`;
   }
 
   function sheetHtml(section, sheet, start, position) {
-    const captions = [...new Set(sheet.map(image => image[3]).filter(Boolean))];
+    const captions = [...new Set(sheet.map(image => I18N.caption(image[3])).filter(Boolean))];
     const photos = sheet.map(([file, width, height], i) => {
       const number = start + i;
       const shape = (width / height).toFixed(3);
       return `<a class="sheet-photo" href="${imagePath(section, file)}" data-index="${number}" style="--shape:${shape}">
-        <img src="${thumbPath(section, file)}" alt="${escapeHtml(section.title)} ${number + 1}" width="${width}" height="${height}" loading="lazy" decoding="async">
+        <img src="${thumbPath(section, file)}" alt="${escapeHtml(copy(section, 'title'))} ${number + 1}" width="${width}" height="${height}" loading="lazy" decoding="async">
       </a>`;
     }).join('');
     return `<figure class="sheet">
@@ -47,38 +49,39 @@
   function neighbourLinks(position) {
     const before = sections[position - 1];
     const after = sections[position + 1];
-    return `<nav class="archive-pager" aria-label="이전, 다음 항목">
-      ${before ? `<a href="#${before.id}">← ${escapeHtml(before.label)}</a>` : '<a href="#">← 전체</a>'}
-      ${after ? `<a href="#${after.id}">${escapeHtml(after.label)} →</a>` : '<a href="#">전체 →</a>'}
+    return `<nav class="archive-pager" aria-label="${escapeHtml(I18N.t('archive.pager'))}">
+      ${before ? `<a href="#${before.id}">← ${escapeHtml(copy(before, 'label'))}</a>` : `<a href="#">← ${escapeHtml(I18N.t('archive.all'))}</a>`}
+      ${after ? `<a href="#${after.id}">${escapeHtml(copy(after, 'label'))} →</a>` : `<a href="#">${escapeHtml(I18N.t('archive.all'))} →</a>`}
     </nav>`;
   }
 
   function renderOverview() {
-    document.title = baseTitle;
+    document.title = baseTitle();
     view.innerHTML = `<div class="cover-grid">${sections.map(coverCard).join('')}</div>`;
   }
 
   function renderSection(section) {
     const position = sections.indexOf(section);
-    document.title = `${section.title} | ${baseTitle}`;
+    const title = copy(section, 'title');
+    document.title = `${title} | ${baseTitle()}`;
     let count = 0;
     const sheets = section.sheets.map((sheet, position) => {
       const html = sheetHtml(section, sheet, count, position);
       count += sheet.length;
       return html;
     }).join('');
-    const story = (section.story || []).length
-      ? `<div class="archive-story"><h3>${escapeHtml(section.storyTitle)}</h3>${section.story.map(line => `<p>${escapeHtml(line)}</p>`).join('')}</div>`
+    const story = kind === 'collections' && I18N_STRINGS[`section.${section.id}.story`]
+      ? `<div class="archive-story"><h3>${escapeHtml(copy(section, 'storyTitle'))}</h3>${copy(section, 'story').map(line => `<p>${escapeHtml(line)}</p>`).join('')}</div>`
       : '';
-    const head = `<div class="section-head"><h2>${escapeHtml(section.title)}</h2>${section.note ? `<p>${escapeHtml(section.note)}</p>` : ''}</div>`;
+    const head = `<div class="section-head"><h2>${escapeHtml(title)}</h2><p>${escapeHtml(copy(section, 'note'))}</p></div>`;
     view.innerHTML = `${head}${story}<div class="sheets sheets-${section.layout || 'looks'}">${sheets}</div>${neighbourLinks(position)}`;
     const images = section.sheets.flat().map(([file, width, height, caption], i) => ({
       src: imagePath(section, file),
       ratio: width / height,
-      alt: `${section.title} ${i + 1}`,
-      title: section.title,
-      desc: caption || '',
-      hint,
+      alt: `${title} ${i + 1}`,
+      title,
+      desc: I18N.caption(caption) || '',
+      hint: I18N.t('viewer.hintPhoto'),
     }));
     view.onclick = event => {
       const link = event.target.closest('.sheet-photo');
@@ -140,11 +143,20 @@
     openSection(link.getAttribute('href').slice(1));
   }));
 
+  // The language toggle redraws the current section in place.
+  document.addEventListener('languagechange', () => {
+    const scroll = window.scrollY;
+    renderTabs();
+    render();
+    holdTabs(scroll);
+  });
+
   // Browser back and forward between sections.
   window.addEventListener('hashchange', () => {
     const scroll = window.scrollY;
     render();
     holdTabs(scroll);
   });
+  renderTabs();
   render();
 })();

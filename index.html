@@ -1,10 +1,10 @@
 <!doctype html>
-<html lang="ko">
+<html lang="ko" data-i18n-title="page.home.title">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>민경은 KYUNGEUN MIN | Fashion Designer Portfolio</title>
-<meta name="description" content="민경은 / KYUNGEUN MIN의 패션 디자인 포트폴리오. 디자인과 생산 업무에서 AI를 활용한 실제 사례.">
+<meta name="description" data-i18n-attr="content:page.home.desc" content="민경은 / KYUNGEUN MIN의 패션 디자인 포트폴리오. 디자인과 생산 업무에서 AI를 활용한 실제 사례.">
 <meta name="theme-color" content="#f5f4f0">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="canonical" href="https://minkee22.github.io/minke/">
@@ -18,17 +18,16 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preload" href="assets/fonts/pretendard/woff2-dynamic-subset/PretendardVariable.subset.91.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/fonts/pretendard/pretendard.css">
-<link rel="stylesheet" href="assets/css/site.css?v=4">
-<script src="assets/js/viewer.js?v=6" defer></script>
+<link rel="stylesheet" href="assets/css/site.css?v=6">
 </head>
 <body>
-<a class="skip-link" href="#main">본문으로 건너뛰기</a>
+<a class="skip-link" href="#main" data-i18n="nav.skip">본문으로 건너뛰기</a>
 <header class="site-header">
-<a class="brand" href="index.html" aria-label="KYUNGEUN MIN, 홈으로">
+<a class="brand" href="index.html" aria-label="KYUNGEUN MIN, 홈으로" data-i18n-attr="aria-label:nav.brand">
 <strong>KYUNGEUN MIN</strong>
 <span>FASHION DESIGN / SEOUL</span>
 </a>
-<nav aria-label="주요 메뉴">
+<nav aria-label="주요 메뉴" data-i18n-attr="aria-label:nav.label">
 <a href="index.html" aria-current="page">SELECTED</a>
 <a href="artwork.html">ARTWORK</a>
 <a href="collections.html">COLLECTIONS</a>
@@ -36,120 +35,121 @@
 <a class="nav-extra" href="mailto:ruddms0626@naver.com">CONTACT ↗</a>
 <a class="nav-extra" href="https://www.linkedin.com/in/minkee22/" target="_blank" rel="noopener noreferrer">LINKEDIN ↗</a>
 </nav>
+<button type="button" class="lang-toggle" data-i18n-attr="aria-label:lang.toggle" aria-label="영어로 보기"><span data-lang="ko">KO</span><span data-lang="en">EN</span></button>
 </header>
 <main id="main">
 <section class="intro">
 <h1 id="headline">SELECTED<br>WORKS.</h1>
-<p class="intro-note"><span>DESIGN, PRODUCTION, AI IN PRACTICE</span>아이디어에서 옷이 되기까지.<br>민경은 / KYUNGEUN MIN의 패션 디자인 아카이브.</p>
+<p class="intro-note"><span class="intro-label">DESIGN, PRODUCTION, AI IN PRACTICE</span><span data-i18n="home.intro1">아이디어에서 옷이 되기까지.</span><br><span data-i18n="home.intro2">민경은 / KYUNGEUN MIN의 패션 디자인 아카이브.</span></p>
 </section>
 <section class="slide-portfolio horizontal-portfolio" id="work" aria-labelledby="work-title">
 <div class="folio-heading">
 <div>
 <h2 id="work-title">AI IN PRACTICE</h2>
-<p class="folio-hint">옆으로 넘겨 보세요. 이미지를 누르면 확대됩니다.</p>
+<p class="folio-hint" data-i18n="home.hintWork">옆으로 넘겨 보세요. 이미지를 누르면 확대됩니다.</p>
 </div>
 <div class="folio-controls">
 <span class="folio-count" aria-live="polite">01 / 07</span>
-<button type="button" data-direction="-1" aria-controls="ai-track" aria-label="이전 작품" disabled>←</button>
-<button type="button" data-direction="1" aria-controls="ai-track" aria-label="다음 작품">→</button>
+<button type="button" data-direction="-1" aria-controls="ai-track" aria-label="이전 작품" data-i18n-attr="aria-label:gallery.prev" disabled>←</button>
+<button type="button" data-direction="1" aria-controls="ai-track" aria-label="다음 작품" data-i18n-attr="aria-label:gallery.next">→</button>
 </div>
 </div>
-<div class="folio-track" id="ai-track" tabindex="0" role="region" aria-label="AI IN PRACTICE 작품 7개, 가로 스크롤">
+<div class="folio-track" id="ai-track" tabindex="0" role="region" aria-label="AI IN PRACTICE 작품 7개, 가로 스크롤" data-i18n-attr="aria-label:home.trackWork">
 <article class="folio-card">
-<a class="folio-paper" id="page-01" href="assets/slides/folio-01-page.webp" data-title="해외 생산 지시를 명확히 하는 AI 도식화" aria-label="해외 생산 지시를 명확히 하는 AI 도식화, 슬라이드 크게 보기" aria-haspopup="dialog">
+<a class="folio-paper" id="page-01" href="assets/slides/folio-01-page.webp" aria-label="해외 생산 지시를 명확히 하는 AI 도식화, 슬라이드 크게 보기" data-i18n-attr="aria-label:work.01.open" aria-haspopup="dialog">
 <span class="num">FIG. 01</span>
-<img class="page-thumbnail" src="assets/slides/folio-01-page-1200.webp" srcset="assets/slides/folio-01-page-1200.webp 1200w, assets/slides/folio-01-page.webp 2508w" sizes="(max-width: 900px) 74vw, 46vw" alt="해외 생산 지시를 명확히 하는 AI 도식화 슬라이드" width="2508" height="1412" decoding="async" fetchpriority="high">
+<img class="page-thumbnail" src="assets/slides/folio-01-page-1200.webp" srcset="assets/slides/folio-01-page-1200.webp 1200w, assets/slides/folio-01-page.webp 2508w" sizes="(max-width: 900px) 74vw, 46vw" alt="해외 생산 지시를 명확히 하는 AI 도식화 슬라이드" data-i18n-attr="alt:work.01.alt" width="2508" height="1412" decoding="async" fetchpriority="high">
 </a>
 <div class="folio-caption">
-<h3><a href="assets/slides/folio-01-page.webp" data-title="해외 생산 지시를 명확히 하는 AI 도식화" aria-haspopup="dialog" tabindex="-1">해외 생산 지시를 명확히 하는 AI 도식화</a></h3>
-<p>중국 생산처의 디테일 해석 차이와 본생산 오류를 예방하기 위해, 조직감과 포켓 구조를 시각화했습니다.</p>
+<h3><a href="assets/slides/folio-01-page.webp" aria-haspopup="dialog" tabindex="-1" data-i18n="work.01.title">해외 생산 지시를 명확히 하는 AI 도식화</a></h3>
+<p data-i18n="work.01.desc">중국 생산처의 디테일 해석 차이와 본생산 오류를 예방하기 위해, 조직감과 포켓 구조를 시각화했습니다.</p>
 <dl class="folio-meta">
-<div><dt>담당 역할</dt><dd>Illustrator 원안 작성 및 생산 요구사항 설정</dd></div>
-<div><dt>사용 도구</dt><dd>Adobe Illustrator, OpenAI</dd></div>
+<div><dt data-i18n="work.role">담당 역할</dt><dd data-i18n="work.01.role">Illustrator 원안 작성 및 생산 요구사항 설정</dd></div>
+<div><dt data-i18n="work.tools">사용 도구</dt><dd>Adobe Illustrator, OpenAI</dd></div>
 </dl>
 </div>
 </article>
 <article class="folio-card">
-<a class="folio-paper" id="page-02" href="assets/slides/folio-02-page.webp" data-title="아스트라를 활용한 레퍼런스 리서치와 보드 제작" aria-label="아스트라를 활용한 레퍼런스 리서치와 보드 제작, 슬라이드 크게 보기" aria-haspopup="dialog">
+<a class="folio-paper" id="page-02" href="assets/slides/folio-02-page.webp" aria-label="아스트라를 활용한 레퍼런스 리서치와 보드 제작, 슬라이드 크게 보기" data-i18n-attr="aria-label:work.02.open" aria-haspopup="dialog">
 <span class="num">FIG. 02</span>
-<img class="page-thumbnail" src="assets/slides/folio-02-page-1200.webp" srcset="assets/slides/folio-02-page-1200.webp 1200w, assets/slides/folio-02-page.webp 2508w" sizes="(max-width: 900px) 74vw, 46vw" alt="아스트라를 활용한 레퍼런스 리서치와 보드 제작 슬라이드" width="2508" height="1412" decoding="async" loading="lazy">
+<img class="page-thumbnail" src="assets/slides/folio-02-page-1200.webp" srcset="assets/slides/folio-02-page-1200.webp 1200w, assets/slides/folio-02-page.webp 2508w" sizes="(max-width: 900px) 74vw, 46vw" alt="아스트라를 활용한 레퍼런스 리서치와 보드 제작 슬라이드" data-i18n-attr="alt:work.02.alt" width="2508" height="1412" decoding="async" loading="lazy">
 </a>
 <div class="folio-caption">
-<h3><a href="assets/slides/folio-02-page.webp" data-title="아스트라를 활용한 레퍼런스 리서치와 보드 제작" aria-haspopup="dialog" tabindex="-1">아스트라를 활용한 레퍼런스 리서치와 보드 제작</a></h3>
-<p>자료 탐색에 쓸 시간이 부족한 상황에서, 기존 대화와 Pinterest 저장 이미지를 바탕으로 레퍼런스 수집과 보드 제작을 요청했습니다.</p>
+<h3><a href="assets/slides/folio-02-page.webp" aria-haspopup="dialog" tabindex="-1" data-i18n="work.02.title">아스트라를 활용한 레퍼런스 리서치와 보드 제작</a></h3>
+<p data-i18n="work.02.desc">자료 탐색에 쓸 시간이 부족한 상황에서, 기존 대화와 Pinterest 저장 이미지를 바탕으로 레퍼런스 수집과 보드 제작을 요청했습니다.</p>
 <dl class="folio-meta">
-<div><dt>담당 역할</dt><dd>리서치 방향 설정 및 디자인 투입</dd></div>
-<div><dt>사용 도구</dt><dd>OpenAI (아스트라)</dd></div>
+<div><dt data-i18n="work.role">담당 역할</dt><dd data-i18n="work.02.role">리서치 방향 설정 및 디자인 투입</dd></div>
+<div><dt data-i18n="work.tools">사용 도구</dt><dd data-i18n="work.02.tools">OpenAI (아스트라)</dd></div>
 </dl>
 </div>
 </article>
 <article class="folio-card">
-<a class="folio-paper" id="page-03" href="assets/slides/folio-03-page.webp" data-title="1차 샘플 도안의 AI 입체 목업 시각화" aria-label="1차 샘플 도안의 AI 입체 목업 시각화, 슬라이드 크게 보기" aria-haspopup="dialog">
+<a class="folio-paper" id="page-03" href="assets/slides/folio-03-page.webp" aria-label="1차 샘플 도안의 AI 입체 목업 시각화, 슬라이드 크게 보기" data-i18n-attr="aria-label:work.03.open" aria-haspopup="dialog">
 <span class="num">FIG. 03</span>
-<img class="page-thumbnail" src="assets/slides/folio-03-page-1200.webp" srcset="assets/slides/folio-03-page-1200.webp 1200w, assets/slides/folio-03-page.webp 2508w" sizes="(max-width: 900px) 74vw, 46vw" alt="1차 샘플 도안의 AI 입체 목업 시각화 슬라이드" width="2508" height="1412" decoding="async" loading="lazy">
+<img class="page-thumbnail" src="assets/slides/folio-03-page-1200.webp" srcset="assets/slides/folio-03-page-1200.webp 1200w, assets/slides/folio-03-page.webp 2508w" sizes="(max-width: 900px) 74vw, 46vw" alt="1차 샘플 도안의 AI 입체 목업 시각화 슬라이드" data-i18n-attr="alt:work.03.alt" width="2508" height="1412" decoding="async" loading="lazy">
 </a>
 <div class="folio-caption">
-<h3><a href="assets/slides/folio-03-page.webp" data-title="1차 샘플 도안의 AI 입체 목업 시각화" aria-haspopup="dialog" tabindex="-1">1차 샘플 도안의 AI 입체 목업 시각화</a></h3>
-<p>직접 작성한 Illustrator 1차 샘플 도안을 바탕으로, OpenAI를 활용해 입체 목업 이미지를 제작했습니다.</p>
+<h3><a href="assets/slides/folio-03-page.webp" aria-haspopup="dialog" tabindex="-1" data-i18n="work.03.title">1차 샘플 도안의 AI 입체 목업 시각화</a></h3>
+<p data-i18n="work.03.desc">직접 작성한 Illustrator 1차 샘플 도안을 바탕으로, OpenAI를 활용해 입체 목업 이미지를 제작했습니다.</p>
 <dl class="folio-meta">
-<div><dt>담당 역할</dt><dd>Illustrator 도식화 작성 및 디자인 구성</dd></div>
-<div><dt>사용 도구</dt><dd>Adobe Illustrator, OpenAI</dd></div>
+<div><dt data-i18n="work.role">담당 역할</dt><dd data-i18n="work.03.role">Illustrator 도식화 작성 및 디자인 구성</dd></div>
+<div><dt data-i18n="work.tools">사용 도구</dt><dd>Adobe Illustrator, OpenAI</dd></div>
 </dl>
 </div>
 </article>
 <article class="folio-card">
-<a class="folio-paper" id="page-04" href="assets/slides/folio-04-page.webp" data-title="AI 목업으로 검토한 곰돌이 샘플 비율" aria-label="AI 목업으로 검토한 곰돌이 샘플 비율, 슬라이드 크게 보기" aria-haspopup="dialog">
+<a class="folio-paper" id="page-04" href="assets/slides/folio-04-page.webp" aria-label="AI 목업으로 검토한 곰돌이 샘플 비율, 슬라이드 크게 보기" data-i18n-attr="aria-label:work.04.open" aria-haspopup="dialog">
 <span class="num">FIG. 04</span>
-<img class="page-thumbnail" src="assets/slides/folio-04-page-1200.webp" srcset="assets/slides/folio-04-page-1200.webp 1200w, assets/slides/folio-04-page.webp 2508w" sizes="(max-width: 900px) 74vw, 46vw" alt="AI 목업으로 검토한 곰돌이 샘플 비율 슬라이드" width="2508" height="1412" decoding="async" loading="lazy">
+<img class="page-thumbnail" src="assets/slides/folio-04-page-1200.webp" srcset="assets/slides/folio-04-page-1200.webp 1200w, assets/slides/folio-04-page.webp 2508w" sizes="(max-width: 900px) 74vw, 46vw" alt="AI 목업으로 검토한 곰돌이 샘플 비율 슬라이드" data-i18n-attr="alt:work.04.alt" width="2508" height="1412" decoding="async" loading="lazy">
 </a>
 <div class="folio-caption">
-<h3><a href="assets/slides/folio-04-page.webp" data-title="AI 목업으로 검토한 곰돌이 샘플 비율" aria-haspopup="dialog" tabindex="-1">AI 목업으로 검토한 곰돌이 샘플 비율</a></h3>
-<p>길쭉하게 나온 1차 샘플을 바탕으로 AI 목업에서 줄일 비율을 확인한 뒤, 2차 샘플을 제작했습니다.</p>
+<h3><a href="assets/slides/folio-04-page.webp" aria-haspopup="dialog" tabindex="-1" data-i18n="work.04.title">AI 목업으로 검토한 곰돌이 샘플 비율</a></h3>
+<p data-i18n="work.04.desc">길쭉하게 나온 1차 샘플을 바탕으로 AI 목업에서 줄일 비율을 확인한 뒤, 2차 샘플을 제작했습니다.</p>
 <dl class="folio-meta">
-<div><dt>담당 역할</dt><dd>도식화 작성, 샘플 비율 수정 방향 결정</dd></div>
-<div><dt>사용 도구</dt><dd>Adobe Illustrator, OpenAI</dd></div>
+<div><dt data-i18n="work.role">담당 역할</dt><dd data-i18n="work.04.role">도식화 작성, 샘플 비율 수정 방향 결정</dd></div>
+<div><dt data-i18n="work.tools">사용 도구</dt><dd>Adobe Illustrator, OpenAI</dd></div>
 </dl>
 </div>
 </article>
 <article class="folio-card">
-<a class="folio-paper" id="page-05" href="assets/slides/folio-05-page.webp" data-title="AI를 활용한 소매 디자인 및 작업지시 문구 수정" aria-label="AI를 활용한 소매 디자인 및 작업지시 문구 수정, 슬라이드 크게 보기" aria-haspopup="dialog">
+<a class="folio-paper" id="page-05" href="assets/slides/folio-05-page.webp" aria-label="AI를 활용한 소매 디자인 및 작업지시 문구 수정, 슬라이드 크게 보기" data-i18n-attr="aria-label:work.05.open" aria-haspopup="dialog">
 <span class="num">FIG. 05</span>
-<img class="page-thumbnail" src="assets/slides/folio-05-page-1200.webp" srcset="assets/slides/folio-05-page-1200.webp 1200w, assets/slides/folio-05-page.webp 2508w" sizes="(max-width: 900px) 74vw, 46vw" alt="AI를 활용한 소매 디자인 및 작업지시 문구 수정 슬라이드" width="2508" height="1412" decoding="async" loading="lazy">
+<img class="page-thumbnail" src="assets/slides/folio-05-page-1200.webp" srcset="assets/slides/folio-05-page-1200.webp 1200w, assets/slides/folio-05-page.webp 2508w" sizes="(max-width: 900px) 74vw, 46vw" alt="AI를 활용한 소매 디자인 및 작업지시 문구 수정 슬라이드" data-i18n-attr="alt:work.05.alt" width="2508" height="1412" decoding="async" loading="lazy">
 </a>
 <div class="folio-caption">
-<h3><a href="assets/slides/folio-05-page.webp" data-title="AI를 활용한 소매 디자인 및 작업지시 문구 수정" aria-haspopup="dialog" tabindex="-1">AI를 활용한 소매 디자인 및 작업지시 문구 수정</a></h3>
-<p>소매 변경 요청에 따라 도식화와 지시 문구를 AI로 수정하고, 전후 실물과 함께 제시했습니다.</p>
+<h3><a href="assets/slides/folio-05-page.webp" aria-haspopup="dialog" tabindex="-1" data-i18n="work.05.title">AI를 활용한 소매 디자인 및 작업지시 문구 수정</a></h3>
+<p data-i18n="work.05.desc">소매 변경 요청에 따라 도식화와 지시 문구를 AI로 수정하고, 전후 실물과 함께 제시했습니다.</p>
 <dl class="folio-meta">
-<div><dt>담당 역할</dt><dd>기존 디자인을 바탕으로 소매 변경 방향 전달</dd></div>
-<div><dt>사용 도구</dt><dd>Adobe Illustrator, OpenAI</dd></div>
+<div><dt data-i18n="work.role">담당 역할</dt><dd data-i18n="work.05.role">기존 디자인을 바탕으로 소매 변경 방향 전달</dd></div>
+<div><dt data-i18n="work.tools">사용 도구</dt><dd>Adobe Illustrator, OpenAI</dd></div>
 </dl>
 </div>
 </article>
 <article class="folio-card">
-<a class="folio-paper" id="page-06" href="assets/slides/folio-06-page.webp" data-title="Illustrator 그래픽 개발과 AI 자수 질감 검토" aria-label="Illustrator 그래픽 개발과 AI 자수 질감 검토, 슬라이드 크게 보기" aria-haspopup="dialog">
+<a class="folio-paper" id="page-06" href="assets/slides/folio-06-page.webp" aria-label="Illustrator 그래픽 개발과 AI 자수 질감 검토, 슬라이드 크게 보기" data-i18n-attr="aria-label:work.06.open" aria-haspopup="dialog">
 <span class="num">FIG. 06</span>
-<img class="page-thumbnail" src="assets/slides/folio-06-page-1200.webp" srcset="assets/slides/folio-06-page-1200.webp 1200w, assets/slides/folio-06-page.webp 2508w" sizes="(max-width: 900px) 74vw, 46vw" alt="Illustrator 그래픽 개발과 AI 자수 질감 검토 슬라이드" width="2508" height="1412" decoding="async" loading="lazy">
+<img class="page-thumbnail" src="assets/slides/folio-06-page-1200.webp" srcset="assets/slides/folio-06-page-1200.webp 1200w, assets/slides/folio-06-page.webp 2508w" sizes="(max-width: 900px) 74vw, 46vw" alt="Illustrator 그래픽 개발과 AI 자수 질감 검토 슬라이드" data-i18n-attr="alt:work.06.alt" width="2508" height="1412" decoding="async" loading="lazy">
 </a>
 <div class="folio-caption">
-<h3><a href="assets/slides/folio-06-page.webp" data-title="Illustrator 그래픽 개발과 AI 자수 질감 검토" aria-haspopup="dialog" tabindex="-1">Illustrator 그래픽 개발과 AI 자수 질감 검토</a></h3>
-<p>Illustrator로 그래픽 도안을 직접 개발하고, AI로 자수 질감을 검토해 소재별 표현 기법을 결정했습니다.</p>
+<h3><a href="assets/slides/folio-06-page.webp" aria-haspopup="dialog" tabindex="-1" data-i18n="work.06.title">Illustrator 그래픽 개발과 AI 자수 질감 검토</a></h3>
+<p data-i18n="work.06.desc">Illustrator로 그래픽 도안을 직접 개발하고, AI로 자수 질감을 검토해 소재별 표현 기법을 결정했습니다.</p>
 <dl class="folio-meta">
-<div><dt>담당 역할</dt><dd>Illustrator 도안 직접 개발 및 소재별 그래픽 표현 기법 결정</dd></div>
-<div><dt>사용 도구</dt><dd>Adobe Illustrator, OpenAI</dd></div>
+<div><dt data-i18n="work.role">담당 역할</dt><dd data-i18n="work.06.role">Illustrator 도안 직접 개발 및 소재별 그래픽 표현 기법 결정</dd></div>
+<div><dt data-i18n="work.tools">사용 도구</dt><dd>Adobe Illustrator, OpenAI</dd></div>
 </dl>
 </div>
 </article>
 <article class="folio-card">
-<a class="folio-paper" id="page-07" href="assets/slides/folio-07-page.webp" data-title="Illustrator 그래픽 아트 개발과 프린트, 자수 활용" aria-label="Illustrator 그래픽 아트 개발과 프린트, 자수 활용, 슬라이드 크게 보기" aria-haspopup="dialog">
+<a class="folio-paper" id="page-07" href="assets/slides/folio-07-page.webp" aria-label="Illustrator 그래픽 아트 개발과 프린트, 자수 활용, 슬라이드 크게 보기" data-i18n-attr="aria-label:work.07.open" aria-haspopup="dialog">
 <span class="num">FIG. 07</span>
-<img class="page-thumbnail" src="assets/slides/folio-07-page-1200.webp" srcset="assets/slides/folio-07-page-1200.webp 1200w, assets/slides/folio-07-page.webp 2508w" sizes="(max-width: 900px) 74vw, 46vw" alt="Illustrator 그래픽 아트 개발과 프린트, 자수 활용 슬라이드" width="2508" height="1412" decoding="async" loading="lazy">
+<img class="page-thumbnail" src="assets/slides/folio-07-page-1200.webp" srcset="assets/slides/folio-07-page-1200.webp 1200w, assets/slides/folio-07-page.webp 2508w" sizes="(max-width: 900px) 74vw, 46vw" alt="Illustrator 그래픽 아트 개발과 프린트, 자수 활용 슬라이드" data-i18n-attr="alt:work.07.alt" width="2508" height="1412" decoding="async" loading="lazy">
 </a>
 <div class="folio-caption">
-<h3><a href="assets/slides/folio-07-page.webp" data-title="Illustrator 그래픽 아트 개발과 프린트, 자수 활용" aria-haspopup="dialog" tabindex="-1">Illustrator 그래픽 아트 개발과 프린트, 자수 활용</a></h3>
-<p>Illustrator로 그래픽 아트를 직접 개발하고, 후로피, 나염, 디지털 프린트 등 다양한 기법과 자수로 질감과 볼륨감을 더했습니다.</p>
+<h3><a href="assets/slides/folio-07-page.webp" aria-haspopup="dialog" tabindex="-1" data-i18n="work.07.title">Illustrator 그래픽 아트 개발과 프린트, 자수 활용</a></h3>
+<p data-i18n="work.07.desc">Illustrator로 그래픽 아트를 직접 개발하고, 후로피, 나염, 디지털 프린트 등 다양한 기법과 자수로 질감과 볼륨감을 더했습니다.</p>
 <dl class="folio-meta">
-<div><dt>담당 역할</dt><dd>Illustrator 그래픽 아트 개발, 프린트 기법 적용, 자수 디테일 구성</dd></div>
-<div><dt>사용 도구</dt><dd>Adobe Illustrator</dd></div>
+<div><dt data-i18n="work.role">담당 역할</dt><dd data-i18n="work.07.role">Illustrator 그래픽 아트 개발, 프린트 기법 적용, 자수 디테일 구성</dd></div>
+<div><dt data-i18n="work.tools">사용 도구</dt><dd>Adobe Illustrator</dd></div>
 </dl>
 </div>
 </article>
@@ -160,211 +160,211 @@
 <div class="folio-heading">
 <div>
 <h2 id="collections-title">CAPSULE COLLECTIONS</h2>
-<p class="folio-hint">협업과 캡슐 컬렉션을 프로젝트별로 모았습니다.</p>
+<p class="folio-hint" data-i18n="home.hintCollections">협업과 캡슐 컬렉션을 프로젝트별로 모았습니다.</p>
 </div>
 <div class="folio-controls">
 <span class="folio-count" aria-live="polite">01 / 05</span>
-<button type="button" data-direction="-1" aria-controls="collections-track" aria-label="이전 작품" disabled>←</button>
-<button type="button" data-direction="1" aria-controls="collections-track" aria-label="다음 작품">→</button>
+<button type="button" data-direction="-1" aria-controls="collections-track" aria-label="이전 작품" data-i18n-attr="aria-label:gallery.prev" disabled>←</button>
+<button type="button" data-direction="1" aria-controls="collections-track" aria-label="다음 작품" data-i18n-attr="aria-label:gallery.next">→</button>
 </div>
 </div>
-<div class="folio-track" id="collections-track" tabindex="0" role="region" aria-label="캡슐 컬렉션 5개, 가로 스크롤">
+<div class="folio-track" id="collections-track" tabindex="0" role="region" aria-label="캡슐 컬렉션 5개, 가로 스크롤" data-i18n-attr="aria-label:home.trackCollections">
 <article class="folio-card">
 <a class="folio-paper" href="collections.html#vbyk">
 <span class="num">FIG. 01</span>
-<img class="page-thumbnail" src="assets/archive/covers/vbyk.webp" alt="VB+YK" width="1200" height="676" loading="lazy" decoding="async">
+<img class="page-thumbnail" src="assets/archive/covers/vbyk.webp" alt="VB+YK" data-i18n-attr="alt:section.vbyk.title" width="1200" height="676" loading="lazy" decoding="async">
 </a>
 <div class="folio-caption">
-<h3><a href="collections.html#vbyk" tabindex="-1">VB+YK</a></h3>
-<p>정윤기 디렉터와 함께한 본사 콜라보레이션 컬렉션.</p>
-<small>25장</small>
+<h3><a href="collections.html#vbyk" tabindex="-1" data-i18n="section.vbyk.title">VB+YK</a></h3>
+<p data-i18n="section.vbyk.summary">정윤기 디렉터와 함께한 본사 콜라보레이션 컬렉션.</p>
+<small data-i18n-count="25">25장</small>
 </div>
 </article>
 <article class="folio-card">
 <a class="folio-paper" href="collections.html#tennis">
 <span class="num">FIG. 02</span>
-<img class="page-thumbnail" src="assets/archive/covers/tennis.webp" alt="Tennis Capsule" width="1200" height="676" loading="lazy" decoding="async">
+<img class="page-thumbnail" src="assets/archive/covers/tennis.webp" alt="Tennis Capsule" data-i18n-attr="alt:section.tennis.title" width="1200" height="676" loading="lazy" decoding="async">
 </a>
 <div class="folio-caption">
-<h3><a href="collections.html#tennis" tabindex="-1">Tennis Capsule</a></h3>
-<p>코로나 시기 변화한 라이프스타일과 젊은 소비자층을 겨냥해 기획한 테니스웨어 캡슐 컬렉션.</p>
-<small>21장</small>
+<h3><a href="collections.html#tennis" tabindex="-1" data-i18n="section.tennis.title">Tennis Capsule</a></h3>
+<p data-i18n="section.tennis.summary">코로나 시기 변화한 라이프스타일과 젊은 소비자층을 겨냥해 기획한 테니스웨어 캡슐 컬렉션.</p>
+<small data-i18n-count="21">21장</small>
 </div>
 </article>
 <article class="folio-card">
 <a class="folio-paper" href="collections.html#love-tour">
 <span class="num">FIG. 03</span>
-<img class="page-thumbnail" src="assets/archive/covers/love-tour.webp" alt="유지혜 'LOVE TOUR'" width="1200" height="676" loading="lazy" decoding="async">
+<img class="page-thumbnail" src="assets/archive/covers/love-tour.webp" alt="유지혜 'LOVE TOUR'" data-i18n-attr="alt:section.love-tour.title" width="1200" height="676" loading="lazy" decoding="async">
 </a>
 <div class="folio-caption">
-<h3><a href="collections.html#love-tour" tabindex="-1">유지혜 'LOVE TOUR'</a></h3>
-<p>유지혜 작가와 함께 여행과 일상의 경계를 허무는 데일리 웨어 제안.</p>
-<small>12장</small>
+<h3><a href="collections.html#love-tour" tabindex="-1" data-i18n="section.love-tour.title">유지혜 'LOVE TOUR'</a></h3>
+<p data-i18n="section.love-tour.summary">유지혜 작가와 함께 여행과 일상의 경계를 허무는 데일리 웨어 제안.</p>
+<small data-i18n-count="12">12장</small>
 </div>
 </article>
 <article class="folio-card">
 <a class="folio-paper" href="collections.html#flower">
 <span class="num">FIG. 04</span>
-<img class="page-thumbnail" src="assets/archive/covers/flower.webp" alt="장우철 '꽃으로의 초대'" width="1200" height="676" loading="lazy" decoding="async">
+<img class="page-thumbnail" src="assets/archive/covers/flower.webp" alt="장우철 '꽃으로의 초대'" data-i18n-attr="alt:section.flower.title" width="1200" height="676" loading="lazy" decoding="async">
 </a>
 <div class="folio-caption">
-<h3><a href="collections.html#flower" tabindex="-1">장우철 '꽃으로의 초대'</a></h3>
-<p>사진작가의 이미지를 활용한 다이마루 그래픽 컬렉션 단독 진행.</p>
-<small>13장</small>
+<h3><a href="collections.html#flower" tabindex="-1" data-i18n="section.flower.title">장우철 '꽃으로의 초대'</a></h3>
+<p data-i18n="section.flower.summary">사진작가의 이미지를 활용한 다이마루 그래픽 컬렉션 단독 진행.</p>
+<small data-i18n-count="13">13장</small>
 </div>
 </article>
 <article class="folio-card">
 <a class="folio-paper" href="collections.html#special">
 <span class="num">FIG. 05</span>
-<img class="page-thumbnail" src="assets/archive/covers/special.webp" alt="Special Projects" width="1200" height="676" loading="lazy" decoding="async">
+<img class="page-thumbnail" src="assets/archive/covers/special.webp" alt="Special Projects" data-i18n-attr="alt:section.special.title" width="1200" height="676" loading="lazy" decoding="async">
 </a>
 <div class="folio-caption">
-<h3><a href="collections.html#special" tabindex="-1">Special Projects</a></h3>
-<p>뉴 시즌 데님 텍션지의 레퍼런스를 제안하고, 제품에 적용될 쉐입과 도안을 개발.</p>
-<small>14장</small>
+<h3><a href="collections.html#special" tabindex="-1" data-i18n="section.special.title">Special Projects</a></h3>
+<p data-i18n="section.special.summary">뉴 시즌 데님 텍션지의 레퍼런스를 제안하고, 제품에 적용될 쉐입과 도안을 개발.</p>
+<small data-i18n-count="14">14장</small>
 </div>
 </article>
 </div>
 <div class="folio-progress" aria-hidden="true"><span></span></div>
-<p class="row-link"><a href="collections.html">COLLECTIONS 전체 보기</a></p>
+<p class="row-link"><a href="collections.html" data-i18n="home.allCollections">COLLECTIONS 전체 보기</a></p>
 </section>
 <section class="link-portfolio horizontal-portfolio" id="artwork" aria-labelledby="artwork-title">
 <div class="folio-heading">
 <div>
 <h2 id="artwork-title">ARTWORK</h2>
-<p class="folio-hint">시즌마다 진행한 스타일과 도식화를 카테고리별로 모았습니다.</p>
+<p class="folio-hint" data-i18n="home.hintArtwork">시즌마다 진행한 스타일과 도식화를 카테고리별로 모았습니다.</p>
 </div>
 <div class="folio-controls">
 <span class="folio-count" aria-live="polite">01 / 08</span>
-<button type="button" data-direction="-1" aria-controls="artwork-track" aria-label="이전 작품" disabled>←</button>
-<button type="button" data-direction="1" aria-controls="artwork-track" aria-label="다음 작품">→</button>
+<button type="button" data-direction="-1" aria-controls="artwork-track" aria-label="이전 작품" data-i18n-attr="aria-label:gallery.prev" disabled>←</button>
+<button type="button" data-direction="1" aria-controls="artwork-track" aria-label="다음 작품" data-i18n-attr="aria-label:gallery.next">→</button>
 </div>
 </div>
-<div class="folio-track" id="artwork-track" tabindex="0" role="region" aria-label="아트웍 카테고리 8개, 가로 스크롤">
+<div class="folio-track" id="artwork-track" tabindex="0" role="region" aria-label="아트웍 카테고리 8개, 가로 스크롤" data-i18n-attr="aria-label:home.trackArtwork">
 <article class="folio-card">
 <a class="folio-paper" href="artwork.html#outer">
 <span class="num">FIG. 01</span>
-<img class="page-thumbnail" src="assets/archive/covers/outer.webp" alt="아우터" width="1200" height="676" loading="lazy" decoding="async">
+<img class="page-thumbnail" src="assets/archive/covers/outer.webp" alt="아우터" data-i18n-attr="alt:section.outer.title" width="1200" height="676" loading="lazy" decoding="async">
 </a>
 <div class="folio-caption">
-<h3><a href="artwork.html#outer" tabindex="-1">아우터</a></h3>
+<h3><a href="artwork.html#outer" tabindex="-1" data-i18n="section.outer.title">아우터</a></h3>
 
-<small>34장</small>
+<small data-i18n-count="34">34장</small>
 </div>
 </article>
 <article class="folio-card">
 <a class="folio-paper" href="artwork.html#tshirts">
 <span class="num">FIG. 02</span>
-<img class="page-thumbnail" src="assets/archive/covers/tshirts.webp" alt="티셔츠" width="1200" height="676" loading="lazy" decoding="async">
+<img class="page-thumbnail" src="assets/archive/covers/tshirts.webp" alt="티셔츠" data-i18n-attr="alt:section.tshirts.title" width="1200" height="676" loading="lazy" decoding="async">
 </a>
 <div class="folio-caption">
-<h3><a href="artwork.html#tshirts" tabindex="-1">티셔츠</a></h3>
+<h3><a href="artwork.html#tshirts" tabindex="-1" data-i18n="section.tshirts.title">티셔츠</a></h3>
 
-<small>84장</small>
+<small data-i18n-count="84">84장</small>
 </div>
 </article>
 <article class="folio-card">
 <a class="folio-paper" href="artwork.html#dress">
 <span class="num">FIG. 03</span>
-<img class="page-thumbnail" src="assets/archive/covers/dress.webp" alt="원피스" width="1200" height="676" loading="lazy" decoding="async">
+<img class="page-thumbnail" src="assets/archive/covers/dress.webp" alt="원피스" data-i18n-attr="alt:section.dress.title" width="1200" height="676" loading="lazy" decoding="async">
 </a>
 <div class="folio-caption">
-<h3><a href="artwork.html#dress" tabindex="-1">원피스</a></h3>
+<h3><a href="artwork.html#dress" tabindex="-1" data-i18n="section.dress.title">원피스</a></h3>
 
-<small>36장</small>
+<small data-i18n-count="36">36장</small>
 </div>
 </article>
 <article class="folio-card">
 <a class="folio-paper" href="artwork.html#bottom">
 <span class="num">FIG. 04</span>
-<img class="page-thumbnail" src="assets/archive/covers/bottom.webp" alt="하의" width="1200" height="676" loading="lazy" decoding="async">
+<img class="page-thumbnail" src="assets/archive/covers/bottom.webp" alt="하의" data-i18n-attr="alt:section.bottom.title" width="1200" height="676" loading="lazy" decoding="async">
 </a>
 <div class="folio-caption">
-<h3><a href="artwork.html#bottom" tabindex="-1">하의</a></h3>
+<h3><a href="artwork.html#bottom" tabindex="-1" data-i18n="section.bottom.title">하의</a></h3>
 
-<small>182장</small>
+<small data-i18n-count="182">182장</small>
 </div>
 </article>
 <article class="folio-card">
 <a class="folio-paper" href="artwork.html#blouse">
 <span class="num">FIG. 05</span>
-<img class="page-thumbnail" src="assets/archive/covers/blouse.webp" alt="블라우스/셔츠" width="1200" height="676" loading="lazy" decoding="async">
+<img class="page-thumbnail" src="assets/archive/covers/blouse.webp" alt="블라우스/셔츠" data-i18n-attr="alt:section.blouse.title" width="1200" height="676" loading="lazy" decoding="async">
 </a>
 <div class="folio-caption">
-<h3><a href="artwork.html#blouse" tabindex="-1">블라우스/셔츠</a></h3>
+<h3><a href="artwork.html#blouse" tabindex="-1" data-i18n="section.blouse.title">블라우스/셔츠</a></h3>
 
-<small>80장</small>
+<small data-i18n-count="80">80장</small>
 </div>
 </article>
 <article class="folio-card">
 <a class="folio-paper" href="artwork.html#denim">
 <span class="num">FIG. 06</span>
-<img class="page-thumbnail" src="assets/archive/covers/denim.webp" alt="데님" width="1200" height="676" loading="lazy" decoding="async">
+<img class="page-thumbnail" src="assets/archive/covers/denim.webp" alt="데님" data-i18n-attr="alt:section.denim.title" width="1200" height="676" loading="lazy" decoding="async">
 </a>
 <div class="folio-caption">
-<h3><a href="artwork.html#denim" tabindex="-1">데님</a></h3>
+<h3><a href="artwork.html#denim" tabindex="-1" data-i18n="section.denim.title">데님</a></h3>
 
-<small>60장</small>
+<small data-i18n-count="60">60장</small>
 </div>
 </article>
 <article class="folio-card">
 <a class="folio-paper" href="artwork.html#acc">
 <span class="num">FIG. 07</span>
-<img class="page-thumbnail" src="assets/archive/covers/acc.webp" alt="액세서리" width="1200" height="676" loading="lazy" decoding="async">
+<img class="page-thumbnail" src="assets/archive/covers/acc.webp" alt="액세서리" data-i18n-attr="alt:section.acc.title" width="1200" height="676" loading="lazy" decoding="async">
 </a>
 <div class="folio-caption">
-<h3><a href="artwork.html#acc" tabindex="-1">액세서리</a></h3>
+<h3><a href="artwork.html#acc" tabindex="-1" data-i18n="section.acc.title">액세서리</a></h3>
 
-<small>22장</small>
+<small data-i18n-count="22">22장</small>
 </div>
 </article>
 <article class="folio-card">
 <a class="folio-paper" href="artwork.html#sketch">
 <span class="num">FIG. 08</span>
-<img class="page-thumbnail" src="assets/archive/covers/sketch.webp" alt="도식화" width="1200" height="676" loading="lazy" decoding="async">
+<img class="page-thumbnail" src="assets/archive/covers/sketch.webp" alt="도식화" data-i18n-attr="alt:section.sketch.title" width="1200" height="676" loading="lazy" decoding="async">
 </a>
 <div class="folio-caption">
-<h3><a href="artwork.html#sketch" tabindex="-1">도식화</a></h3>
+<h3><a href="artwork.html#sketch" tabindex="-1" data-i18n="section.sketch.title">도식화</a></h3>
 
-<small>280장</small>
+<small data-i18n-count="280">280장</small>
 </div>
 </article>
 </div>
 <div class="folio-progress" aria-hidden="true"><span></span></div>
-<p class="row-link"><a href="artwork.html">ARTWORK 전체 보기</a></p>
+<p class="row-link"><a href="artwork.html" data-i18n="home.allArtwork">ARTWORK 전체 보기</a></p>
 </section>
 <section class="studio-portfolio horizontal-portfolio" id="design-perspective" aria-labelledby="studio-title">
 <div class="folio-heading">
 <div>
 <h2 id="studio-title">MY DESIGN PERSPECTIVE / SIAN STUDIO</h2>
-<p class="folio-hint">개인 디자인 작업을 준비 중입니다.</p>
+<p class="folio-hint" data-i18n="home.hintStudio">개인 디자인 작업을 준비 중입니다.</p>
 </div>
 <div class="folio-controls">
 <span class="folio-count" aria-live="polite">01 / 03</span>
-<button type="button" data-direction="-1" aria-controls="studio-track" aria-label="이전 작품" disabled>←</button>
-<button type="button" data-direction="1" aria-controls="studio-track" aria-label="다음 작품">→</button>
+<button type="button" data-direction="-1" aria-controls="studio-track" aria-label="이전 작품" data-i18n-attr="aria-label:gallery.prev" disabled>←</button>
+<button type="button" data-direction="1" aria-controls="studio-track" aria-label="다음 작품" data-i18n-attr="aria-label:gallery.next">→</button>
 </div>
 </div>
-<div class="folio-track" id="studio-track" tabindex="0" role="region" aria-label="SIAN STUDIO 작업 3개, 가로 스크롤">
+<div class="folio-track" id="studio-track" tabindex="0" role="region" aria-label="SIAN STUDIO 작업 3개, 가로 스크롤" data-i18n-attr="aria-label:home.trackStudio">
 <article class="folio-card">
 <div class="folio-paper folio-placeholder"><span class="num">FIG. 01</span><span class="coming-soon">WORK IN PROGRESS</span></div>
 <div class="folio-caption">
-<h3>DESIGN EXPLORATION (가제)</h3>
-<small>SIAN STUDIO, 작업 예정</small>
+<h3 data-i18n="studio.01.title">DESIGN EXPLORATION (가제)</h3>
+<small data-i18n="studio.meta">SIAN STUDIO, 작업 예정</small>
 </div>
 </article>
 <article class="folio-card">
 <div class="folio-paper folio-placeholder"><span class="num">FIG. 02</span><span class="coming-soon">WORK IN PROGRESS</span></div>
 <div class="folio-caption">
-<h3>SILHOUETTE STUDY (가제)</h3>
-<small>SIAN STUDIO, 작업 예정</small>
+<h3 data-i18n="studio.02.title">SILHOUETTE STUDY (가제)</h3>
+<small data-i18n="studio.meta">SIAN STUDIO, 작업 예정</small>
 </div>
 </article>
 <article class="folio-card">
 <div class="folio-paper folio-placeholder"><span class="num">FIG. 03</span><span class="coming-soon">WORK IN PROGRESS</span></div>
 <div class="folio-caption">
-<h3>DETAIL STUDY (가제)</h3>
-<small>SIAN STUDIO, 작업 예정</small>
+<h3 data-i18n="studio.03.title">DETAIL STUDY (가제)</h3>
+<small data-i18n="studio.meta">SIAN STUDIO, 작업 예정</small>
 </div>
 </article>
 </div>
@@ -373,23 +373,26 @@
 <section class="about" id="about" aria-labelledby="about-title">
 <div class="about-lead">
 <h2 id="about-title">BEHIND THE WORK</h2>
-<p>Womenswear, from the first sketch to the final silhouette.</p>
+<p data-i18n="about.lead">첫 스케치부터 마지막 실루엣까지, 여성복을 만듭니다.</p>
 </div>
 <div class="about-sheet">
 <dl>
-<div><dt>NAME</dt><dd>민경은 / KYUNGEUN MIN</dd></div>
-<div><dt>BASED IN</dt><dd>SEOUL, KOREA</dd></div>
-<div><dt>EXPERIENCE</dt><dd>6 YEARS, LF</dd></div>
-<div><dt>EMAIL</dt><dd><a href="mailto:ruddms0626@naver.com">ruddms0626@naver.com</a></dd></div>
-<div><dt>LINKEDIN</dt><dd><a href="https://www.linkedin.com/in/minkee22/" target="_blank" rel="noopener noreferrer">linkedin.com/in/minkee22 ↗</a></dd></div>
-<div><dt>MORE</dt><dd><a href="about.html">자세히 보기</a></dd></div>
+<div><dt data-i18n="fact.name">이름</dt><dd data-i18n="fact.nameValue">민경은 / KYUNGEUN MIN</dd></div>
+<div><dt data-i18n="fact.based">지역</dt><dd data-i18n="fact.basedValue">SEOUL, KOREA</dd></div>
+<div><dt data-i18n="fact.experience">경력</dt><dd data-i18n="fact.experienceValue">6 YEARS, LF</dd></div>
+<div><dt data-i18n="fact.email">이메일</dt><dd><a href="mailto:ruddms0626@naver.com">ruddms0626@naver.com</a></dd></div>
+<div><dt data-i18n="fact.linkedin">링크드인</dt><dd><a href="https://www.linkedin.com/in/minkee22/" target="_blank" rel="noopener noreferrer">linkedin.com/in/minkee22 ↗</a></dd></div>
+<div><dt data-i18n="fact.more">더 보기</dt><dd><a href="about.html" data-i18n="fact.moreLink">자세히 보기</a></dd></div>
 </dl>
 </div>
 </section>
 </main>
 <footer class="site-footer">
-<span>민경은 / KYUNGEUN MIN PORTFOLIO</span>
-<a href="#main">맨 위로</a>
+<span data-i18n="footer.name">민경은 / KYUNGEUN MIN PORTFOLIO</span>
+<a href="#main" data-i18n="footer.top">맨 위로</a>
 </footer>
+<script src="assets/data/i18n-data.js?v=2"></script>
+<script src="assets/js/i18n.js?v=1"></script>
+<script src="assets/js/viewer.js?v=7"></script>
 </body>
 </html>

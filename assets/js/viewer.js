@@ -12,20 +12,21 @@ const PageViewer = (() => {
       <span class="viewer-count" id="page-viewer-count"></span>
       <span id="page-viewer-title"></span>
       <div class="viewer-actions">
-        <button type="button" id="page-fit" aria-pressed="false">확대 +</button>
-        <button type="button" id="page-close">닫기 ×</button>
+        <button type="button" id="page-fit" aria-pressed="false" data-i18n="viewer.zoom"></button>
+        <button type="button" id="page-close" data-i18n="viewer.close"></button>
       </div>
     </div>
     <div class="page-viewer-canvas"><img id="page-viewer-image" alt=""></div>
     <div class="viewer-foot">
-      <button type="button" id="page-prev" aria-label="이전 이미지">←</button>
+      <button type="button" id="page-prev" data-i18n-attr="aria-label:viewer.prev">←</button>
       <div class="viewer-text">
         <p id="page-viewer-desc"></p>
         <p class="viewer-hint" id="page-viewer-hint"></p>
       </div>
-      <button type="button" id="page-next" aria-label="다음 이미지">→</button>
+      <button type="button" id="page-next" data-i18n-attr="aria-label:viewer.next">→</button>
     </div>`;
   document.body.append(viewer);
+  I18N.apply(viewer);
 
   const canvas = viewer.querySelector('.page-viewer-canvas');
   const image = viewer.querySelector('#page-viewer-image');
@@ -63,7 +64,7 @@ const PageViewer = (() => {
     const zoomed = scale > 1.01;
     canvas.classList.toggle('is-zoomed', zoomed);
     if (zoomed) viewer.classList.add('has-zoomed');
-    fitButton.textContent = zoomed ? '화면에 맞춤' : '확대 +';
+    fitButton.textContent = I18N.t(zoomed ? 'viewer.fit' : 'viewer.zoom');
     fitButton.setAttribute('aria-pressed', String(zoomed));
   }
 
@@ -198,20 +199,23 @@ const PageViewer = (() => {
 const slideRow = document.querySelector('.slide-portfolio');
 if (slideRow) {
   const pages = [...slideRow.querySelectorAll('.folio-paper')];
-  const slides = pages.map(link => ({
-    src: link.getAttribute('href'),
-    ratio: 2508 / 1412,
-    alt: link.dataset.title + ' 슬라이드',
-    title: link.dataset.title,
-    desc: link.closest('.folio-card').querySelector('.folio-caption p').textContent,
-    hint: '두 손가락으로 벌리거나 두 번 탭하면 확대됩니다. 가로로 돌리면 더 크게 보입니다.',
-  }));
+  const slideItems = () => pages.map(link => {
+    const id = link.id.replace('page-', '');
+    return {
+      src: link.getAttribute('href'),
+      ratio: 2508 / 1412,
+      alt: I18N.t(`work.${id}.alt`),
+      title: I18N.t(`work.${id}.title`),
+      desc: I18N.t(`work.${id}.desc`),
+      hint: I18N.t('viewer.hintSlide'),
+    };
+  });
   slideRow.addEventListener('click', event => {
     const link = event.target.closest('a[href$="-page.webp"]');
     if (!link || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
     event.preventDefault();
     const start = pages.findIndex(page => page.getAttribute('href') === link.getAttribute('href'));
-    PageViewer.open(slides, start, last => {
+    PageViewer.open(slideItems(), start, last => {
       slideRow.dispatchEvent(new CustomEvent('reveal', {detail: last}));
       pages[last].focus({preventScroll: true});
     });
