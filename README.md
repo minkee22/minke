@@ -1,35 +1,46 @@
 # KYUNGEUN MIN Portfolio
 
-Live: https://minkee22.github.io/minke/
+민경은 패션 디자인 포트폴리오입니다. 아이보리 종이 시트를 옷핀으로 이어 붙인 구성이 특징입니다.
 
-The homepage uses the Pinned Pages design: ivory paper, soft shadows and safety
-pins joining each sheet to the next. It is static HTML, CSS and a small script,
-with no build step.
+라이브: https://minkee22.github.io/minke/
 
-## Pages
+## 페이지
 
-- `index.html`: SELECTED. AI case slides, previews of the collections and artwork, Sian Studio and contact details.
-- `artwork.html`: ARTWORK. Styles and sketches by category. `artwork.html#outer` opens one category.
-- `collections.html`: COLLECTIONS. Capsule and collaboration projects. `collections.html#vbyk` opens one project.
-- `about.html`: ABOUT. Introduction and contact details.
+| 메뉴 | 파일 | 내용 |
+|---|---|---|
+| SELECTED | `index.html` | AI 활용 사례, 컬렉션과 아트웍 미리보기, SIAN STUDIO, 연락처 |
+| ARTWORK | `artwork.html` | 스타일과 도식화 8개 카테고리. `artwork.html#outer` 처럼 바로 열 수 있습니다 |
+| COLLECTIONS | `collections.html` | 캡슐, 협업 프로젝트 5개. `collections.html#vbyk` 처럼 바로 열 수 있습니다 |
+| ABOUT | `about.html` | 자기소개, 연락처 |
 
-## Editing
+## 로컬 실행
 
-- `archive-data.js`: section titles, notes, stories and image lists for ARTWORK and COLLECTIONS. Each image is `[file, width, height, caption]`, and each inner list is one paper sheet.
-- `archive/<section>/NNN.webp` is the full image used in the viewer; `archive/<section>/t/NNN.webp` is the thumbnail. Add both when adding an image. Section covers live in `archive/covers/`.
-- `archive.js`, `archive.css`: rendering and styles for ARTWORK, COLLECTIONS and ABOUT.
-- `pinned.css`: shared type, header, footer, paper effects and the homepage.
-- `portfolio-viewer.js`: the image viewer and the homepage gallery rows.
-- `fonts/pretendard/`: self-hosted Pretendard Variable (SIL OFL). Browsers download only the subsets a page needs.
-- `folio-NN-page.webp` is the full slide used in the viewer; `folio-NN-page-1200.webp` is the lighter copy used on the homepage. Update both when a slide changes.
-- `og-cover.jpg`: the preview image shown when the link is shared.
-- `project.*`, `details.js`, `projects.js`, `main.js`, `style.css`, `case-study.css`, `case-study.js`, `portfolio-data.js`: retained earlier implementations; no current page loads or links to them.
-- Bump the `?v=` values in the HTML files after changing CSS or JS.
+빌드와 패키지 설치가 필요 없습니다. 저장소 루트에서 실행합니다.
 
-Working rules, design decisions and open items are in [AGENTS.md](AGENTS.md). Read it before changing the site.
+```sh
+python3 -m http.server 4173
+```
 
-## Preview and deployment
+http://127.0.0.1:4173/ 을 열면 됩니다.
 
-Run `python3 -m http.server 4173` here and open http://127.0.0.1:4173/.
-GitHub Pages publishes `main`, so a push to `main` goes live right away. There is
-no dependency installation or build step.
+## 폴더 구조
+
+| 경로 | 역할 |
+|---|---|
+| `archive-data.js` | ARTWORK, COLLECTIONS 의 제목, 설명, 이미지 목록 |
+| `archive/` | 섹션별 이미지, 썸네일(`t/`), 표지(`covers/`) |
+| `archive.js`, `archive.css` | ARTWORK, COLLECTIONS, ABOUT 렌더링과 스타일 |
+| `pinned.css` | 공용 타이포, 헤더, 푸터, 종이 효과, 홈 화면 |
+| `portfolio-viewer.js` | 이미지 뷰어, 홈 가로 갤러리 |
+| `folio-NN-page.webp` | AI 사례 슬라이드 전체본. `-1200` 은 홈 화면용 가벼운 본 |
+| `fonts/pretendard/` | Pretendard Variable (SIL OFL) |
+| `tools/check-site.js` | 링크, 이미지 목록, 금지 문장부호 점검 |
+
+## 공개
+
+GitHub Pages 가 `main` 브랜치 루트를 공개합니다. `main` 에 합치면 바로 반영됩니다.
+
+## 함께 작업하기
+
+- 사람: [CONTRIBUTING.md](CONTRIBUTING.md)
+- 에이전트: [AGENTS.md](AGENTS.md). 디자인 규칙과 그 이유, 이미지 규격, 남은 일을 모아 두었습니다.
