@@ -107,12 +107,12 @@ html[lang="ko"] .lang-toggle [data-lang="ko"],html[lang="en"] .lang-toggle [data
 .about-sheet{position:relative;isolation:isolate;padding:clamp(20px,3vw,34px) clamp(20px,3vw,36px)}
 .about-sheet::after{content:"";position:absolute;inset:0;z-index:-1;background:var(--paper);box-shadow:var(--paper-shadow);transform:rotate(-.35deg)}
 .about-sheet::before{content:"";position:absolute;z-index:1;top:-6px;right:9%;width:92px;aspect-ratio:360/65;background:url("../images/safety-pin.webp") center/contain no-repeat;transform:rotate(-7deg);pointer-events:none}
-.about dl{margin:0}
-.about dl>div{display:grid;grid-template-columns:104px minmax(0,1fr);gap:12px;padding:12px 0;border-top:1px solid #dcdad3}
-.about dl>div:first-child{border-top:0}
-.about dt{padding-top:2px;font-size:12px;letter-spacing:.06em;color:var(--ink-soft)}
-.about dd{margin:0;font-size:15px;line-height:1.5}
-.about dd a{display:block;width:fit-content;max-width:100%;padding:2px 0;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px;overflow-wrap:anywhere}
+.about-sheet dl,.about-skills{margin:0}
+.about-sheet dl>div,.about-skills>div{display:grid;grid-template-columns:104px minmax(0,1fr);gap:12px;padding:12px 0;border-top:1px solid #dcdad3}
+.about-sheet dl>div:first-child,.about-skills>div:first-child{border-top:0}
+.about-sheet dt,.about-skills dt{padding-top:2px;font-size:12px;letter-spacing:.06em;color:var(--ink-soft)}
+.about-sheet dd,.about-skills dd{margin:0;font-size:15px;line-height:1.5}
+.about-sheet dd a{display:block;width:fit-content;max-width:100%;padding:2px 0;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px;overflow-wrap:anywhere}
 
 /* Footer */
 .site-footer{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:10px var(--gutter);padding-bottom:max(10px,env(safe-area-inset-bottom));border-top:1px solid var(--rule);font-size:13px;color:var(--ink-soft)}
@@ -172,8 +172,8 @@ html[lang="ko"] .lang-toggle [data-lang="ko"],html[lang="en"] .lang-toggle [data
 }
 
 @media(max-width:440px){
-  .about dl>div{grid-template-columns:minmax(0,1fr);gap:2px}
-  .about dt{padding-top:0}
+  .about-sheet dl>div,.about-skills>div{grid-template-columns:minmax(0,1fr);gap:2px}
+  .about-sheet dt,.about-skills dt{padding-top:0}
 }
 
 
