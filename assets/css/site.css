@@ -183,13 +183,12 @@ html[lang="ko"] .lang-toggle [data-lang="ko"],html[lang="en"] .lang-toggle [data
 
 
 /* Phones and small tablets: the name scrolls away and the menu row stays, so every section is one tap away. */
-@media(max-width:860px){
+@media(max-width:640px){
   :root{--sticky-top:44px}
   .site-header{display:contents}
   .brand{padding:12px var(--gutter) 4px}
   .lang-toggle{position:absolute;top:8px;right:var(--gutter);z-index:21}
   .site-header nav{position:sticky;top:0;z-index:20;justify-content:space-between;gap:12px;padding:0 var(--gutter);background:#f5f4f0ed;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
-  .site-header nav .nav-extra{display:none}
 }
 
 /* Landscape phones: slide and text sit side by side, and the viewer gives the slide all the height. */
