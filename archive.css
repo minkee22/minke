@@ -1,22 +1,31 @@
 /* ARTWORK, COLLECTIONS and ABOUT share the homepage paper, type and pins. */
 .page-head{margin:clamp(24px,4.5vw,60px) var(--gutter) clamp(24px,3vw,36px)}
 .page-head h1{margin:0;font-size:clamp(44px,7vw,96px);font-weight:500;line-height:1;letter-spacing:-.04em;overflow-wrap:anywhere}
-.page-head p{max-width:40em;margin:clamp(14px,2vw,22px) 0 0;font-size:15px;line-height:1.7;color:var(--ink-soft)}
+/* The heading block never changes between sections, so the tabs below it stay put. */
+.page-head p{max-width:40em;min-height:calc(1.7em*2);margin:clamp(14px,2vw,22px) 0 0;font-size:15px;line-height:1.7;color:var(--ink-soft)}
 
 /* Text tabs with counts */
 .archive-tabs{position:sticky;top:var(--sticky-top);z-index:15;display:flex;gap:clamp(18px,2.4vw,30px);overflow-x:auto;margin:0 0 clamp(24px,3vw,40px);padding:0 var(--gutter);background:#f5f4f0ed;border-bottom:1px solid var(--rule);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);scrollbar-width:none}
 .archive-tabs::-webkit-scrollbar{display:none}
 .archive-tabs a{display:flex;flex:none;align-items:center;min-height:46px;border-bottom:2px solid transparent;margin-bottom:-1px;font-size:13px;letter-spacing:.02em;color:var(--ink-soft);white-space:nowrap}
-.archive-tabs a[aria-current]{border-bottom-color:var(--ink);color:var(--ink);font-weight:600}
+.archive-tabs a[aria-current]{border-bottom-color:var(--ink);color:var(--ink)}
 .archive-tabs sup{margin:-6px 0 0 3px;font-size:10.5px;font-weight:400;font-variant-numeric:tabular-nums;color:var(--ink-soft)}
+
+/* Keeps the page tall enough for the stuck tabs to hold their place on short sections. */
+#archive-view{min-height:100vh}
+.section-head{margin:0 var(--gutter) clamp(24px,3vw,36px)}
+.section-head h2{margin:0;font-size:clamp(21px,2.3vw,30px);font-weight:500;line-height:1.25;letter-spacing:-.02em}
+.section-head p{max-width:44em;margin:10px 0 0;font-size:15px;line-height:1.7;color:var(--ink-soft)}
 
 /* Overview covers */
 .cover-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(36px,4vw,56px) clamp(20px,3vw,40px);margin:0 var(--gutter) clamp(64px,8vw,110px)}
 .cover-card{display:grid;grid-template-columns:minmax(0,1fr) auto;align-content:start;gap:4px 12px}
-.cover-paper{grid-column:1/-1;display:block;margin-bottom:12px;padding:10px;background:var(--paper);box-shadow:var(--paper-shadow)}
-.cover-card:nth-child(3n+1) .cover-paper{transform:rotate(.4deg)}
-.cover-card:nth-child(3n+2) .cover-paper{transform:rotate(-.45deg)}
-.cover-card:nth-child(3n) .cover-paper{transform:rotate(.25deg)}
+/* As on the homepage, only the paper tilts. */
+.cover-paper{position:relative;isolation:isolate;grid-column:1/-1;display:block;margin-bottom:12px;padding:10px}
+.cover-paper::before{content:"";position:absolute;inset:0;z-index:-1;background:var(--paper);box-shadow:var(--paper-shadow)}
+.cover-card:nth-child(3n+1) .cover-paper::before{transform:rotate(.4deg)}
+.cover-card:nth-child(3n+2) .cover-paper::before{transform:rotate(-.45deg)}
+.cover-card:nth-child(3n) .cover-paper::before{transform:rotate(.25deg)}
 .cover-paper img{display:block;width:100%;height:auto;aspect-ratio:1200/676;object-fit:cover}
 .cover-title{font-size:17px;font-weight:600;line-height:1.4;letter-spacing:-.01em}
 .cover-count{padding-top:4px;font-size:12px;letter-spacing:.06em;color:var(--ink-soft);font-variant-numeric:tabular-nums}
@@ -25,17 +34,18 @@
 
 /* Story text on collection pages */
 .archive-story{max-width:44em;margin:0 var(--gutter) clamp(32px,4vw,56px)}
-.archive-story h2{margin:0 0 14px;font-size:clamp(19px,2vw,24px);font-weight:600;line-height:1.35;letter-spacing:-.015em}
+.archive-story h3{margin:0 0 14px;font-size:clamp(19px,2vw,24px);font-weight:600;line-height:1.35;letter-spacing:-.015em}
 .archive-story p{margin:0 0 12px;font-size:15px;line-height:1.75}
 
 /* Paper sheets. The pin sits on the sheet, not the rotated paper, so it stays above the next sheet. */
 .sheets{--sheet-columns:3;--sheet-gap:clamp(24px,2.8vw,36px);display:grid;grid-template-columns:repeat(var(--sheet-columns),minmax(0,1fr));gap:calc(var(--sheet-gap) + 8px) var(--sheet-gap);margin:0 var(--gutter) clamp(44px,6vw,72px)}
 .sheets-wide,.sheets-sketch{--sheet-columns:1}
 .sheet{position:relative;margin:0;min-width:0}
-.sheet-paper{height:100%;padding:34px 16px 16px;background:var(--paper);box-shadow:var(--paper-shadow)}
-.sheet:nth-child(3n+1) .sheet-paper{transform:rotate(.3deg)}
-.sheet:nth-child(3n+2) .sheet-paper{transform:rotate(-.35deg)}
-.sheet:nth-child(3n) .sheet-paper{transform:rotate(.2deg)}
+.sheet-paper{position:relative;isolation:isolate;height:100%;padding:34px 16px 16px}
+.sheet-paper::before{content:"";position:absolute;inset:0;z-index:-1;background:var(--paper);box-shadow:var(--paper-shadow)}
+.sheet:nth-child(3n+1) .sheet-paper::before{transform:rotate(.3deg)}
+.sheet:nth-child(3n+2) .sheet-paper::before{transform:rotate(-.35deg)}
+.sheet:nth-child(3n) .sheet-paper::before{transform:rotate(.2deg)}
 .sheet-num{position:absolute;top:11px;left:16px;font-size:12px;letter-spacing:.1em;color:var(--ink-soft)}
 .sheet-photos{display:flex;align-items:center;gap:8px}
 .sheet-photo{display:block;flex:var(--shape) 1 0;min-width:0;cursor:zoom-in}
@@ -69,6 +79,7 @@
 
 @media(max-width:700px){
   .about-page{grid-template-columns:minmax(0,1fr)}
+  .page-head p{min-height:calc(1.7em*3)}
   .cover-grid{grid-template-columns:minmax(0,1fr)}
   .sheets,.sheets-wide,.sheets-sketch{--sheet-columns:1;--sheet-gap:26px}
   .sheets-sketch .sheet-photos{grid-template-columns:repeat(2,minmax(0,1fr))}

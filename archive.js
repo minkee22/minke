@@ -5,10 +5,6 @@
   const baseTitle = document.title;
   const tabs = document.querySelector('#archive-tabs');
   const view = document.querySelector('#archive-view');
-  const lead = document.querySelector('#archive-lead');
-  const heading = document.querySelector('#archive-heading');
-  const baseHeading = heading.textContent;
-  const baseLead = lead.textContent;
   const hint = '두 손가락으로 벌리거나 두 번 탭하면 확대됩니다.';
 
   const escapeHtml = value => String(value).replace(/[&<>"']/g, mark => (
@@ -58,16 +54,12 @@
   }
 
   function renderOverview() {
-    heading.textContent = baseHeading;
-    lead.textContent = baseLead;
     document.title = baseTitle;
     view.innerHTML = `<div class="cover-grid">${sections.map(coverCard).join('')}</div>`;
   }
 
   function renderSection(section) {
     const position = sections.indexOf(section);
-    heading.textContent = section.title;
-    lead.textContent = section.note || baseLead;
     document.title = `${section.title} | ${baseTitle}`;
     let count = 0;
     const sheets = section.sheets.map((sheet, position) => {
@@ -76,9 +68,10 @@
       return html;
     }).join('');
     const story = (section.story || []).length
-      ? `<div class="archive-story"><h2>${escapeHtml(section.storyTitle)}</h2>${section.story.map(line => `<p>${escapeHtml(line)}</p>`).join('')}</div>`
+      ? `<div class="archive-story"><h3>${escapeHtml(section.storyTitle)}</h3>${section.story.map(line => `<p>${escapeHtml(line)}</p>`).join('')}</div>`
       : '';
-    view.innerHTML = `${story}<div class="sheets sheets-${section.layout || 'looks'}">${sheets}</div>${neighbourLinks(position)}`;
+    const head = `<div class="section-head"><h2>${escapeHtml(section.title)}</h2>${section.note ? `<p>${escapeHtml(section.note)}</p>` : ''}</div>`;
+    view.innerHTML = `${head}${story}<div class="sheets sheets-${section.layout || 'looks'}">${sheets}</div>${neighbourLinks(position)}`;
     const images = section.sheets.flat().map(([file, width, height, caption], i) => ({
       src: imagePath(section, file),
       ratio: width / height,
@@ -109,17 +102,49 @@
       const active = tab.dataset.tab === (section ? section.id : '');
       if (active) {
         tab.setAttribute('aria-current', 'true');
-        tab.scrollIntoView({block: 'nearest', inline: 'center'});
+        revealTab(tab);
       } else {
         tab.removeAttribute('aria-current');
       }
     });
   }
 
-  // Switching sections starts at the top of the page instead of keeping the old scroll depth.
-  window.addEventListener('hashchange', () => {
+  // Scrolls the tab strip only as far as needed, and never moves the page.
+  function revealTab(tab) {
+    const strip = tabs.getBoundingClientRect();
+    const box = tab.getBoundingClientRect();
+    const edge = 20;
+    if (box.left < strip.left + edge) tabs.scrollLeft -= strip.left + edge - box.left;
+    else if (box.right > strip.right - edge) tabs.scrollLeft += box.right - strip.right + edge;
+  }
+
+  // The tabs keep their place: a section opens with the tabs where they already are.
+  function holdTabs(previousScroll) {
+    const stuckAt = tabs.parentElement.querySelector('.page-head').getBoundingClientRect().bottom
+      + window.scrollY - parseFloat(getComputedStyle(tabs).top)
+      + parseFloat(getComputedStyle(tabs.parentElement.querySelector('.page-head')).marginBottom);
+    window.scrollTo({top: Math.min(previousScroll, stuckAt), behavior: 'instant'});
+  }
+
+  function openSection(id) {
+    const scroll = window.scrollY;
+    history.pushState(null, '', location.pathname + location.search + (id ? '#' + id : ''));
     render();
-    window.scrollTo({top: 0, behavior: 'instant'});
+    holdTabs(scroll);
+  }
+
+  [tabs, view].forEach(area => area.addEventListener('click', event => {
+    const link = event.target.closest('a[href^="#"]');
+    if (!link) return;
+    event.preventDefault();
+    openSection(link.getAttribute('href').slice(1));
+  }));
+
+  // Browser back and forward between sections.
+  window.addEventListener('hashchange', () => {
+    const scroll = window.scrollY;
+    render();
+    holdTabs(scroll);
   });
   render();
 })();
