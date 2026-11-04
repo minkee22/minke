@@ -29,8 +29,9 @@
   }
 
   function coverCard(section) {
+    const cover = section.id === 'outer' ? 'outer-jacket.jpg' : `${section.id}.webp`;
     return `<a class="cover-card" href="#${section.id}">
-      <span class="cover-paper"><img src="assets/archive/covers/${section.id}.webp" alt="" width="1200" height="676" loading="lazy" decoding="async"></span>
+      <span class="cover-paper"><img src="assets/archive/covers/${cover}" alt="" width="1200" height="676" loading="lazy" decoding="async"></span>
       <span class="cover-title">${escapeHtml(copy(section, 'title'))}</span>
       <span class="cover-count">${escapeHtml(I18N.count(section.count))}</span>
       ${kind === 'collections' ? `<span class="cover-summary">${escapeHtml(copy(section, 'summary'))}</span>` : ''}
