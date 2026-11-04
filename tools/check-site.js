@@ -72,7 +72,7 @@ for (const section of sections) {
 }
 
 // The homepage repeats each section count.
-const homeCounts = [...read('index.html').matchAll(/<small>(\d+) IMAGES<\/small>/g)].map(match => Number(match[1]));
+const homeCounts = [...read('index.html').matchAll(/<small>(\d+)장<\/small>/g)].map(match => Number(match[1]));
 const expected = sections.map(section => section.count);
 if (homeCounts.join() !== expected.join()) report('index.html', `image counts ${homeCounts} should be ${expected}`);
 
