@@ -50,7 +50,7 @@
 .sheet:nth-child(3n) .sheet-paper::before{transform:rotate(.2deg)}
 .sheet-photos{display:flex;align-items:center;gap:8px}
 .sheet-photo{display:block;flex:var(--shape) 1 0;min-width:0;cursor:zoom-in}
-.sheets-sketch .sheet-photos{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));align-items:center;gap:12px}
+.sheets-sketch .sheet-photos{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));align-items:start;gap:12px}
 .sheet-photo img{display:block;width:100%;height:auto;mix-blend-mode:multiply}
 .sheet figcaption{margin-top:12px;font-size:13px;line-height:1.5;color:var(--ink-soft)}
 

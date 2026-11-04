@@ -109,6 +109,7 @@ html[lang="en"] .lang-toggle::before{left:calc(50% - .5px)}
 .link-portfolio{--card-w:clamp(300px,36vw,520px);--sheet-x:18px;--sheet-top:18px;--sheet-bottom:18px;--pin-w:80px}
 .link-portfolio .folio-paper{cursor:pointer}
 .link-portfolio .page-thumbnail{aspect-ratio:1200/676;object-fit:cover;mix-blend-mode:normal}
+.link-portfolio img[src$="/outer-jacket.jpg"],.cover-paper img[src$="/outer-jacket.jpg"]{object-fit:contain;background:#fff}
 .row-link{margin:16px var(--gutter) 0;font-size:14px}
 .row-link a{display:inline-flex;align-items:center;min-height:44px;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:5px}
 
