@@ -67,8 +67,7 @@
 
 /* About page */
 .about-page{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:clamp(32px,6vw,96px);align-items:start;margin:0 var(--gutter) clamp(64px,8vw,110px)}
-.about-text p{margin:0 0 14px;font-size:16px;line-height:1.75}
-.about-text h2{margin:clamp(32px,4vw,48px) 0 6px;font-size:clamp(19px,2vw,24px);font-weight:500;line-height:1.35;letter-spacing:-.015em}
+.about-text h2{margin:0 0 6px;font-size:clamp(19px,2vw,24px);font-weight:500;line-height:1.35;letter-spacing:-.015em}
 
 @media(max-width:1100px){
   .cover-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
