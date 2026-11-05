@@ -134,6 +134,7 @@ const I18N_STRINGS = {
   "work.07.desc": ["그래픽 아트웍은 Illustrator로 직접 개발하고, 프린트와 자수, 핫픽스의 질감은 디자인에 맞는 요소로 골라 조합했어요.","I developed every graphic in Illustrator, then chose print, embroidery and hotfix finishes as design elements to suit each piece."],
   "work.07.open": ["Illustrator 아트웍에 질감으로 포인트를 줬어요, 슬라이드 크게 보기","Original artwork, with texture as the accent, view slide"],
   "work.07.alt": ["Illustrator 아트웍에 질감으로 포인트를 줬어요 슬라이드","Slide: Original artwork, with texture as the accent"],
+  "resume.pending": ["이력서 준비 중","Resume coming soon"],
   "skill.designTitle": ["디자인 역량","Design skills"],
   "skill.concept": ["콘셉트 및 컬렉션 기획","Concept and collection planning"],
   "skill.sourcing": ["원단, 부자재 소싱","Fabric and trim sourcing"],
