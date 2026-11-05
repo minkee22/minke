@@ -267,8 +267,8 @@ if (slideRow) {
 }
 
 // Studio front and back views share the existing image viewer.
-const studioWork = document.querySelector('.studio-work');
-if (studioWork) {
+document.querySelectorAll('.studio-work').forEach(studioWork => {
+  const id = studioWork.dataset.studio;
   const links = [...studioWork.querySelectorAll('.studio-pair a')];
   studioWork.addEventListener('click', event => {
     const link = event.target.closest('.studio-pair a');
@@ -280,14 +280,14 @@ if (studioWork) {
         src: item.getAttribute('href'),
         ratio: image.width / image.height,
         alt: image.alt,
-        title: I18N.t('studio.01.title'),
-        desc: I18N.t('studio.01.desc'),
+        title: I18N.t(`studio.${id}.title`),
+        desc: I18N.t(`studio.${id}.desc`),
         hint: I18N.t('viewer.hintSlide'),
       };
     });
     PageViewer.open(items, links.indexOf(link), () => link.focus({preventScroll: true}), link.querySelector('img'));
   });
-}
+});
 
 // Each portfolio row scrolls independently; native touch and trackpad scrolling stay intact.
 document.querySelectorAll('.horizontal-portfolio').forEach(section => {
