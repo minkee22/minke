@@ -119,6 +119,11 @@ html[lang="en"] .lang-toggle::before{left:calc(50% - .5px)}
 .studio-portfolio{--card-w:clamp(260px,28vw,400px);--sheet-gap:20px;--sheet-x:16px;--sheet-top:16px;--sheet-bottom:16px;--pin-w:72px}
 .folio-placeholder{display:flex;align-items:center;justify-content:center;aspect-ratio:3/2;cursor:default}
 .coming-soon{font-size:12px;letter-spacing:.14em;color:var(--ink-soft)}
+/* Completed work pairs keep the full front and back views visible. */
+.studio-portfolio .studio-work{flex-basis:clamp(300px,46vw,640px);max-width:86vw}
+.studio-pair{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.studio-pair a{display:block;min-width:0;cursor:zoom-in}
+.studio-pair img{display:block;width:100%;height:auto;mix-blend-mode:multiply}
 .studio-portfolio .folio-caption{padding-top:10px}
 .studio-portfolio .folio-caption h3{font-size:15px}
 .studio-portfolio .folio-caption small{margin-top:4px}

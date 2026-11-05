@@ -266,6 +266,29 @@ if (slideRow) {
   showSlides();
 }
 
+// Studio front and back views share the existing image viewer.
+const studioWork = document.querySelector('.studio-work');
+if (studioWork) {
+  const links = [...studioWork.querySelectorAll('.studio-pair a')];
+  studioWork.addEventListener('click', event => {
+    const link = event.target.closest('.studio-pair a');
+    if (!link || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    event.preventDefault();
+    const items = links.map(item => {
+      const image = item.querySelector('img');
+      return {
+        src: item.getAttribute('href'),
+        ratio: image.width / image.height,
+        alt: image.alt,
+        title: I18N.t('studio.01.title'),
+        desc: I18N.t('studio.01.desc'),
+        hint: I18N.t('viewer.hintSlide'),
+      };
+    });
+    PageViewer.open(items, links.indexOf(link), () => link.focus({preventScroll: true}), link.querySelector('img'));
+  });
+}
+
 // Each portfolio row scrolls independently; native touch and trackpad scrolling stay intact.
 document.querySelectorAll('.horizontal-portfolio').forEach(section => {
   const pad = number => String(number).padStart(2, '0');
