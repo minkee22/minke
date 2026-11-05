@@ -88,6 +88,8 @@
   .page-head p{min-height:calc(1.7em*3)}
   .cover-grid{grid-template-columns:minmax(0,1fr);gap:40px;margin-bottom:72px}
   .sheets,.sheets-wide,.sheets-sketch{--sheet-columns:1;--sheet-gap:32px}
+  /* A 29px vertical gap with a 64px pin matches the desktop 36px/80px proportion. */
+  body[data-archive="artwork"] .sheets{--sheet-gap:21px}
   .sheets-sketch .sheet-photos{grid-template-columns:repeat(2,minmax(0,1fr))}
   .sheets-wide .sheet-photos{display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}
   .sheet-paper{padding:14px}
