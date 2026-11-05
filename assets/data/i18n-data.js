@@ -31,7 +31,7 @@ const I18N_STRINGS = {
   "page.about.title": ["ABOUT | KYUNGEUN MIN","ABOUT | KYUNGEUN MIN"],
   "page.about.desc": ["민경은 / KYUNGEUN MIN 소개와 연락처.","About Kyungeun Min, with contact details."],
   "home.heading": ["민경은 패션 디자인 포트폴리오","Kyungeun Min fashion design portfolio"],
-  "home.hintWork": ["제가 한 일과 AI에게 맡긴 일을 나눠 정리했어요. 이미지를 누르면 크게 볼 수 있어요.","What I did and what AI handled, case by case. Select any slide for a closer look."],
+  "home.hintWork": ["직접 한 일과 AI에게 맡긴 일을 나눠 정리했어요. 이미지를 누르면 크게 볼 수 있어요.","What I did and what AI handled, case by case. Select any slide for a closer look."],
   "home.hintCollections": ["협업과 캡슐 컬렉션을 프로젝트별로 모았어요.","Collaborations and capsule collections, project by project."],
   "home.hintArtwork": ["시즌마다 진행한 스타일과 도식화를 카테고리별로 모았어요.","Seasonal styles and technical flats, by category."],
   "home.hintStudio": ["개인 디자인 작업을 준비하고 있어요.","Personal design work, coming soon."],
