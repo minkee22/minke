@@ -28,7 +28,7 @@ const I18N_STRINGS = {
   "page.collections.lead": ["캡슐 컬렉션과 협업 프로젝트를 타이틀별로 나눠, 완성된 디자인과 도식화를 함께 소개해요.","Capsule collections and collaborations, each shown with its finished designs and technical flats."],
   "page.artwork.tabs": ["ARTWORK 항목","ARTWORK sections"],
   "page.collections.tabs": ["COLLECTIONS 항목","COLLECTIONS sections"],
-  "page.about.title": ["ABOUT | KYUNGEUN MIN","ABOUT | KYUNGEUN MIN"],
+  "page.about.title": ["ABOUT ME | KYUNGEUN MIN","ABOUT ME | KYUNGEUN MIN"],
   "page.about.desc": ["민경은 / KYUNGEUN MIN 소개와 연락처.","About Kyungeun Min, with contact details."],
   "home.heading": ["민경은 패션 디자인 포트폴리오","Kyungeun Min fashion design portfolio"],
   "home.hintWork": ["직접 한 일과 AI에게 맡긴 일을 나눠 정리했어요. 이미지를 누르면 크게 볼 수 있어요.","What I did and what AI handled, case by case. Select any slide for a closer look."],
