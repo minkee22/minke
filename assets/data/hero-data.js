@@ -8,7 +8,7 @@ const HERO_POOL = [
   ["artwork", "outer", "011", 0.787],
   ["artwork", "outer", "013", 0.787],
   ["artwork", "outer", "015", 0.787],
-  ["artwork", "outer", "018", 0.787],
+  ["artwork", "outer", "017-front", 0.787],
   ["artwork", "outer", "020", 0.787],
   ["artwork", "outer", "022", 0.667],
   ["artwork", "outer", "025", 0.667],
