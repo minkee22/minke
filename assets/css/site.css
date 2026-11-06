@@ -313,3 +313,6 @@ html[lang="en"] .lang-toggle::before{left:calc(50% - .5px)}
 @media(max-width:640px){
   .folio-download{grid-column:1/-1;grid-row:3}
 }
+
+.resume-file{min-width:0}
+.resume-actions .resume-save{border:0;color:var(--ink-soft);font-size:12px;text-decoration:underline;text-underline-offset:3px;padding:8px}
