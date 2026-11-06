@@ -314,3 +314,10 @@ html[lang="en"] .lang-toggle::before{left:calc(50% - .5px)}
   .nav-linkedin span{display:none}
   .nav-linkedin svg{display:block}
 }
+
+/* Only the resume and AI case-study PDFs have download controls. */
+.folio-download{display:flex;align-items:center;min-height:44px;width:fit-content;font-size:14px;text-decoration:underline;text-underline-offset:4px}
+.folio-download:focus-visible{outline:2px solid var(--ink);outline-offset:4px}
+@media(max-width:640px){
+  .folio-download{grid-column:1/-1;grid-row:3}
+}
