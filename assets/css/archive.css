@@ -65,23 +65,9 @@
 .archive-pager a{display:flex;align-items:center;min-height:44px;font-size:14px}
 @media(hover:hover){.archive-pager a:hover{text-decoration:underline;text-underline-offset:4px}}
 
-/* About page */
-.about-page{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(0,1fr);gap:clamp(32px,4vw,64px);align-items:start;margin:0 var(--gutter) clamp(64px,8vw,110px)}
-.about-page>.about-sheet{grid-column:2;grid-row:1}
-.about-page>.about-text{grid-column:1;grid-row:1;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(20px,2.2vw,32px);align-items:start}
-.about-text h2{margin:0 0 6px;font-size:20px;font-weight:500;line-height:1.35;letter-spacing:-.015em}
-.skill-list{list-style:none;margin:0;padding:0}
-.skill-list li{padding:10px 0;border-bottom:1px solid var(--rule);font-size:14px;line-height:1.55}
-
-.resume-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:24px}
-.resume-actions a{display:flex;align-items:center;justify-content:center;min-height:44px;padding:10px 8px;border:1px solid var(--rule);background:transparent;color:var(--ink);font-size:14px;line-height:1.4;text-align:center;text-decoration:none}
-.resume-actions a:focus-visible{outline:2px solid var(--ink);outline-offset:4px}
-@media(hover:hover){.resume-actions a:hover{border-color:var(--ink)}}
+.about-page{margin:0 var(--gutter) clamp(64px,8vw,110px)}
 
 @media(max-width:1100px){
-  .about-page{grid-template-columns:minmax(0,1fr)}
-  .about-page>.about-text{grid-column:1;grid-row:1}
-  .about-page>.about-sheet{grid-column:1;grid-row:2;width:100%;max-width:620px}
   .cover-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
   .sheets{--sheet-columns:2}
   .sheets-wide,.sheets-sketch{--sheet-columns:1}
@@ -95,10 +81,7 @@
   .archive-tabs{gap:22px;margin-bottom:28px}
   .section-head{margin-bottom:24px}
   .section-head h2{font-size:24px}
-  .about-page{grid-template-columns:minmax(0,1fr);gap:48px;margin-bottom:72px}
-  .about-page>.about-sheet,.about-page>.about-text{grid-column:1;grid-row:auto}
-  .about-page>.about-text{grid-template-columns:minmax(0,1fr);gap:32px}
-  .skill-list li{font-size:15px}
+  .about-page{margin-bottom:72px}
   .page-head p{min-height:calc(1.7em*3)}
   .cover-grid{grid-template-columns:minmax(0,1fr);gap:40px;margin-bottom:72px}
   .sheets,.sheets-wide,.sheets-sketch{--sheet-columns:1;--sheet-gap:32px}
