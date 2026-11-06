@@ -307,13 +307,6 @@ html[lang="en"] .lang-toggle::before{left:calc(50% - .5px)}
   *{transition:none!important}
 }
 
-/* LinkedIn stays beside Collections, with a compact mark on narrow screens. */
-.nav-linkedin svg{display:none;width:20px;height:20px;fill:currentColor}
-@media(max-width:1000px){
-  .site-header nav .nav-linkedin{justify-content:center;min-width:44px}
-  .nav-linkedin span{display:none}
-  .nav-linkedin svg{display:block}
-}
 
 /* Only the resume and AI case-study PDFs have download controls. */
 .folio-download{display:flex;align-items:center;min-height:44px;width:fit-content;font-size:14px;text-decoration:underline;text-underline-offset:4px}
@@ -321,3 +314,6 @@ html[lang="en"] .lang-toggle::before{left:calc(50% - .5px)}
 @media(max-width:640px){
   .folio-download{grid-column:1/-1;grid-row:3}
 }
+
+.resume-file{min-width:0}
+.resume-actions .resume-save{border:0;color:var(--ink-soft);font-size:12px;text-decoration:underline;text-underline-offset:3px;padding:8px}
