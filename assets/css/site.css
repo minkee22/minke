@@ -131,9 +131,8 @@ html[lang="en"] .lang-toggle::before{left:calc(50% - .5px)}
 .studio-portfolio .folio-caption small{margin-top:4px}
 
 /* About */
-.about{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:clamp(32px,6vw,96px);align-items:start;margin:0 var(--gutter) clamp(64px,8vw,110px);padding-top:clamp(32px,4vw,48px);border-top:1px solid var(--rule)}
-.about h2{margin:0;font-size:clamp(21px,2.3vw,30px);font-weight:500;line-height:1.25;letter-spacing:-.02em}
-.about-lead p{max-width:15em;margin:clamp(20px,3vw,36px) 0 0;font-size:clamp(25px,3vw,38px);line-height:1.3;letter-spacing:-.025em}
+.about{margin:0 var(--gutter) clamp(64px,8vw,110px);padding-top:clamp(32px,4vw,48px);border-top:1px solid var(--rule)}
+.about>h2{margin:0 0 28px;font-size:clamp(21px,2.3vw,30px);font-weight:500;line-height:1.25;letter-spacing:-.02em}
 .about-sheet{position:relative;isolation:isolate;padding:clamp(20px,3vw,34px) clamp(20px,3vw,36px)}
 .about-sheet::after{content:"";position:absolute;inset:0;z-index:-1;background:var(--paper);box-shadow:var(--paper-shadow);transform:rotate(-.35deg)}
 .about-sheet::before{content:"";position:absolute;z-index:1;top:-6px;right:9%;width:92px;aspect-ratio:360/65;background:url("../images/safety-pin.webp") center/contain no-repeat;transform:rotate(-7deg);pointer-events:none}
@@ -143,6 +142,31 @@ html[lang="en"] .lang-toggle::before{left:calc(50% - .5px)}
 .about-sheet dt,.about-skills dt{padding-top:2px;font-size:12px;letter-spacing:.06em;color:var(--ink-soft)}
 .about-sheet dd,.about-skills dd{margin:0;font-size:15px;line-height:1.5}
 .about-sheet dd a{display:block;width:fit-content;max-width:100%;padding:2px 0;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px;overflow-wrap:anywhere}
+
+/* Shared About content */
+.about-layout{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(0,1fr);gap:clamp(32px,4vw,64px);align-items:start}
+.about-layout>.about-sheet{grid-column:2;grid-row:1}
+.about-layout>.about-text{grid-column:1;grid-row:1;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(20px,2.2vw,32px);align-items:start}
+.about-text h2{margin:0 0 6px;font-size:20px;font-weight:500;line-height:1.35;letter-spacing:-.015em}
+.skill-list{list-style:none;margin:0;padding:0}
+.skill-list li{padding:10px 0;border-bottom:1px solid var(--rule);font-size:14px;line-height:1.55}
+
+.resume-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:24px}
+.resume-actions a{display:flex;align-items:center;justify-content:center;min-height:44px;padding:10px 8px;border:1px solid var(--rule);background:transparent;color:var(--ink);font-size:14px;line-height:1.4;text-align:center;text-decoration:none}
+.resume-actions a:focus-visible{outline:2px solid var(--ink);outline-offset:4px}
+@media(hover:hover){.resume-actions a:hover{border-color:var(--ink)}}
+
+@media(max-width:1100px){
+  .about-layout{grid-template-columns:minmax(0,1fr)}
+  .about-layout>.about-text{grid-column:1;grid-row:1}
+  .about-layout>.about-sheet{grid-column:1;grid-row:2;width:100%;max-width:620px}
+}
+@media(max-width:700px){
+  .about-layout{gap:48px}
+  .about-layout>.about-sheet,.about-layout>.about-text{grid-column:1;grid-row:auto}
+  .about-layout>.about-text{grid-template-columns:minmax(0,1fr);gap:32px}
+  .skill-list li{font-size:15px}
+}
 
 /* Footer */
 .site-footer{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:10px var(--gutter);padding-bottom:max(10px,env(safe-area-inset-bottom));border-top:1px solid var(--rule);font-size:13px;color:var(--ink-soft)}
@@ -191,7 +215,6 @@ html[lang="en"] .lang-toggle::before{left:calc(50% - .5px)}
 @media(max-width:900px){
   .folio-heading{align-items:flex-start}
   .folio-count{padding-top:6px}
-  .about{grid-template-columns:minmax(0,1fr)}
 }
 
 @media(max-width:1000px) and (min-height:501px){
@@ -216,7 +239,7 @@ html[lang="en"] .lang-toggle::before{left:calc(50% - .5px)}
 
 
 /* Below this width the name and the menu no longer share a row. The name scrolls away and the menu stays. */
-@media(max-width:800px){
+@media(max-width:1000px){
   :root{--sticky-top:50px}
   .site-header{display:contents}
   .brand{padding:20px var(--gutter) 16px}
@@ -224,7 +247,7 @@ html[lang="en"] .lang-toggle::before{left:calc(50% - .5px)}
   .brand span{margin-top:3px}
   .lang-toggle{position:absolute;top:10px;right:var(--gutter);z-index:21}
   .site-header nav a{font-size:14px}
-  .site-header nav{position:sticky;top:0;z-index:20;justify-content:space-between;gap:12px;min-height:50px;margin:0;padding:2px var(--gutter);border-block:1px solid var(--rule);background:#f5f4f0ed;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+  .site-header nav{position:sticky;top:0;z-index:20;justify-content:space-between;gap:clamp(4px,1.3vw,10px);min-height:50px;margin:0;padding:2px var(--gutter);border-block:1px solid var(--rule);background:#f5f4f0ed;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
 }
 
 /* Phones: fewer, larger prints and more air around everything. */
@@ -238,7 +261,7 @@ html[lang="en"] .lang-toggle::before{left:calc(50% - .5px)}
   .horizontal-portfolio{--card-w:82vw;--sheet-gap:18px;--sheet-x:16px;--sheet-top:16px;--sheet-bottom:20px;margin-bottom:72px}
   .link-portfolio{--card-w:74vw;--sheet-x:16px;--sheet-top:16px;--sheet-bottom:20px}
   .studio-portfolio{--card-w:64vw;--sheet-x:14px;--sheet-top:14px;--sheet-bottom:16px}
-  .folio-heading h2,.about h2{font-size:24px}
+  .folio-heading h2,.about>h2{font-size:24px}
   .folio-heading{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:0 16px}
   .folio-heading>div:first-child{display:contents}
   .folio-hint{grid-column:1/-1;grid-row:2}
@@ -254,9 +277,9 @@ html[lang="en"] .lang-toggle::before{left:calc(50% - .5px)}
   .about{gap:36px;margin-bottom:72px}
 }
 
-/* Small phones: the menu tightens just enough to keep four items on one row. */
+/* Small phones: the menu tightens just enough to keep all items on one row. */
 @media(max-width:374px){
-  .site-header nav{gap:8px}
+  .site-header nav{gap:4px}
   .site-header nav a{font-size:13px;letter-spacing:0}
 }
 
@@ -282,4 +305,12 @@ html[lang="en"] .lang-toggle::before{left:calc(50% - .5px)}
 @media(prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   *{transition:none!important}
+}
+
+/* LinkedIn stays beside Collections, with a compact mark on narrow screens. */
+.nav-linkedin svg{display:none;width:20px;height:20px;fill:currentColor}
+@media(max-width:1000px){
+  .site-header nav .nav-linkedin{justify-content:center;min-width:44px}
+  .nav-linkedin span{display:none}
+  .nav-linkedin svg{display:block}
 }

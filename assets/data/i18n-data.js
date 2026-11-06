@@ -58,7 +58,7 @@ const I18N_STRINGS = {
   "fact.field": ["분야","Field"],
   "fact.fieldValue": ["우븐","Woven"],
   "fact.experience": ["경력","Experience"],
-  "fact.experienceValue": ["6년, LF","6 years at LF"],
+  "fact.experienceValue": ["6년, LF / VANESSA BRUNO athé","6 years, LF / VANESSA BRUNO athé"],
   "fact.email": ["이메일","Email"],
   "fact.linkedin": ["링크드인","LinkedIn"],
   "fact.more": ["더 보기","More"],

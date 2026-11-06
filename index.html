@@ -21,7 +21,7 @@
 <script>
 (function(){var d=document.documentElement;if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;d.classList.add('motion');try{if(!sessionStorage.getItem('landed')){d.classList.add('first-visit');sessionStorage.setItem('landed','1')}}catch(e){}setTimeout(function(){if(!window.motionReady)d.classList.remove('motion')},3000)})();
 </script>
-<link rel="stylesheet" href="assets/css/site.css?v=26">
+<link rel="stylesheet" href="assets/css/site.css?v=27">
 <link rel="stylesheet" href="assets/css/motion.css?v=4">
 </head>
 <body>
@@ -36,6 +36,7 @@
 <a href="about.html">ABOUT ME</a>
 <a href="artwork.html">ARTWORK</a>
 <a href="collections.html">COLLECTIONS</a>
+<a class="nav-linkedin" href="https://www.linkedin.com/in/minkee22/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><span>LinkedIn</span><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20.45 2H3.55C2.69 2 2 2.68 2 3.52v16.96C2 21.32 2.69 22 3.55 22h16.9c.86 0 1.55-.68 1.55-1.52V3.52C22 2.68 21.31 2 20.45 2ZM7.93 18.75H4.97V9.2h2.96v9.55ZM6.45 7.89a1.72 1.72 0 1 1 0-3.44 1.72 1.72 0 0 1 0 3.44Zm12.3 10.86h-2.96v-4.65c0-1.11-.02-2.54-1.55-2.54-1.55 0-1.79 1.21-1.79 2.46v4.73H9.49V9.2h2.84v1.3h.04c.39-.74 1.36-1.53 2.8-1.53 2.99 0 3.55 1.97 3.55 4.53v5.25Z"/></svg></a>
 </nav>
 <button type="button" class="lang-toggle" data-i18n-attr="aria-label:lang.toggle" aria-label="영어로 보기"><span data-lang="ko">KO</span><span data-lang="en">EN</span></button>
 </header>
@@ -339,18 +340,46 @@
 <div class="folio-progress" aria-hidden="true"><span></span></div>
 </section>
 <section class="about" id="about" aria-labelledby="about-title">
-<div class="about-lead">
 <h2 id="about-title">ABOUT ME</h2>
-</div>
+<div class="about-layout">
 <div class="about-sheet">
 <dl>
 <div><dt data-i18n="fact.name">이름</dt><dd data-i18n="fact.nameValue">민경은 / KYUNGEUN MIN</dd></div>
 <div><dt data-i18n="fact.based">지역</dt><dd data-i18n="fact.basedValue">SEOUL, KOREA</dd></div>
-<div><dt data-i18n="fact.experience">경력</dt><dd data-i18n="fact.experienceValue">6 YEARS, LF</dd></div>
+<div><dt data-i18n="fact.field">분야</dt><dd data-i18n="fact.fieldValue">WOVEN</dd></div>
+<div><dt data-i18n="fact.experience">경력</dt><dd data-i18n="fact.experienceValue">6 YEARS, LF / VANESSA BRUNO athé</dd></div>
 <div><dt data-i18n="fact.email">이메일</dt><dd><a href="mailto:ruddms0626@naver.com">ruddms0626@naver.com</a></dd></div>
-<div><dt data-i18n="fact.linkedin">링크드인</dt><dd><a href="https://www.linkedin.com/in/minkee22/" target="_blank" rel="noopener noreferrer">linkedin.com/in/minkee22 ↗</a></dd></div>
-<div><dt data-i18n="fact.more">더 보기</dt><dd><a href="about.html" data-i18n="fact.moreLink">자세히 보기</a></dd></div>
 </dl>
+<!-- File language labels stay fixed when the page language changes. -->
+<div class="resume-actions">
+<a href="assets/resume/kyungeun-min-resume-ko-20261106.pdf?v=subheadings-20261106" target="_blank" rel="noopener noreferrer" lang="ko" type="application/pdf">이력서(PDF)</a>
+<a href="assets/resume/kyungeun-min-resume-en-20261106.pdf?v=subheadings-20261106" target="_blank" rel="noopener noreferrer" lang="en" type="application/pdf">resume (PDF)</a>
+</div>
+</div>
+<div class="about-text">
+<section class="skill-group">
+<h2 data-i18n="skill.designTitle">디자인 역량</h2>
+<ul class="skill-list">
+<li data-i18n="skill.concept">콘셉트 및 컬렉션 기획</li>
+<li data-i18n="skill.sourcing">원단, 부자재 소싱</li>
+<li data-i18n="skill.details">자수, 레이스, 스캘럽 디테일</li>
+<li data-i18n="skill.fitting">피팅 및 핏 보완</li>
+<li data-i18n="skill.techpacks">도식화 및 사양서 작성</li>
+<li data-i18n="skill.graphics">그래픽 및 아트워크 개발</li>
+<li data-i18n="skill.adobe">Illustrator, Photoshop</li>
+</ul>
+</section>
+<section class="skill-group">
+<h2 data-i18n="skill.digitalTitle">디지털 역량</h2>
+<ul class="skill-list">
+<li data-i18n="skill.aiImages">AI 3D 이미지 제작</li>
+<li data-i18n="skill.mockups">입체 목업 시각화</li>
+<li data-i18n="skill.aiResearch">AI 에이전트 활용 리서치</li>
+<li data-i18n="skill.web">웹 포트폴리오 기획, 디자인 (AI 코딩)</li>
+<li data-i18n="skill.office">MS Office(MOS), Notion</li>
+</ul>
+</section>
+</div>
 </div>
 </section>
 </main>
@@ -360,7 +389,7 @@
 </footer>
 <script src="assets/js/home-order.js?v=1"></script>
 <script src="assets/js/content-protection.js?v=1"></script>
-<script src="assets/data/i18n-data.js?v=18"></script>
+<script src="assets/data/i18n-data.js?v=19"></script>
 <script src="assets/js/i18n.js?v=1"></script>
 <script src="assets/data/hero-data.js?v=1"></script>
 <script src="assets/js/viewer.js?v=11"></script>
