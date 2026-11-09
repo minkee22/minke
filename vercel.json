@@ -1,0 +1,22 @@
+{
+  "headers": [
+    {
+      "source": "/assets/resume/kyungeun-min-resume-ko-20261109.pdf",
+      "headers": [
+        {
+          "key": "Content-Disposition",
+          "value": "inline; filename=\"KYUNGEUN MIN RESUME KO.pdf\"; filename*=UTF-8''%EB%AF%BC%EA%B2%BD%EC%9D%80%20%ED%95%9C%EA%B8%80%EC%9D%B4%EB%A0%A5%EC%84%9C.pdf"
+        }
+      ]
+    },
+    {
+      "source": "/assets/resume/kyungeun-min-resume-en-20261109.pdf",
+      "headers": [
+        {
+          "key": "Content-Disposition",
+          "value": "inline; filename=\"KYUNGEUN MIN RESUME.pdf\"; filename*=UTF-8''KYUNGEUN%20MIN%20RESUME.pdf"
+        }
+      ]
+    }
+  ]
+}
