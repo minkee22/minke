@@ -1,7 +1,7 @@
 {
   "headers": [
     {
-      "source": "/assets/resume/kyungeun-min-resume-ko-20261110.pdf",
+      "source": "/assets/resume/kyungeun-min-resume-ko-20261110-r2.pdf",
       "headers": [
         {
           "key": "Content-Disposition",
@@ -10,7 +10,7 @@
       ]
     },
     {
-      "source": "/assets/resume/kyungeun-min-resume-en-20261110.pdf",
+      "source": "/assets/resume/kyungeun-min-resume-en-20261110-r2.pdf",
       "headers": [
         {
           "key": "Content-Disposition",
